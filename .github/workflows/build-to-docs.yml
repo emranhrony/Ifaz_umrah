@@ -1,0 +1,37 @@
+name: Build Vite to /docs (for Pages from main)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Prepare /docs for Pages
+        run: |
+          rm -rf docs
+          mkdir docs
+          cp -r dist/* docs/
+          cp docs/index.html docs/404.html
+
+      - name: Commit docs back to main
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'docs'
+          message: 'build: deploy site to /docs'
