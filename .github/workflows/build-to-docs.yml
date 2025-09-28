@@ -1,36 +1,10 @@
-name: Build Vite to /docs (for Pages from main)
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Move build to docs
-        run: |
-          rm -rf docs
-          mkdir docs
-          cp -r dist/* docs/
-          cp docs/index.html docs/404.html
-
-      - name: Commit docs
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: 'docs'
-          message: 'Deploy build to docs for GitHub Pages'
+export default defineConfig({
+  plugins: [react()],
+  base: '/Ifaz_umrah/',
+  build: {
+    outDir: 'docs'
+  }
+})
