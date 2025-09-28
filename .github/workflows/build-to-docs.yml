@@ -1,10 +1,43 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+name: Build Vite directly to /docs (Pages from main)
 
-export default defineConfig({
-  plugins: [react()],
-  base: '/Ifaz_umrah/',
-  build: {
-    outDir: 'docs'
-  }
-})
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build (outDir = docs)
+        run: npm run build
+
+      - name: Add .nojekyll and 404.html (SPA fallback)
+        run: |
+          touch docs/.nojekyll
+          cp docs/index.html docs/404.html
+
+      - name: Commit /docs back to main
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'docs'
+          message: 'deploy: build output to /docs for GitHub Pages'
