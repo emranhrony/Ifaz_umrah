@@ -136,7 +136,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Posters */}
+      {/* Posters (New) */}
       <section id="posters" className="mx-auto max-w-6xl px-4 pb-14">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-2xl md:text-3xl font-bold flex items-center gap-2"><Images className="w-6 h-6"/> পোস্টার গ্যালারি</h3>
@@ -145,18 +145,11 @@ export default function App() {
             <span className="rounded-full bg-white border px-4 py-2 shadow hover:bg-slate-50">Add Posters (Preview)</span>
           </label>
         </div>
-        <p className="text-sm text-slate-600 mb-6">
-          GitHub-এ লাইভের জন্য ছবি রাখুন: <code className="bg-slate-100 px-1 rounded">/public/posters/</code> এবং উপরের <code>POSTERS_DEFAULT</code> লিস্টে নাম দিন।
-        </p>
+        <p className="text-sm text-slate-600 mb-6">GitHub-এ লাইভের জন্য ছবি রাখুন: <code className="bg-slate-100 px-1 rounded">/public/posters/</code> এবং উপরের <code>POSTERS_DEFAULT</code> লিস্টে নাম দিন। এখানে বাটনটি কেবল প্রিভিউ দেখায়।</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {posters.map((src, i) => (
             <figure key={src + i} className="group relative overflow-hidden rounded-2xl bg-white shadow ring-1 ring-slate-200">
-              <img
-                src={src}
-                alt={`Poster ${i+1}`}
-                className="w-full h-64 object-cover"
-                onError={(e)=>{ e.currentTarget.src = "https://placehold.co/800x1000/png?text=Upload+poster%0A/public/posters"; }}
-              />
+              <img src={src} alt={`Poster ${i+1}`} className="w-full h-64 object-cover" onError={(e)=>{e.currentTarget.src = "https://placehold.co/800x1000/png?text=Upload+poster%0A/public/posters";}}/>
               <figcaption className="absolute inset-x-0 bottom-0 bg-black/50 text-white text-xs px-3 py-2 opacity-0 group-hover:opacity-100 transition">Poster {i+1}</figcaption>
             </figure>
           ))}
@@ -256,7 +249,7 @@ export default function App() {
             </div>
             <form className="mt-4 grid grid-cols-1 gap-3" onSubmit={(e)=>{e.preventDefault(); window.location.href = CTA_WHATSAPP;}}>
               <input required placeholder="পূর্ণ নাম" className="w-full rounded-xl border px-4 py-3"/>
-              <input required placeholder="ফোন নম্বর" className="w-full rounded-xl border px-4 py-3"/>
+              <input required placeholder="ফোন নম্বর" className="w-full rounded-xl	border px-4 py-3"/>
               <div className="grid grid-cols-2 gap-3">
                 <select className="rounded-xl border px-4 py-3"><option>October</option><option>November</option></select>
                 <input placeholder="যাত্রী সংখ্যা (যেমন ৪)" className="rounded-xl border px-4 py-3"/>
