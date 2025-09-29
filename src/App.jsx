@@ -1,1 +1,0 @@
-export default function App(){ return (<h1>Ifaz Travels Umrah Landing Page</h1>); }
