@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ifaz Travels — Umrah Packages (2025)</title>
   <meta name="description" content="Ifaz Travels — সাশ্রয়ী ও নির্ভরযোগ্য হজ ও উমরাহ প্যাকেজ।" />
-  <link rel="icon" href="/public/logo.png" />
+  <link rel="icon" href="public/favicon.ico" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --brand:#e11d48;
-      --brand-dark:#9f1239;
+      --brand:#e11d48;        /* rose red */
+      --brand-dark:#9f1239;   /* dark red */
       --text:#f1f5f9;
       --muted:#cbd5e1;
       --bg:#0f172a;
@@ -19,17 +22,24 @@
     }
     *{box-sizing:border-box;transition:all .3s ease-in-out}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:'Noto Sans Bengali','Noto Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:linear-gradient(135deg,#9f1239,#0f172a,#e11d48)}
+    body{
+      margin:0;
+      font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(135deg,#9f1239,#0f172a,#e11d48);
+    }
     a{text-decoration:none;color:inherit}
     .container{max-width:1200px;margin:0 auto;padding:0 16px}
 
+    /* Header */
     header{position:sticky;top:0;background:rgba(15,23,42,.95);border-bottom:1px solid #334155;z-index:50}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand{display:flex;align-items:center;gap:10px}
     .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
 
+    /* Buttons */
     .btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:600;border:none;cursor:pointer}
-    .btn:hover{background:var(--brand-dark);box-shadow:0 0 20px rgba(225,29,72,0.6);transform:translateY(-2px)}
+    .btn:hover{background:var(--brand-dark);box-shadow:0 0 20px rgba(225,29,72,.6);transform:translateY(-2px)}
 
     /* Hero */
     .hero{padding:64px 0;animation:fadeIn 1.2s ease-in-out}
@@ -40,16 +50,14 @@
     @media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
     .hero-img{width:100%;max-width:420px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.5)}
 
-    /* Cards */
+    /* Sections & cards */
+    .section{padding:48px 0}
     .grid{display:grid;gap:16px}
     @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
     .card{background:var(--card);border:1px solid #334155;border-radius:16px;padding:20px;box-shadow:0 6px 16px rgba(0,0,0,.4)}
-    .card h3{margin:0 0 10px;color:#fff}
-    .list{margin:10px 0;padding:0 0 0 18px}
-    .price{font-size:22px;font-weight:800;color:var(--accent)}
-    .section{padding:48px 0}
+    .card h3{margin:0 0 10px}
 
-    /* Booking Form */
+    /* Form */
     form{max-width:600px;margin:auto}
     form label{display:block;margin-bottom:12px;font-size:15px;color:var(--muted)}
     form input,form select{width:100%;padding:10px;border:1px solid #475569;border-radius:10px;background:#0f172a;color:#f1f5f9}
@@ -70,9 +78,9 @@
     .wa-float{position:fixed;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:60}
     .wa-float svg{width:28px;height:28px;fill:#fff}
 
-    /* Modal */
-    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:100}
-    .modal-content{background:#1e293b;padding:24px;border-radius:12px;max-width:400px;text-align:center;color:#fff;position:relative}
+    /* Modal (Success Popup) */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);align-items:center;justify-content:center;z-index:100}
+    .modal-content{background:#1e293b;padding:24px;border-radius:12px;max-width:420px;text-align:center;color:#fff;position:relative}
     .close-btn{position:absolute;top:10px;right:14px;background:none;border:none;font-size:20px;color:#fff;cursor:pointer}
 
     /* Animations */
@@ -82,6 +90,7 @@
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="container nav">
       <div class="brand">
@@ -112,15 +121,32 @@
     <!-- সুবিধা -->
     <section class="section">
       <div class="container grid cols-3">
-        <div class="card"><h3>প্যাকেজ সুবিধাসমূহ</h3><ul class="list"><li>ভিসা প্রসেসিং</li><li>এয়ার টিকিট</li><li>হারাম-সংলগ্ন হোটেল</li><li>এয়ারপোর্ট পিকআপ</li><li>বাংলা/আরবি গাইড</li></ul></div>
-        <div class="card"><h3>গ্রুপ তারিখ</h3><ul class="list"><li>১৯ অক্টোবর ২০২৫</li><li>০১ নভেম্বর ২০২৫</li><li>প্রাইভেট ট্রিপও সম্ভব</li></ul></div>
-        <div class="card"><h3>রুট</h3><ul class="list"><li>সিলেট → ঢাকা → জেদ্দা</li><li>মদিনা → ঢাকা → সিলেট</li></ul></div>
+        <div class="card">
+          <h3>প্যাকেজ সুবিধাসমূহ</h3>
+          <ul class="list">
+            <li>ভিসা প্রসেসিং</li><li>এয়ার টিকিট</li><li>হারাম-সংলগ্ন হোটেল</li>
+            <li>এয়ারপোর্ট পিকআপ</li><li>বাংলা/আরবি গাইড</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>গ্রুপ তারিখ</h3>
+          <ul class="list">
+            <li>১৯ অক্টোবর ২০২৫</li><li>০১ নভেম্বর ২০২৫</li><li>প্রাইভেট ট্রিপও সম্ভব</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>রুট</h3>
+          <ul class="list">
+            <li>সিলেট → ঢাকা → জেদ্দা</li><li>মদিনা → ঢাকা → সিলেট</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <!-- Packages -->
     <section class="section" id="packages">
-      <div class="container"><h3>Packages</h3>
+      <div class="container">
+        <h3>Packages</h3>
         <div class="grid cols-3">
           <div class="card"><h4>✈️ ৭ দিন</h4><p class="price">Call for Price</p></div>
           <div class="card"><h4>🕌 ১০ দিন</h4><p class="price">Call for Price</p></div>
@@ -146,30 +172,37 @@
           <div class="grid">
             <label>পূর্ণ নাম<br><input name="name" required /></label>
             <label>ফোন (WhatsApp)<br><input name="phone" required /></label>
-            <label>প্যাকেজ<br><select name="package"><option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option></select></label>
-            <label>মাস<br><select name="month"><option>October 2025</option><option>November 2025</option><option>December 2025</option></select></label>
+            <label>প্যাকেজ<br>
+              <select name="package"><option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option></select>
+            </label>
+            <label>মাস<br>
+              <select name="month"><option>October 2025</option><option>November 2025</option><option>December 2025</option></select>
+            </label>
           </div>
           <button class="btn" type="submit" style="margin-top:16px">Submit</button>
         </form>
       </div>
-    <!-- Success Modal -->
-<div id="successModal" class="modal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal()">✖</button>
-    <h3>✅ সফল!</h3>
-    <p>আপনার তথ্য গ্রহণ করা হয়েছে। আমাদের টিম শিগগিরই যোগাযোগ করবে।</p>
-  </div>
-</div>
-</section>
+    </section>
+
+    <!-- Success Modal (hidden by default) -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">✖</button>
+        <h3>✅ সফলভাবে সাবমিট হয়েছে!</h3>
+        <p>আমাদের টিম শিগগিরই যোগাযোগ করবে।</p>
+      </div>
+    </div>
 
     <!-- Photos -->
     <section id="photos" class="section">
-      <div class="container"><h3>Photos</h3>
+      <div class="container">
+        <h3>Photos</h3>
         <div class="grid">
-          <figure><img src="public/posters/poster1.jpg" alt="Makkah"/><figcaption>মক্কা</figcaption></figure>
-          <figure><img src="public/posters/poster2.jpg" alt="Madinah"/><figcaption>মদিনা</figcaption></figure>
-          <figure><img src="public/posters/poster3.jpg" alt="Travel"/><figcaption>ভ্রমণ</figcaption></figure>
-          <figure><img src="public/posters/posters1.jpg" alt="Group"/><figcaption>গ্রুপ ট্যুর</figcaption></figure>
+          <figure><img src="public/posters/og.jpg"        alt="Poster Main"><figcaption>Official Poster</figcaption></figure>
+          <figure><img src="public/posters/poster1.jpg"   alt="Makkah"><figcaption>মক্কা</figcaption></figure>
+          <figure><img src="public/posters/poster2.jpg"   alt="Madinah"><figcaption>মদিনা</figcaption></figure>
+          <figure><img src="public/posters/poster3.jpg"   alt="Travel"><figcaption>ভ্রমণ</figcaption></figure>
+          <figure><img src="public/posters/posters1.jpg"  alt="Group"><figcaption>গ্রুপ ট্যুর</figcaption></figure>
         </div>
       </div>
     </section>
@@ -193,32 +226,25 @@
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a class="wa-float" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank">
-    <svg viewBox="0 0 32 32"><path d="M19.11 17.36c..."/></svg>
+  <a class="wa-float" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" aria-label="WhatsApp Chat">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.36c-.27-.13-1.6-.79-1.85-.88-.25-.1-.43-.13-.62.14-.18.26-.71.88-.87 1.06-.16.19-.32.2-.59.07-.27-.13-1.13-.42-2.15-1.35-.79-.7-1.32-1.57-1.48-1.84-.15-.26-.02-.4.11-.53.11-.11.26-.28.39-.42.13-.14.17-.24.26-.4.09-.19.04-.35-.02-.48-.07-.13-.62-1.49-.85-2.04-.22-.53-.44-.46-.62-.47l-.53-.01c-.18 0-.48.07-.73.35-.25.26-.96.94-.96 2.3s.99 2.67 1.13 2.86c.14.19 1.95 2.98 4.72 4.05.66.28 1.17.45 1.57.58.66.21 1.26.18 1.73.11.53-.08 1.6-.65 1.83-1.29.23-.63.23-1.17.16-1.28-.06-.11-.24-.18-.51-.31zM16.02 3C9.94 3 5 7.94 5 14.02c0 2.4.79 4.62 2.13 6.42L5.03 27l6.73-2.07a10.96 10.96 0 0 0 4.26.85c6.07 0 11-4.94 11-11.02S22.09 3 16.02 3z"/></svg>
   </a>
 
-  <!-- Success Modal -->
-  <div id="successModal" class="modal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal()">×</button>
-      <h3>✅ সফলভাবে সাবমিট হয়েছে!</h3>
-      <p>আমাদের টিম শিগগিরই যোগাযোগ করবে।</p>
-    </div>
-  </div>
-
+  <!-- Scripts -->
   <script>
     const form = document.getElementById('umrahForm');
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function(e){
       e.preventDefault();
       fetch(form.action, { method:'POST', body:new FormData(form) })
         .then(() => {
-          document.getElementById('successModal').style.display = 'flex';
+          document.getElementById('successModal').style.display = 'flex'; // show popup
           form.reset();
-        });
+          // Auto-close after 5s (চাইলে রাখো)
+          setTimeout(closeModal, 5000);
+        })
+        .catch(() => alert('ফর্ম সাবমিট করতে সমস্যা হয়েছে, একটু পরে চেষ্টা করুন'));
     });
-    function closeModal() {
-      document.getElementById('successModal').style.display = 'none';
-    }
+    function closeModal(){ document.getElementById('successModal').style.display = 'none'; }
   </script>
 </body>
 </html>
