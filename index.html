@@ -12,15 +12,12 @@
 
   <style>
     :root{
-      --brand:#e11d48;        /* rose red */
-      --brand-dark:#9f1239;   /* dark red */
-      --text:#f1f5f9;
-      --muted:#cbd5e1;
-      --bg:#0f172a;
-      --card:#1e293b;
-      --accent:#f43f5e;
+      --brand:#e11d48; --brand-dark:#9f1239;
+      --text:#f1f5f9; --muted:#cbd5e1;
+      --bg:#0f172a; --card:#1e293b; --accent:#f43f5e;
+      --ok:#16a34a; --err:#ef4444;
     }
-    *{box-sizing:border-box;transition:all .3s ease-in-out}
+    *{box-sizing:border-box;transition:all .3s ease}
     html{scroll-behavior:smooth}
     body{
       margin:0;
@@ -40,10 +37,12 @@
     /* Buttons */
     .btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:600;border:none;cursor:pointer}
     .btn:hover{background:var(--brand-dark);box-shadow:0 0 20px rgba(225,29,72,.6);transform:translateY(-2px)}
+    .btn.secondary{background:#334155}
+    .btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
 
     /* Hero */
-    .hero{padding:64px 0;animation:fadeIn 1.2s ease-in-out}
-    .hero h1{font-size:clamp(28px,6vw,48px);line-height:1.2;margin:0 0 14px;animation:titleFade 1.5s ease forwards}
+    .hero{padding:64px 0;animation:fadeIn 1.2s ease}
+    .hero h1{font-size:clamp(28px,6vw,48px);line-height:1.2;margin:0 0 14px;animation:titleFade 1.2s ease forwards}
     .hero p{color:var(--muted);margin:0 0 18px}
     .badge{display:inline-block;background:var(--accent);color:#fff;padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px}
     .hero-grid{display:grid;gap:24px;align-items:center}
@@ -58,10 +57,16 @@
     .card h3{margin:0 0 10px}
 
     /* Form */
-    form{max-width:600px;margin:auto}
+    form{max-width:680px;margin:auto}
     form label{display:block;margin-bottom:12px;font-size:15px;color:var(--muted)}
-    form input,form select{width:100%;padding:10px;border:1px solid #475569;border-radius:10px;background:#0f172a;color:#f1f5f9}
-    @media(min-width:700px){form .grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+    form input,form select{
+      width:100%;padding:10px;border:1px solid #475569;border-radius:10px;background:#0f172a;color:#f1f5f9
+    }
+    @media(min-width:720px){form .grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+    .note{font-size:14px;color:var(--muted);margin-top:8px}
+    .msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
+    .msg.ok{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.4);color:#d1fae5}
+    .msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fecaca}
 
     /* Photos */
     #photos .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
@@ -85,7 +90,7 @@
 
     /* Animations */
     @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes titleFade{0%{opacity:0;transform:translateY(-20px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes titleFade{0%{opacity:0;transform:translateY(-14px)}100%{opacity:1;transform:translateY(0)}}
   </style>
 </head>
 
@@ -143,14 +148,55 @@
       </div>
     </section>
 
-    <!-- Packages -->
+    <!-- Packages (expanded) -->
     <section class="section" id="packages">
       <div class="container">
         <h3>Packages</h3>
         <div class="grid cols-3">
-          <div class="card"><h4>✈️ ৭ দিন</h4><p class="price">Call for Price</p></div>
-          <div class="card"><h4>🕌 ১০ দিন</h4><p class="price">Call for Price</p></div>
-          <div class="card"><h4>🏨 ১৪ দিন</h4><p class="price">৳১,৪৫০০০</p></div>
+          <div class="card">
+            <h4>✈️ ৭ দিন</h4>
+            <p class="price">Call for Price</p>
+            <p class="note">Visa, Ticket, Hotel, Transport</p>
+            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+          </div>
+          <div class="card">
+            <h4>🕌 ১০ দিন</h4>
+            <p class="price">Call for Price</p>
+            <p class="note">Group / Family rooms</p>
+            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+          </div>
+          <div class="card">
+            <h4>🏨 ১৪ দিন</h4>
+            <p class="price">৳১,৪৫০০০</p>
+            <p class="note">খাবার ছাড়া · Near Haram</p>
+            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+          </div>
+
+          <div class="card">
+            <h4>📅 October 2025 (Group)</h4>
+            <p class="price">Early-bird available</p>
+            <p class="note">19 Oct departure · Guide included</p>
+            <div><a class="btn secondary" href="#booking-form">Reserve</a></div>
+          </div>
+          <div class="card">
+            <h4>📅 November 2025 (Group)</h4>
+            <p class="price">Discount available</p>
+            <p class="note">1 Nov departure · Flexible dates</p>
+            <div><a class="btn secondary" href="#booking-form">Reserve</a></div>
+          </div>
+          <div class="card">
+            <h4>⭐ Custom / Private Umrah</h4>
+            <p class="price">Tailored Itinerary</p>
+            <p class="note">Premium hotel · Private transport</p>
+            <div><a class="btn secondary" href="#booking-form">Call for Plan</a></div>
+          </div>
+
+          <div class="card">
+            <h4>🛫 Air Ticket & Visa Assist</h4>
+            <p class="price">JED / MED</p>
+            <p class="note">Multiple airlines · Quick processing</p>
+            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+          </div>
         </div>
       </div>
     </section>
@@ -168,18 +214,38 @@
     <section id="booking-form" class="section">
       <div class="container card">
         <h3>Online Booking Form</h3>
-        <form id="umrahForm" action="https://formspree.io/f/xrbyplzy" method="POST">
+        <form id="umrahForm" action="https://formspree.io/f/xrbyplzy" method="POST" novalidate>
           <div class="grid">
-            <label>পূর্ণ নাম<br><input name="name" required /></label>
-            <label>ফোন (WhatsApp)<br><input name="phone" required /></label>
+            <label>পূর্ণ নাম<br>
+              <input name="name" required />
+            </label>
+            <label>ফোন (WhatsApp)<br>
+              <input name="phone" required pattern="^[0-9+\-\s]{8,}$" />
+            </label>
             <label>প্যাকেজ<br>
-              <select name="package"><option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option></select>
+              <select name="package">
+                <option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option>
+                <option>October 2025 (Group)</option><option>November 2025 (Group)</option>
+                <option>Custom / Private</option><option>Air Ticket & Visa Assist</option>
+              </select>
             </label>
             <label>মাস<br>
-              <select name="month"><option>October 2025</option><option>November 2025</option><option>December 2025</option></select>
+              <select name="month">
+                <option>October 2025</option><option>November 2025</option><option>December 2025</option>
+              </select>
             </label>
+            <!-- Optional email (Formspree often prefers having an email field) -->
+            <label>ইমেইল (Optional)<br>
+              <input type="email" name="email" placeholder="you@example.com" />
+            </label>
+            <!-- Honeypot (spam protection) -->
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="hidden" name="_subject" value="New Umrah Booking - Ifaz Travels">
           </div>
-          <button class="btn" type="submit" style="margin-top:16px">Submit</button>
+          <button id="submitBtn" class="btn" type="submit" style="margin-top:16px">Submit</button>
+          <div id="formOk"  class="msg ok">✅ আপনার তথ্য পাওয়া গেছে! শিগগিরই যোগাযোগ করা হবে।</div>
+          <div id="formErr" class="msg err">❌ সাবমিট করতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন বা WhatsApp-এ মেসেজ দিন।</div>
+          <p class="note">* Prices subject to change. Visa approval per Embassy.</p>
         </form>
       </div>
     </section>
@@ -233,18 +299,38 @@
   <!-- Scripts -->
   <script>
     const form = document.getElementById('umrahForm');
-    form.addEventListener('submit', function(e){
+    const btn  = document.getElementById('submitBtn');
+    const ok   = document.getElementById('formOk');
+    const err  = document.getElementById('formErr');
+
+    form.addEventListener('submit', async (e)=>{
       e.preventDefault();
-      fetch(form.action, { method:'POST', body:new FormData(form) })
-        .then(() => {
-          document.getElementById('successModal').style.display = 'flex'; // show popup
+      ok.style.display = 'none';
+      err.style.display = 'none';
+      btn.disabled = true; btn.textContent = 'Submitting...';
+
+      try{
+        const res = await fetch(form.action, {
+          method:'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if(res.ok){
+          document.getElementById('successModal').style.display='flex';
+          ok.style.display = 'block';
           form.reset();
-          // Auto-close after 5s (চাইলে রাখো)
           setTimeout(closeModal, 5000);
-        })
-        .catch(() => alert('ফর্ম সাবমিট করতে সমস্যা হয়েছে, একটু পরে চেষ্টা করুন'));
+        }else{
+          err.style.display = 'block';
+        }
+      }catch(ex){
+        err.style.display = 'block';
+      }finally{
+        btn.disabled = false; btn.textContent = 'Submit';
+      }
     });
-    function closeModal(){ document.getElementById('successModal').style.display = 'none'; }
+
+    function closeModal(){ document.getElementById('successModal').style.display='none'; }
   </script>
 </body>
 </html>
