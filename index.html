@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ifaz Travels — Umrah Packages (2025)</title>
   <meta name="description" content="Ifaz Travels — সাশ্রয়ী ও নির্ভরযোগ্য হজ ও উমরাহ প্যাকেজ।" />
-  <link rel="icon" href="/favicon.ico" />
-
-  <style>
+  <link rel="icon" href="/favicon.ico" />  <style>
     :root{
-      --brand:#e11d48;
-      --brand-dark:#9f1239;
+      --brand:#e11d48; /* rose red */
+      --brand-dark:#9f1239; /* dark red */
       --text:#f1f5f9;
       --muted:#cbd5e1;
-      --bg:#0f172a;
-      --card:#1e293b;
-      --accent:#f43f5e;
+      --bg:#0f172a; /* dark background */
+      --card:#1e293b; /* dark box */
+      --accent:#f43f5e; /* rose accent */
     }
     *{box-sizing:border-box;transition:all .3s ease-in-out}
     html{scroll-behavior:smooth}
@@ -31,7 +28,16 @@
     .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand .logo-img{width:40px;height:40px;object-fit:contain;border-radius:8px}
-    .btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:600;border:none;cursor:pointer;box-shadow:0 0 0 rgba(0,0,0,0)}
+    .btn{
+      padding:12px 20px;
+      border-radius:12px;
+      background:var(--brand);
+      color:#fff;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 0 0 rgba(0,0,0,0);
+    }
     .btn:hover{background:var(--brand-dark);box-shadow:0 0 20px rgba(225,29,72,0.6);transform:translateY(-2px)}
     .hero{padding:64px 0;text-align:center;animation:fadeIn 1.2s ease-in-out}
     .hero h1{font-size:clamp(28px,6vw,48px);line-height:1.2;margin:0 0 14px;animation:titleFade 1.5s ease forwards}
@@ -39,18 +45,30 @@
     .badge{display:inline-block;background:var(--accent);color:#fff;padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px}
     .grid{display:grid;gap:16px}
     @media (min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-    .card{background:var(--card);border:1px solid #334155;border-radius:16px;padding:20px;box-shadow:0 6px 16px rgba(0,0,0,.4)}
+    .card{
+      background:var(--card);
+      border:1px solid #334155;
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 6px 16px rgba(0,0,0,.4);
+    }
     .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 10px 24px rgba(0,0,0,0.6)}
     .card h3{margin:0 0 10px;color:#fff}
     .list{margin:10px 0;padding:0 0 0 18px}
+    .price{font-size:22px;font-weight:800;color:var(--accent)}
     .section{padding:32px 0}
     footer{padding:32px 0;border-top:1px solid #334155;background:#111827;color:#cbd5e1}
     .foot-grid{display:grid;gap:12px}
     @media (min-width:720px){.foot-grid{grid-template-columns:1.2fr 1fr}}
+
     @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     @keyframes titleFade{0%{opacity:0;transform:translateY(-20px)}100%{opacity:1;transform:translateY(0)}}
-  </style>
-</head>
+      /* Dark gallery styling */
+    #photos .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    #photos figure{background:var(--card);border:1px solid #334155;border-radius:14px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+    #photos img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+    #photos figcaption{padding:10px;color:var(--muted);font-size:14px}
+  </style></head>
 <body>
   <header>
     <div class="container nav">
@@ -63,9 +81,7 @@
       </div>
       <a class="btn" href="#book">Book Now</a>
     </div>
-  </header>
-
-  <main>
+  </header>  <main>
     <section class="hero">
       <div class="container">
         <span class="badge">October & November 2025 — Group Packages</span>
@@ -73,90 +89,89 @@
         <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
         <a class="btn" href="#book">Book Now</a>
       </div>
-    </section>
+    </section><section class="section">
+  <div class="container grid cols-3">
+    <div class="card">
+      <h3>প্যাকেজ সুবিধাসমূহ</h3>
+      <ul class="list">
+        <li>ভিসা প্রসেসিং</li>
+        <li>এয়ার টিকিট</li>
+        <li>হারাম-সংলগ্ন হোটেল</li>
+        <li>এয়ারপোর্ট পিকআপ ও ট্রান্সপোর্ট</li>
+        <li>বাংলা/আরবি গাইড</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>গ্রুপ তারিখ</h3>
+      <ul class="list">
+        <li>১৯ অক্টোবর ২০২৫</li>
+        <li>০১ নভেম্বর ২০২৫</li>
+        <li>প্রাইভেট ট্রিপও সম্ভব</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>রুট</h3>
+      <ul class="list">
+        <li>সিলেট → ঢাকা → জেদ্দা</li>
+        <li>মদিনা → ঢাকা → সিলেট</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-    <section class="section">
-      <div class="container grid cols-3">
-        <div class="card">
-          <h3>প্যাকেজ সুবিধাসমূহ</h3>
-          <ul class="list">
-            <li>ভিসা প্রসেসিং</li>
-            <li>এয়ার টিকিট</li>
-            <li>হারাম-সংলগ্ন হোটেল</li>
-            <li>এয়ারপোর্ট পিকআপ ও ট্রান্সপোর্ট</li>
-            <li>বাংলা/আরবি গাইড</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>গ্রুপ তারিখ</h3>
-          <ul class="list">
-            <li>১৯ অক্টোবর ২০২৫</li>
-            <li>০১ নভেম্বর ২০২৫</li>
-            <li>প্রাইভেট ট্রিপও সম্ভব</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>রুট</h3>
-          <ul class="list">
-            <li>সিলেট → ঢাকা → জেদ্দা</li>
-            <li>মদিনা → ঢাকা → সিলেট</li>
-          </ul>
-        </div>
+<section id="book" class="section">
+  <div class="container card" style="text-align:center">
+    <h3>Book Your Spot</h3>
+    <p style="color:var(--muted)">সীমিত আসন। এখনই বুক করুন এবং নিশ্চিত করুন আপনার ভ্রমণ।</p>
+    <a class="btn" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank">WhatsApp</a>
+  </div>
+</section>
+
+<!-- Booking Form -->
+<section class="section" id="booking-form">
+  <div class="container card">
+    <h3>Online Booking Form</h3>
+    <p style="color:var(--muted)">WhatsApp ছাড়াও নিচের ফর্ম পূরণ করুন। আমরা ফোনে কনফার্ম করবো।</p>
+    <form action="https://formspree.io/f/xrbyplzy" method="POST">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+        <label>পূর্ণ নাম<br><input name="name" required style="width:100%;padding:10px;border:1px solid #475569;border-radius:10px"/></label>
+        <label>ফোন (WhatsApp)<br><input name="phone" required style="width:100%;padding:10px;border:1px solid #475569;border-radius:10px"/></label>
+        <label>পছন্দের প্যাকেজ<br>
+          <select name="package" style="width:100%;padding:10px;border:1px solid #475569;border-radius:10px">
+            <option value="7">৭ দিন</option>
+            <option value="10">১০ দিন</option>
+            <option value="14">১৪ দিন</option>
+          </select>
+        </label>
       </div>
-    </section>
+      <button class="btn" type="submit" style="margin-top:16px">Submit</button>
+    </form>
+  </div>
+</section>
+  <!-- Photos Section -->
+<section class="section" id="photos">
+  <div class="container">
+    <h3 style="margin:0 0 12px">Photos</h3>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop" alt="Makkah — Haram area (sample)" loading="lazy" />
+        <figcaption>মক্কা — হারাম এলাকা</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=1200&auto=format&fit=crop" alt="Madinah — Masjid an-Nabawi (sample)" loading="lazy" />
+        <figcaption>মদিনা — মসজিদে নববী</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1200&auto=format&fit=crop" alt="Airport / Travel (sample)" loading="lazy" />
+        <figcaption>ভ্রমণ</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop" alt="Group tour (sample)" loading="lazy" />
+        <figcaption>গ্রুপ ট্যুর</figcaption>
+      </figure>
+</section>
 
-    <section id="book" class="section">
-      <div class="container card" style="text-align:center">
-        <h3>Book Your Spot</h3>
-        <p style="color:var(--muted)">সীমিত আসন। এখনই বুক করুন এবং নিশ্চিত করুন আপনার ভ্রমণ।</p>
-        <a class="btn" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank">WhatsApp</a>
-      </div>
-    </section>
-
-    <!-- Booking Form -->
-    <section class="section" id="booking-form">
-      <div class="container card">
-        <h3>Online Booking Form</h3>
-        <p style="color:var(--muted)">WhatsApp ছাড়াও নিচের ফর্ম পূরণ করুন। আমরা ফোনে কনফার্ম করবো।</p>
-        <form id="umrahForm" action="https://formspree.io/f/xrbyplzy" method="POST">
-          <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-            <label>পূর্ণ নাম<br><input name="name" required style="width:100%;padding:10px;border:1px solid #475569;border-radius:10px" /></label>
-            <label>ফোন (WhatsApp)<br><input name="phone" required style="width:100%;padding:10px;border:1px solid #475569;border-radius:10px" /></label>
-            <label>পছন্দের প্যাকেজ<br>
-              <select name="package" style="width:100%;padding:10px;border:1px solid #475569;border-radius:10px">
-                <option value="7">৭ দিন</option>
-                <option value="10">১০ দিন</option>
-                <option value="14">১৪ দিন</option>
-              </select>
-            </label>
-            <label>যাত্রার মাস<br>
-              <select name="month" style="width:100%;padding:10px;border:1px solid #475569;border-radius:10px">
-                <option>October 2025</option>
-                <option>November 2025</option>
-                <option>December 2025</option>
-              </select>
-            </label>
-          </div>
-          <button class="btn" type="submit" style="margin-top:16px">Submit</button>
-        </form>
-        <p id="formMessage" style="margin-top:12px;color:var(--accent);display:none">✅ আপনার তথ্য গ্রহণ করা হয়েছে! আমাদের টিম শিগগিরই যোগাযোগ করবে।</p>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-      <div class="container card">
-        <h3>About Ifaz Travels</h3>
-        <p style="color:var(--muted)">
-          ইফাজ ট্রাভেলস — সিলেট ও ঢাকাভিত্তিক বিশ্বস্ত হজ ও উমরাহ সেবাদাতা এবং বিভিন্ন দেশের ম্যানপাওয়ার, কাজের ভিসা এবং ভিজিট ভিসা সহ গ্রুপ ট্যুর পরিচালনা করে থাকে। 
-          জেদ্দা/মদিনা রুটে এয়ার টিকিট, ভিসা প্রসেসিং, হারাম-সংলগ্ন হোটেল, এয়ারপোর্ট-পিকআপ, ট্রান্সপোর্ট, আরবি/বাংলা গাইড—সব এক জায়গায়। 
-          আপনার ভ্রমনকে সহজ করতে আমরা প্রতিশ্রুতিবদ্ধ।
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
+  </main>  <footer>
     <div class="container foot-grid">
       <div>
         <strong>Ifaz Travels — Umrah & Hajj Services</strong><br />
@@ -164,26 +179,10 @@
       </div>
       <div>
         📞 01712-055858 · 01714-642113<br />
-        📧 info@efaztravels.com · 🌐 emranhrony.github.io/Ifaz_umrah
+        📧 info@efaztravels.com · 🌐 www.ifaztravels.com
       </div>
     </div>
     <small style="display:block;margin-top:12px">Prices subject to change. Visa approval per Embassy.</small>
   </footer>
-
-  <script>
-    // Success message for form submit
-    const form = document.getElementById('umrahForm');
-    form.addEventListener('submit', async function(e){
-      e.preventDefault();
-      const formData = new FormData(form);
-      const res = await fetch(form.action, {method:'POST', body:formData, headers:{'Accept':'application/json'}});
-      if(res.ok){
-        document.getElementById('formMessage').style.display='block';
-        form.reset();
-      } else {
-        alert('❌ ফর্ম সাবমিটে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
-      }
-    });
-  </script>
 </body>
 </html>
