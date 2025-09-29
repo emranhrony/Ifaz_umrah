@@ -220,5 +220,33 @@
     <path d="M19.11 17.36c-.27-.13-1.6-.79-1.85-.88-.25-.1-.43-.13-.62.14-.18.26-.71.88-.87 1.06-.16.19-.32.2-.59.07-.27-.13-1.13-.42-2.15-1.35-.79-.7-1.32-1.57-1.48-1.84-.15-.26-.02-.4.11-.53.11-.11.26-.28.39-.42.13-.14.17-.24.26-.4.09-.19.04-.35-.02-.48-.07-.13-.62-1.49-.85-2.04-.22-.53-.44-.46-.62-.47l-.53-.01c-.18 0-.48.07-.73.35-.25.26-.96.94-.96 2.3s.99 2.67 1.13 2.86c.14.19 1.95 2.98 4.72 4.05.66.28 1.17.45 1.57.58.66.21 1.26.18 1.73.11.53-.08 1.6-.65 1.83-1.29.23-.63.23-1.17.16-1.28-.06-.11-.24-.18-.51-.31zM16.02 3C9.94 3 5 7.94 5 14.02c0 2.4.79 4.62 2.13 6.42L5.03 27l6.73-2.07a10.96 10.96 0 0 0 4.26.85c6.07 0 11-4.94 11-11.02S22.09 3 16.02 3z"/>
   </svg>
 </a>
+    <!-- Modal -->
+<div id="successModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    <h4>✅ বুকিং সফল হয়েছে!</h4>
+    <p>আমাদের টিম শিগগিরই আপনার সাথে যোগাযোগ করবে। ধন্যবাদ।</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('umrahForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    fetch(form.action, {
+      method:'POST',
+      body:new FormData(form)
+    }).then(()=>{
+      document.getElementById('successModal').style.display='flex'; // ✅ submit হলে show হবে
+      form.reset();
+      setTimeout(closeModal, 5000); // ৫ সেকেন্ড পর auto close
+    });
+  });
+
+  function closeModal(){
+    document.getElementById('successModal').style.display='none';
+  }
+</script>
+
     </body>
 </html>
