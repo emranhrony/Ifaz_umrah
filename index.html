@@ -11,80 +11,125 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --brand:#e11d48; --brand-dark:#9f1239;
-      --text:#f1f5f9; --muted:#cbd5e1;
-      --bg:#0f172a; --card:#1e293b; --accent:#f43f5e;
-      --ok:#16a34a; --err:#ef4444;
-    body {
-  background: linear-gradient(to bottom, #87ceeb, #ffffff); /* Sky Blue → White */
+    /* === Light Sky Theme === */
+:root{
+  --brand:#e11d48; 
+  --brand-dark:#9f1239;
+  --text:#0f172a;           /* গাঢ় নেভি: লাইট ব্যাকগ্রাউন্ডে পাঠযোগ্য */
+  --muted:#334155;          /* সেকেন্ডারি টেক্সট */
+  --bg:#ffffff;             
+  --card:#ffffff;           /* কার্ডকে লাইট করা হলো */
+  --accent:#0ea5e9;         /* আকাশি অ্যাকসেন্ট */
+  --ok:#16a34a; 
+  --err:#ef4444;
 }
-    a{text-decoration:none;color:inherit}
-    .container{max-width:1200px;margin:0 auto;padding:0 16px}
 
-    /* Header */
-    header{position:sticky;top:0;background:rgba(15,23,42,.95);border-bottom:1px solid #334155;z-index:50}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:10px}
-    .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
+/* Sky gradient background */
+body{
+  margin:0;
+  font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text);
+  background: linear-gradient(to bottom, #87ceeb 0%, #ffffff 70%);
+}
 
-    /* Buttons */
-    .btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:600;border:none;cursor:pointer}
-    .btn:hover{background:var(--brand-dark);box-shadow:0 0 20px rgba(225,29,72,.6);transform:translateY(-2px)}
-    .btn.secondary{background:#334155}
-    .btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+/* Header: হালকা গ্লাসি, ডার্ক না */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,.85);
+  border-bottom:1px solid rgba(51,65,85,.15);
+  backdrop-filter:saturate(180%) blur(8px);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
+.brand div div{font-weight:700}
+.brand small{color:var(--muted)}
 
-    /* Hero */
-    .hero{padding:64px 0;animation:fadeIn 1.2s ease}
-    .hero h1{font-size:clamp(28px,6vw,48px);line-height:1.2;margin:0 0 14px;animation:titleFade 1.2s ease forwards}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .badge{display:inline-block;background:var(--accent);color:#fff;padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px}
-    .hero-grid{display:grid;gap:24px;align-items:center}
-    @media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
-    .hero-img{width:100%;max-width:420px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+/* Buttons: ব্র্যান্ড একই, সেকেন্ডারি আকাশি */
+.btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;border:none;cursor:pointer}
+.btn:hover{background:var(--brand-dark);box-shadow:0 8px 20px rgba(225,29,72,.25);transform:translateY(-2px)}
+.btn.secondary{background:#e2f2fb; color:#0c4a6e; border:1px solid #bae6fd}
+.btn.secondary:hover{background:#dbeafe}
 
-    /* Sections & cards */
-    .section{padding:48px 0}
-    .grid{display:grid;gap:16px}
-    @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-    .card{background:var(--card);border:1px solid #334155;border-radius:16px;padding:20px;box-shadow:0 6px 16px rgba(0,0,0,.4)}
-    .card h3{margin:0 0 10px}
+/* Hero: হেডিং বড়, সামান্য text-shadow */
+.hero{padding:64px 0;animation:fadeIn 1.2s ease}
+.hero h1{
+  font-size:clamp(32px,6vw,56px);
+  line-height:1.15; margin:0 0 14px;
+  text-shadow:0 2px 0 rgba(255,255,255,.65);
+}
+.hero p{color:var(--muted);margin:0 0 18px}
+.badge{
+  display:inline-block;background:var(--accent);color:#fff;
+  padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px
+}
+.hero-grid{display:grid;gap:24px;align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hero-img{width:100%;max-width:420px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
 
-    /* Form */
-    form{max-width:680px;margin:auto}
-    form label{display:block;margin-bottom:12px;font-size:15px;color:var(--muted)}
-    form input,form select{
-      width:100%;padding:10px;border:1px solid #475569;border-radius:10px;background:#0f172a;color:#f1f5f9
-    }
-    @media(min-width:720px){form .grid{grid-template-columns:repeat(2,1fr);gap:16px}}
-    .note{font-size:14px;color:var(--muted);margin-top:8px}
-    .msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
-    .msg.ok{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.4);color:#d1fae5}
-    .msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fecaca}
+/* Sections & Cards: লাইট কার্ড + সফট শ্যাডো */
+.section{padding:48px 0}
+.grid{display:grid;gap:16px}
+@media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
 
-    /* Photos */
-    #photos .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-    #photos figure{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.35)}
-    #photos img{width:100%;height:250px;object-fit:cover;display:block}
-    #photos figcaption{padding:10px;color:var(--muted);font-size:14px}
+.card{
+  background:var(--card);
+  border:1px solid rgba(51,65,85,.12);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 10px 24px rgba(15,23,42,.08);
+}
+.card h3{margin:0 0 10px}
 
-    /* Footer */
-    footer{padding:32px 0;border-top:1px solid #334155;background:#111827;color:#cbd5e1}
-    .foot-grid{display:grid;gap:16px}
-    @media(min-width:720px){.foot-grid{grid-template-columns:1fr 1fr}}
+/* Headings সাধারণভাবে একটু বড় ও স্পষ্ট */
+h3{font-size:clamp(20px,3vw,28px); line-height:1.3}
+h4{font-size:clamp(18px,2.4vw,22px); margin:0 0 8px}
 
-    /* WhatsApp Floating */
-    .wa-float{position:fixed;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:60}
-    .wa-float svg{width:28px;height:28px;fill:#fff}
+/* Form: ইনপুটগুলো লাইট, বর্ডার সফট */
+form{max-width:680px;margin:auto}
+form label{display:block;margin-bottom:12px;font-size:15px;color:var(--muted)}
+form input,form select{
+  width:100%;
+  padding:10px;
+  border:1px solid rgba(51,65,85,.25);
+  border-radius:10px;
+  background:#ffffff;
+  color:#0f172a;
+  outline:none;
+}
+form input:focus, form select:focus{
+  border-color:#38bdf8; box-shadow:0 0 0 4px rgba(56,189,248,.2);
+}
+@media(min-width:720px){form .grid{grid-template-columns:repeat(2,1fr);gap:16px}}
 
-    /* Modal (Success Popup) */
-    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);align-items:center;justify-content:center;z-index:100}
-    .modal-content{background:#1e293b;padding:24px;border-radius:12px;max-width:420px;text-align:center;color:#fff;position:relative}
-    .close-btn{position:absolute;top:10px;right:14px;background:none;border:none;font-size:20px;color:#fff;cursor:pointer}
+.note{font-size:14px;color:var(--muted);margin-top:8px}
+.msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
+.msg.ok{background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.3);color:#065f46}
+.msg.err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.28);color:#7f1d1d}
 
-    /* Animations */
-    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes titleFade{0%{opacity:0;transform:translateY(-14px)}100%{opacity:1;transform:translateY(0)}}
+/* Photos: লাইট কার্ড ফিল */
+#photos .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+#photos figure{background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 10px 24px rgba(15,23,42,.08)}
+#photos img{width:100%;height:250px;object-fit:cover;display:block}
+#photos figcaption{padding:10px;color:var(--muted);font-size:14px}
+
+/* Footer: আলাদা সেকশন হিসেবে ডার্ক রাখা হলো */
+footer{padding:32px 0;border-top:1px solid rgba(51,65,85,.15);background:#0f172a;color:#cbd5e1}
+.foot-grid{display:grid;gap:16px}
+@media(min-width:720px){.foot-grid{grid-template-columns:1fr 1fr}}
+
+/* WhatsApp Floating */
+.wa-float{position:fixed;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:60}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+
+/* Modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);align-items:center;justify-content:center;z-index:100}
+.modal-content{background:#ffffff;color:#0f172a;padding:24px;border-radius:12px;max-width:420px;text-align:center;position:relative;border:1px solid rgba(51,65,85,.12);box-shadow:0 18px 40px rgba(15,23,42,.12)}
+.close-btn{position:absolute;top:10px;right:14px;background:none;border:none;font-size:20px;color:#334155;cursor:pointer}
+
+/* Animations (unchanged) */
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes titleFade{0%{opacity:0;transform:translateY(-14px)}100%{opacity:1;transform:translateY(0)}}
+
   </style>
 </head>
 
