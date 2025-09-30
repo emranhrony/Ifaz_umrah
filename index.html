@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
-<head><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L3G3DPGK8Y"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L3G3DPGK8Y');
-</script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ifaz Travels — Umrah Packages (2025)</title>
@@ -20,194 +12,251 @@
 
   <style>
     :root{
-  --brand:#e11d48; 
-  --brand-dark:#9f1239;
-  --text:#0f172a;
-  --muted:#334155;
-  --bg:#ffffff;
-  --card:#1e293b;      /* ডার্ক কার্ড */
-  --accent:#0ea5e9;    /* আকাশি অ্যাকসেন্ট */
-  --ok:#16a34a; 
-  --err:#ef4444;
-}
-    /* Desktop menu */
-.menu {
-  display: flex;
-  gap: 20px;
-}
+      --brand:#e11d48; --brand-dark:#9f1239;
+      --text:#0f172a;  --muted:#334155;
+      --bg:#ffffff;    --card:#1e293b;
+      --accent:#0ea5e9;--ok:#16a34a; --err:#ef4444;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background: linear-gradient(to bottom, #87ceeb 0%, #ffffff 70%);
+    }
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:0 16px}
 
-/* Hamburger button */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+    /* Header */
+    header{position:sticky;top:0;background:rgba(255,255,255,.9);border-bottom:1px solid rgba(51,65,85,.15);backdrop-filter:blur(8px);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:relative}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
+    .brand-title{font-size:28px;font-weight:800;color:var(--text)}
+    .brand small{color:var(--muted)}
 
-/* Mobile view */
-@media (max-width: 768px) {
-  .menu {
-    display: none;
-    flex-direction: column;
-    background: rgba(255, 255, 255, 0.95);
-    position: absolute;
-    top: 60px;
-    right: 16px;
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,.2);
-  }
+    /* Hamburger button (3 bars) */
+    .menu-toggle{
+      width:40px;height:40px;display:none;align-items:center;justify-content:center;
+      background:transparent;border:none;cursor:pointer;padding:0;margin:0 0 0 8px;
+    }
+    .menu-toggle .bar{
+      position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s ease;
+    }
+    .menu-toggle .bar::before,
+    .menu-toggle .bar::after{
+      content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s ease;
+    }
+    .menu-toggle .bar::before{top:-7px}
+    .menu-toggle .bar::after{top:7px}
+    /* morph to X when open */
+    body.menu-open .menu-toggle .bar{background:transparent}
+    body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
+    body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
 
-  body.menu-open .menu {
-    display: flex;
-  }
+    /* Menu links */
+    .menu{display:flex;align-items:center;gap:20px}
+    .menu a{color:var(--text);font-weight:600}
+    .menu a:hover{color:var(--brand)}
+    .btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;border:none;cursor:pointer;display:inline-block}
+    .btn:hover{background:var(--brand-dark);box-shadow:0 8px 20px rgba(225,29,72,.25);transform:translateY(-2px)}
 
-  .menu-toggle {
-    display: block;
-  }
-}
-    /* About + Contact (Desktop/Tablet) */
-#about .container{
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* দুই কলাম */
-  gap: 32px;
-  text-align: left;
-}
+    /* Mobile menu */
+    @media (max-width:768px){
+      .menu{display:none;flex-direction:column;background:rgba(255,255,255,.97);position:absolute;top:60px;right:16px;padding:16px;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,.2)}
+      body.menu-open .menu{display:flex}
+      .menu-toggle{display:inline-flex}
+    }
 
-/* Mobile view (আপনার আগেরটা থাকবে) */
-@media (max-width: 768px){
-  #about .container{
-    grid-template-columns: 1fr; /* এক কলাম */
-    text-align: center;
-  }
-}
+    /* Sections & cards */
+    .section{padding:48px 0}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;box-shadow:0 10px 24px rgba(15,23,42,.3);color:#f1f5f9}
 
-/* Sky background */
-body{
-  margin:0;
-  font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  color:var(--text);
-  background: linear-gradient(to bottom, #87ceeb 0%, #ffffff 70%);
-}
+    /* Hero with animated dates */
+    .hero{padding:56px 0}
+    .hero-grid{display:grid;gap:24px;align-items:center}
+    @media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
+    .hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
 
-/* Glassy header */
-header{
-  position:sticky; top:0; z-index:100;
-  background:rgba(255,255,255,.9);
-  border-bottom:1px solid rgba(51,65,85,.15);
-  backdrop-filter:blur(8px);
-}
-.container{max-width:1200px;margin:0 auto;padding:0 16px}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px}
-.brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
+    .date-row{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
+    .date-card{
+      flex:1 1 180px; display:flex; align-items:center; gap:12px;
+      background:#ffffff; border:1px solid #e5e7eb; border-radius:14px; padding:14px 16px;
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
+    }
+    .num{
+      font-size:56px; font-weight:900; line-height:1; color:#0f172a;
+      animation:zoomPulse 1.5s ease-in-out infinite;
+      transform-origin:center;
+    }
+    .num.n2{animation-delay:.4s}
+    .month{
+      display:flex;flex-direction:column;gap:2px;
+    }
+    .month b{font-size:16px;color:#0f172a}
+    .month small{font-size:13px;color:#475569}
 
-/* Buttons (matched) */
-.btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;border:none;cursor:pointer}
-.btn:hover{background:var(--brand-dark);box-shadow:0 8px 20px rgba(225,29,72,.25);transform:translateY(-2px)}
-.btn.secondary{background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd}
-.btn.secondary:hover{background:#bae6fd}
+    /* animated underline text */
+    .ticker{
+      margin-top:14px; font-weight:800; text-align:left;
+      font-size:clamp(18px,3.6vw,24px);
+      color:#0f172a; display:inline-flex; align-items:center; gap:8px;
+      position:relative;
+    }
+    .ticker .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);animation:blink 1.2s ease-in-out infinite}
+    .ticker .shine{
+      background:linear-gradient(90deg,#0f172a 0%,#0f172a 40%,#e11d48 50%,#0f172a 60%,#0f172a 100%);
+      background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shine 2.2s linear infinite;
+    }
 
-/* Hero */
-.hero{padding:64px 0;animation:fadeIn 1.2s ease}
-.hero h1{font-size:clamp(32px,6vw,56px);line-height:1.15;margin:0 0 14px}
-.hero p{color:var(--muted);margin:0 0 18px}
-.badge{display:inline-block;background:var(--accent);color:#fff;padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px}
-.hero-grid{display:grid;gap:24px;align-items:center}
-@media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
-.hero-img{width:100%;max-width:420px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
+    @keyframes zoomPulse{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.18)}
+      100%{transform:scale(1)}
+    }
+    @keyframes blink{
+      0%,100%{opacity:1; transform:scale(1)}
+      50%{opacity:.4; transform:scale(.85)}
+    }
+    @keyframes shine{
+      0%{background-position:200% 0}
+      100%{background-position:-200% 0}
+    }
 
-/* Sections & grids */
-.section{padding:48px 0}
-.grid{display:grid;gap:16px}
-@media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+    .hero-img{width:100%;max-width:440px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
 
-/* Dark cards */
-.card{
-  background:var(--card);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 10px 24px rgba(15,23,42,.3);
-  color:#f1f5f9;
-}
-.card h3,.card h4,.card p,.card li{color:#f1f5f9}
+    /* About + Contact columns (demo) */
+    #about .container{display:grid;grid-template-columns:1fr 1fr;gap:32px;text-align:left}
+    @media(max-width:768px){#about .container{grid-template-columns:1fr;text-align:center}}
 
-/* Form (dark inputs to match cards) */
-form{max-width:680px;margin:auto}
-form label{display:block;margin-bottom:12px;font-size:15px;color:#e2e8f0}
-form input,form select{
-  width:100%;padding:10px;border:1px solid #475569;border-radius:10px;background:#0f172a;color:#f1f5f9
-}
-@media(min-width:720px){form .grid{grid-template-columns:repeat(2,1fr);gap:16px}}
-.note{font-size:14px;color:#cbd5e1;margin-top:8px}
-.msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
-.msg.ok{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.4);color:#d1fae5}
-.msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fecaca}
-
-/* Photos section */
-#photos .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-#photos figure{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.35)}
-#photos img{width:100%;height:250px;object-fit:cover;display:block}
-#photos figcaption{padding:10px;color:#e2e8f0;font-size:14px}
-
-/* Footer */
-footer{padding:32px 0;border-top:1px solid #334155;background:#111827;color:#cbd5e1}
-.foot-grid{display:grid;gap:16px}
-@media(min-width:720px){.foot-grid{grid-template-columns:1fr 1fr}}
-
-/* WhatsApp FAB */
-.wa-float{position:fixed;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:110}
-.wa-float svg{width:28px;height:28px;fill:#fff}
-
-/* Modal */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);align-items:center;justify-content:center;z-index:120}
-.modal-content{background:#1e293b;padding:24px;border-radius:12px;max-width:420px;text-align:center;color:#fff;position:relative}
-.close-btn{position:absolute;top:10px;right:14px;background:none;border:none;font-size:20px;color:#fff;cursor:pointer}
-
-/* Animations */
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes titleFade{0%{opacity:0;transform:translateY(-14px)}100%{opacity:1;transform:translateY(0)}}
+    /* Footer */
+    footer{padding:32px 0;border-top:1px solid #334155;background:#111827;color:#cbd5e1;text-align:center}
   </style>
 </head>
-
 <body>
-<!-- Header -->
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo" />
-      <div>
-        <div style="font-size: 28px; font-weight: 800; color: var(--text);">
-          Ifaz Travels
-        </div>
-        <small style="color:var(--muted)">Every journey begins with us</small>
-      </div>
-    </div>
 
-    <!-- Navigation Menu -->
-    <nav style="display:flex; gap:20px; align-items:center;">
-      <a href="#about" style="color:var(--text); font-weight:600;">About</a>
-      <a href="#services" style="color:var(--text); font-weight:600;">Services</a>
-      <a href="#contact" style="color:var(--text); font-weight:600;">Contact</a>
-      <a class="btn" href="#book">Book Now</a>
-    </nav>
-  </div>
-</header>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo" />
+        <div>
+          <div class="brand-title">Ifaz Travels</div>
+          <small>Every journey begins with us</small>
+        </div>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
+        <span class="bar"></span>
+      </button>
+
+      <!-- Menu -->
+      <nav class="menu">
+        <a href="#about"   onclick="document.body.classList.remove('menu-open')">About</a>
+        <a href="#services"onclick="document.body.classList.remove('menu-open')">Services</a>
+        <a href="#contact" onclick="document.body.classList.remove('menu-open')">Contact</a>
+        <a class="btn" href="#book" onclick="document.body.classList.remove('menu-open')">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
   <main>
     <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="badge">19 October & 01 November 2025 — Group Packages</span>
           <h1>আজই বুকিং দিন</h1>
           <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
-          <a class="btn" href="#book">Book Now</a>
+
+          <!-- Animated dates row -->
+          <div class="date-row" aria-label="Group departure dates">
+            <!-- 19 October -->
+            <div class="date-card">
+              <div class="num">১৯</div>
+              <div class="month">
+                <b>অক্টোবর ২০২৫</b>
+                <small>Group Package</small>
+              </div>
+            </div>
+
+            <!-- 01 November -->
+            <div class="date-card">
+              <div class="num n2">০১</div>
+              <div class="month">
+                <b>নভেম্বর ২০২৫</b>
+                <small>Group Package</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- “Umrah booking running” attention -->
+          <div class="ticker" role="status" aria-live="polite">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="shine">উমরাহ বুকিং চলছে</span>
+          </div>
+
+          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="#book">Reserve Now</a>
+            <a class="btn" style="background:#0ea5e9" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
         </div>
-        <div><img src="public/posters/posterbook.jpg" class="hero-img" alt="Umrah Poster"/></div>
+
+        <div>
+          <img src="public/posters/posterbook.jpg" class="hero-img" alt="Umrah Poster"/>
+        </div>
       </div>
     </section>
+
+    <!-- Demo About + Contact (optional) -->
+    <section id="about" class="section">
+      <div class="container card">
+        <div>
+          <h3 style="font-size:28px;margin:0 0 10px;">About Us</h3>
+          <p>ইফাজ ট্রাভেলস — সিলেট ও ঢাকাভিত্তিক বিশ্বস্ত উমরাহ সেবাদাতা। ভিসা, টিকিট, হোটেল, ট্রান্সপোর্ট, জিয়ারাহ — সব একসাথে।</p>
+        </div>
+        <div style="text-align:center">
+          <h3 style="font-size:28px;margin:0 0 10px;">Contact</h3>
+          <p>📞 01712-055858 · 01714-642113</p>
+          <p>📍 Golden Tower, Sylhet</p>
+          <a class="btn" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">WhatsApp Chat</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Book Now (anchor target) -->
+    <section id="book" class="section">
+      <div class="container card" style="text-align:center">
+        <h3 style="margin:0 0 8px">Book Your Spot</h3>
+        <p style="color:#cbd5e1;margin:0 0 12px">সীমিত আসন। এখনই বুক করুন।</p>
+        <a class="btn" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><strong>Ifaz Travels</strong> · © 2025 All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- Tiny script: close menu on outside click (optional) -->
+  <script>
+    document.addEventListener('click', (e)=>{
+      const nav = document.querySelector('.menu');
+      const toggle = document.querySelector('.menu-toggle');
+      if(!nav || !toggle) return;
+      if(!nav.contains(e.target) && !toggle.contains(e.target)){
+        document.body.classList.remove('menu-open');
+      }
+    });
+  </script>
+</body>
+</html>
 
     <!-- সুবিধা -->
     <section class="section">
