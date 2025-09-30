@@ -15,16 +15,16 @@
 :root{
   --brand:#e11d48; 
   --brand-dark:#9f1239;
-  --text:#0f172a;           /* গাঢ় নেভি: লাইট ব্যাকগ্রাউন্ডে পাঠযোগ্য */
-  --muted:#334155;          /* সেকেন্ডারি টেক্সট */
-  --bg:#ffffff;             
-  --card:#ffffff;           /* কার্ডকে লাইট করা হলো */
-  --accent:#0ea5e9;         /* আকাশি অ্যাকসেন্ট */
+  --text:#0f172a;        /* মূল টেক্সট গাঢ় থাকবে */
+  --muted:#334155;       /* হালকা সেকেন্ডারি টেক্সট */
+  --bg:#ffffff;
+  --card:#1e293b;        /* ডার্ক কার্ড */
+  --accent:#0ea5e9;      /* আকাশি রঙ */
   --ok:#16a34a; 
   --err:#ef4444;
 }
 
-/* Sky gradient background */
+/* Sky blue background */
 body{
   margin:0;
   font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
@@ -32,53 +32,22 @@ body{
   background: linear-gradient(to bottom, #87ceeb 0%, #ffffff 70%);
 }
 
-/* Header: হালকা গ্লাসি, ডার্ক না */
-header{
-  position:sticky; top:0; z-index:50;
-  background:rgba(255,255,255,.85);
-  border-bottom:1px solid rgba(51,65,85,.15);
-  backdrop-filter:saturate(180%) blur(8px);
-}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
-.brand div div{font-weight:700}
-.brand small{color:var(--muted)}
-
-/* Buttons: ব্র্যান্ড একই, সেকেন্ডারি আকাশি */
-.btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;border:none;cursor:pointer}
-.btn:hover{background:var(--brand-dark);box-shadow:0 8px 20px rgba(225,29,72,.25);transform:translateY(-2px)}
-.btn.secondary{background:#e2f2fb; color:#0c4a6e; border:1px solid #bae6fd}
-.btn.secondary:hover{background:#dbeafe}
-
-/* Hero: হেডিং বড়, সামান্য text-shadow */
-.hero{padding:64px 0;animation:fadeIn 1.2s ease}
-.hero h1{
-  font-size:clamp(32px,6vw,56px);
-  line-height:1.15; margin:0 0 14px;
-  text-shadow:0 2px 0 rgba(255,255,255,.65);
-}
-.hero p{color:var(--muted);margin:0 0 18px}
-.badge{
-  display:inline-block;background:var(--accent);color:#fff;
-  padding:6px 12px;border-radius:999px;font-weight:700;margin-bottom:12px
-}
-.hero-grid{display:grid;gap:24px;align-items:center}
-@media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
-.hero-img{width:100%;max-width:420px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
-
-/* Sections & Cards: লাইট কার্ড + সফট শ্যাডো */
-.section{padding:48px 0}
-.grid{display:grid;gap:16px}
-@media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-
+/* Dark Card Styling */
 .card{
   background:var(--card);
-  border:1px solid rgba(51,65,85,.12);
+  border:1px solid rgba(255,255,255,.08);
   border-radius:16px;
   padding:20px;
-  box-shadow:0 10px 24px rgba(15,23,42,.08);
+  box-shadow:0 10px 24px rgba(15,23,42,.3);
+  color:#f1f5f9; /* কার্ডের ভেতরের লেখা সাদা */
 }
-.card h3{margin:0 0 10px}
+.card h3, 
+.card h4, 
+.card p, 
+.card li{
+  color:#f1f5f9;
+}
+
 
 /* Headings সাধারণভাবে একটু বড় ও স্পষ্ট */
 h3{font-size:clamp(20px,3vw,28px); line-height:1.3}
