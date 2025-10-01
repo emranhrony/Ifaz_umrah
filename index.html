@@ -112,32 +112,7 @@
 
     .hero-img{width:100%;max-width:440px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
 
-    /* About + Contact /* ====== FORM (dark card match) ====== */
-form{max-width:680px;margin:auto}
-form label{display:block;margin-bottom:12px;font-size:15px;color:#e2e8f0}
-form input,form select{
-  width:100%;padding:10px;border:1px solid #475569;border-radius:10px;
-  background:#0f172a;color:#f1f5f9
-}
-@media(min-width:720px){
-  form .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-}
-.note{font-size:14px;color:#cbd5e1;margin-top:8px}
-.msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
-.msg.ok{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.4);color:#d1fae5}
-.msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fecaca}
-
-/* ====== PHOTOS ====== */
-#photos .grid{
-  display:grid;gap:16px;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-}
-#photos figure{
-  background:var(--card);border-radius:14px;overflow:hidden;
-  box-shadow:0 6px 16px rgba(0,0,0,.35)
-}
-#photos img{width:100%;height:250px;object-fit:cover;display:block}
-#photos figcaption{padding:10px;color:#e2e8f0;font-size:14px;text-align:center}(one section, two columns) */
+    /* About + Contact (one section, two columns) */
     #about .container{display:grid;grid-template-columns:1fr 1fr;gap:32px;text-align:left}
     @media(max-width:768px){#about .container{grid-template-columns:1fr;text-align:center}}
 
@@ -216,6 +191,13 @@ form input,form select{
             <a class="btn" style="background:#0ea5e9" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">WhatsApp</a>
           </div>
         </div>
+
+        <div>
+          <img src="public/posters/posterbook.jpg" class="hero-img" alt="Umrah Poster"/>
+        </div>
+      </div>
+    </section>
+
     <!-- সুবিধা -->
     <section class="section">
       <div class="container grid cols-3">
@@ -434,4 +416,4 @@ form input,form select{
     function closeModal(){ const m=document.getElementById('successModal'); if(m) m.style.display='none'; }
   </script>
 </body>
-  </html>
+</html>
