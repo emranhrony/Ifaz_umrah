@@ -90,6 +90,38 @@ form input:focus, form select:focus {
     justify-self: center;
   }
 }
+/* Photos Section */
+#photos .grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+#photos figure {
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  transition: transform 0.3s;
+}
+#photos figure:hover {
+  transform: scale(1.03);
+}
+#photos img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+#photos figcaption {
+  padding: 10px;
+  color: #e2e8f0;
+  font-size: 14px;
+  text-align: center;
+}
+@media(min-width:992px) {
+  #photos img {
+    height: 260px;
+  }
+}
 
     /* Menu */
     .menu{display:flex;align-items:center;gap:20px}
