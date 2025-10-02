@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery - Ifaz Travels</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
@@ -32,28 +32,35 @@
       <h2>আমাদের গ্যালারী</h2>
       <div class="gallery-grid">
         <figure>
-          <img src="public/posters/office1.jpg" alt="Office">
+          <img src="public/posters/office1.jpg" alt="Office" loading="lazy">
           <figcaption>Our Office</figcaption>
         </figure>
         <figure>
-          <img src="public/posters/office2.jpg" alt="Makkah">
+          <img src="public/posters/office2.jpg" alt="Makkah" loading="lazy">
           <figcaption>মক্কা</figcaption>
         </figure>
         <figure>
-          <img src="public/posters/poster1.jpg" alt="Madinah">
+          <img src="public/posters/poster1.jpg" alt="Madinah" loading="lazy">
           <figcaption>মদিনা</figcaption>
         </figure>
         <figure>
-          <img src="public/posters/poster2.jpg" alt="Travel">
+          <img src="public/posters/poster2.jpg" alt="Travel" loading="lazy">
           <figcaption>Travel</figcaption>
         </figure>
         <figure>
-          <img src="public/posters/poster3.jpg" alt="Group">
+          <img src="public/posters/poster3.jpg" alt="Group" loading="lazy">
           <figcaption>Group Tour</figcaption>
         </figure>
       </div>
     </div>
   </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <div id="lightbox-caption"></div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -61,5 +68,7 @@
       <p>© 2025 Ifaz Travels. All Rights Reserved.</p>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
