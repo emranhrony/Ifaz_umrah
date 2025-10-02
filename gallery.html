@@ -1,12 +1,114 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery - Ifaz Travels</title>
-  <link href="style.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery — Ifaz Travels</title>
+  <link rel="icon" href="public/favicon.ico" />
+
+  <!-- Google Fonts (same as index) -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#e11d48; --brand-dark:#9f1239;
+      --text:#0f172a;  --muted:#334155;
+      --bg:#ffffff;    --card:#1e293b; /* dark card like index */
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      /* index-এর মতো ব্যাকগ্রাউন্ড */
+      background: linear-gradient(to bottom, #87ceeb 0%, #ffffff 70%);
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:0 16px}
+    .section{padding:48px 0}
+
+    /* Header (same look as index) */
+    header{position:sticky;top:0;left:0;right:0;width:100%;
+      background:rgba(255,255,255,.9);border-bottom:1px solid rgba(51,65,85,.15);backdrop-filter:blur(8px);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
+    .brand-title{font-size:28px;font-weight:800;color:var(--text)}
+    .brand small{color:var(--muted)}
+    .menu{display:flex;align-items:center;gap:20px}
+    .menu a{color:var(--text);font-weight:600}
+    .menu a:hover{color:var(--brand)}
+    .menu a.active{color:#fff;background:var(--brand);padding:8px 12px;border-radius:12px}
+
+    /* Card style (index-এর card-এর মতো) */
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 10px 24px rgba(15,23,42,.3);
+      color:#f1f5f9;
+    }
+
+    /* Gallery grid → কার্ড look */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:18px;
+      margin-top:10px;
+    }
+    .gallery-card{
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(255,255,255,0.06);           /* subtle glass */
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:0 10px 24px rgba(15,23,42,.25);
+      transition: transform .25s ease, box-shadow .25s ease;
+      backdrop-filter: blur(6px);
+    }
+    .gallery-card:hover{
+      transform: translateY(-6px);
+      box-shadow:0 16px 36px rgba(15,23,42,.35);
+    }
+    .gallery-card img{
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:cover;
+      border-bottom:1px solid rgba(255,255,255,0.15);
+    }
+    .gallery-card figcaption{
+      padding:12px 14px;
+      background:rgba(30,41,59,0.85);
+      color:#f8fafc;
+      text-align:center;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+    /* Section title inside dark card */
+    .title-card h2{ margin:0; font-size:34px; text-align:center; }
+
+    /* Footer (index-এর মতন ডার্ক) */
+    footer{padding:32px 0;border-top:1px solid #334155;background:#111827;color:#cbd5e1;text-align:center}
+
+    /* Lightbox */
+    .lightbox{ display:none; position:fixed; inset:0; z-index:9999; padding-top:80px; background:rgba(0,0,0,.9); }
+    .lightbox-content{ margin:auto; display:block; max-width:80%; max-height:80vh; border-radius:10px; box-shadow:0 6px 30px rgba(0,0,0,.6); }
+    #lightbox-caption{ margin:20px auto; text-align:center; color:#f1f1f1; font-size:18px; }
+    .close{ position:absolute; top:30px; right:50px; color:#fff; font-size:40px; font-weight:800; cursor:pointer; transition:.3s; }
+    .close:hover{ color:#bbb; }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .menu{gap:12px;flex-wrap:wrap}
+      .section{padding:36px 0}
+    }
+  </style>
 </head>
 <body>
+
   <!-- Header -->
   <header>
     <div class="container nav">
@@ -20,55 +122,84 @@
       <nav class="menu">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-        <a href="gallery.html" class="active">Gallery</a>
+        <a class="active" href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Gallery Section -->
-  <main class="section">
-    <div class="container">
-      <h2>আমাদের গ্যালারী</h2>
-      <div class="gallery-grid">
-        <figure>
-          <img src="public/posters/office1.jpg" alt="Our Office" loading="lazy">
-          <figcaption>Our Office</figcaption>
-        </figure>
-        <figure>
-          <img src="public/posters/office2.jpg" alt="মক্কা" loading="lazy">
-          <figcaption>মক্কা</figcaption>
-        </figure>
-        <figure>
-          <img src="public/posters/poster1.jpg" alt="মদিনা" loading="lazy">
-          <figcaption>মদিনা</figcaption>
-        </figure>
-        <figure>
-          <img src="public/posters/poster2.jpg" alt="Travel" loading="lazy">
-          <figcaption>Travel</figcaption>
-        </figure>
-        <figure>
-          <img src="public/posters/poster3.jpg" alt="Group Tour" loading="lazy">
-          <figcaption>Group Tour</figcaption>
-        </figure>
+  <main>
+    <!-- Title inside dark card (index-এর কার্ড vibe) -->
+    <section class="section">
+      <div class="container">
+        <div class="card title-card">
+          <h2>আমাদের গ্যালারী</h2>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section">
+      <div class="container">
+        <div class="gallery-grid">
+          <figure class="gallery-card">
+            <img src="public/posters/office1.jpg" alt="Our Office" loading="lazy">
+            <figcaption>Our Office</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <img src="public/posters/office2.jpg" alt="মক্কা" loading="lazy">
+            <figcaption>মক্কা</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <img src="public/posters/poster1.jpg" alt="মদিনা" loading="lazy">
+            <figcaption>মদিনা</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <img src="public/posters/poster2.jpg" alt="Travel" loading="lazy">
+            <figcaption>Travel</figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <img src="public/posters/poster3.jpg" alt="Group Tour" loading="lazy">
+            <figcaption>Group Tour</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" aria-modal="true" role="dialog">
+    <span class="close" aria-label="Close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="">
     <div id="lightbox-caption"></div>
   </div>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>© 2025 Ifaz Travels. All Rights Reserved.</p>
+      <p><strong>Ifaz Travels</strong> · © 2025 All Rights Reserved</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Simple Lightbox (same as আগে)
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const captionText = document.getElementById("lightbox-caption");
+    const closeBtn = document.querySelector(".close");
+
+    document.querySelectorAll(".gallery-card img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "block";
+        lightboxImg.src = img.src;
+        captionText.textContent = img.alt || img.closest("figure")?.querySelector("figcaption")?.innerText || "";
+      });
+    });
+
+    const close = () => lightbox.style.display = "none";
+    closeBtn.addEventListener("click", close);
+    window.addEventListener("click", (e) => { if (e.target === lightbox) close(); });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  </script>
 </body>
 </html>
