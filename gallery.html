@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gallery — Ifaz Travels</title>
-  <link href="style.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Ifaz Travels</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -12,40 +12,46 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo" />
+        <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo">
         <div>
           <div class="brand-title">Ifaz Travels</div>
           <small>Every journey begins with us</small>
         </div>
       </div>
-
-      <!-- Hamburger -->
       <button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
         <span class="bar"></span>
       </button>
-
-      <!-- Menu -->
       <nav class="menu">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="gallery.html" class="active">Gallery</a>
+        <a href="about.html" class="active">About</a>
+        <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Gallery Section -->
-  <main class="section--photos">
-    <div class="container">
-      <h2 class="photos-title">আমাদের গ্যালারী</h2>
-      <div class="photos-grid">
-        <figure><img src="public/posters/office1.jpg" alt="Our Office"><figcaption>Our Office</figcaption></figure>
-        <figure><img src="public/posters/office2.jpg" alt="মক্কা"><figcaption>মক্কা</figcaption></figure>
-        <figure><img src="public/posters/poster1.jpg" alt="মদিনা"><figcaption>মদিনা</figcaption></figure>
-        <figure><img src="public/posters/poster2.jpg" alt="Travel"><figcaption>Travel</figcaption></figure>
-        <figure><img src="public/posters/poster3.jpg" alt="Group"><figcaption>Group Tour</figcaption></figure>
+  <!-- About Section -->
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2 style="text-align:center;color:#e11d48;margin-bottom:20px">আমাদের সম্পর্কে</h2>
+        <p style="max-width:800px;margin:auto;text-align:center;color:#334155">
+          <strong>Ifaz Travels</strong> হলো সিলেট ও ঢাকাভিত্তিক একটি বিশ্বস্ত ট্রাভেল এজেন্সি।  
+          আমরা হজ ও উমরাহ প্যাকেজ, আন্তর্জাতিক ভিসা প্রসেসিং, এয়ার টিকিট, হোটেল বুকিং এবং  
+          গাইডেড ট্যুর সেবায় অভিজ্ঞ। আমাদের মূল লক্ষ্য হলো সাশ্রয়ী খরচে নির্ভরযোগ্য সেবা দেওয়া।
+        </p>
       </div>
-    </div>
+    </section>
+
+    <section class="section" style="background:#f1f5f9">
+      <div class="container">
+        <h2 style="text-align:center;margin-bottom:20px;color:#0f172a">আমাদের মিশন</h2>
+        <p style="max-width:800px;margin:auto;text-align:center;color:#334155">
+          যাত্রীদের ভ্রমণকে সহজ, আরামদায়ক এবং নিরাপদ করা। আমরা বিশ্বাস করি, প্রতিটি যাত্রা নতুন  
+          অভিজ্ঞতার সূচনা, তাই আমরা প্রতিটি ধাপে আপনাকে সহায়তা করতে প্রস্তুত।
+        </p>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -55,7 +61,7 @@
     </div>
   </footer>
 
-  <!-- Script for hamburger -->
+  <!-- Script -->
   <script>
     document.addEventListener('click', (e)=>{
       const nav = document.querySelector('.menu');
