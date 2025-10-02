@@ -102,7 +102,8 @@
   font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;
   font-size:84px;font-weight:900;line-height:.9;color:#dc2626;  /* লাল করা হলো */
   min-width:92px;text-align:center;
-  animation:zoomPulse 1.8s ease-in-out infinite;transform-origin:center;will-change:transform;
+  animation:zoomPulse 1.8s ease-in-out infinite;
+  transform-origin:center;will-change:transform;
 }
 .num.n2{animation-delay:.45s}
 .month{display:flex;flex-direction:column;gap:2px}
@@ -110,20 +111,30 @@
 .month small{font-size:14px;color:#475569}
 
 .ticker{
-  margin-top:16px;font-weight:900;font-size:clamp(18px,3.6vw,24px);
-  color:#dc2626;  /* লাল */
-  display:inline-flex;align-items:center;gap:8px
+  margin-top:20px;
+  font-weight:900;
+  font-size:clamp(22px,4vw,32px); /* একটু বড় করা হলো */
+  color:#dc2626;
+  display:inline-flex;align-items:center;gap:10px
 }
-.ticker .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);animation:blink 1.2s ease-in-out infinite}
+.ticker .dot{
+  width:12px;height:12px;border-radius:50%;
+  background:#dc2626;animation:blink 1.2s ease-in-out infinite
+}
 .ticker .shine{
-  background:linear-gradient(90deg,#dc2626 0%,#dc2626 40%,#e11d48 50%,#dc2626 60%,#dc2626 100%);  /* লাল গ্রেডিয়েন্ট */
-  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.2s linear infinite;
+  background:linear-gradient(90deg,#dc2626,#e11d48,#b91c1c,#ef4444,#dc2626); /* লাল গ্রেডিয়েন্ট স্লাইড */
+  background-size:300% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:slideRed 4s linear infinite;
 }
 
+/* Animations */
+@keyframes zoomPulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+@keyframes slideRed{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-    @keyframes zoomPulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
-    @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
-    @keyframes shine{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
     .hero-img{width:100%;max-width:440px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
 
