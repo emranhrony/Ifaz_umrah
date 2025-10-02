@@ -85,35 +85,41 @@
     .grid{display:grid;gap:16px}
     @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
 
-    /* Hero + animated dates */
-    .hero{padding:56px 0}
-    .hero-grid{display:grid;gap:24px;align-items:center}
-    @media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
-    .hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;margin:0 0 12px}
-    .hero p{color:var(--muted);margin:0 0 18px}
+   /* Hero + animated dates */
+.hero{padding:56px 0}
+.hero-grid{display:grid;gap:24px;align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;margin:0 0 12px}
+.hero p{color:var(--muted);margin:0 0 18px}
 
-    .date-row{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
-    .date-card{
-      flex:1 1 220px; display:flex; align-items:center; gap:14px;
-      background:#ffffff; border:1px solid #e5e7eb; border-radius:16px; padding:16px 18px;
-      box-shadow:0 10px 22px rgba(15,23,42,.12);
-    }
-    .num{
-      font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;
-      font-size:84px;font-weight:900;line-height:.9;color:#0f172a;min-width:92px;text-align:center;
-      animation:zoomPulse 1.8s ease-in-out infinite;transform-origin:center;will-change:transform;
-    }
-    .num.n2{animation-delay:.45s}
-    .month{display:flex;flex-direction:column;gap:2px}
-    .month b{font-size:18px;color:#0f172a}
-    .month small{font-size:14px;color:#475569}
+.date-row{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
+.date-card{
+  flex:1 1 220px; display:flex; align-items:center; gap:14px;
+  background:#ffffff; border:1px solid #e5e7eb; border-radius:16px; padding:16px 18px;
+  box-shadow:0 10px 22px rgba(15,23,42,.12);
+}
+.num{
+  font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;
+  font-size:84px;font-weight:900;line-height:.9;color:#dc2626;  /* লাল করা হলো */
+  min-width:92px;text-align:center;
+  animation:zoomPulse 1.8s ease-in-out infinite;transform-origin:center;will-change:transform;
+}
+.num.n2{animation-delay:.45s}
+.month{display:flex;flex-direction:column;gap:2px}
+.month b{font-size:18px;color:#dc2626}  /* লাল */
+.month small{font-size:14px;color:#475569}
 
-    .ticker{margin-top:16px;font-weight:900;font-size:clamp(18px,3.6vw,24px);color:#0f172a;display:inline-flex;align-items:center;gap:8px}
-    .ticker .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);animation:blink 1.2s ease-in-out infinite}
-    .ticker .shine{
-      background:linear-gradient(90deg,#0f172a 0%,#0f172a 40%,#e11d48 50%,#0f172a 60%,#0f172a 100%);
-      background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.2s linear infinite;
-    }
+.ticker{
+  margin-top:16px;font-weight:900;font-size:clamp(18px,3.6vw,24px);
+  color:#dc2626;  /* লাল */
+  display:inline-flex;align-items:center;gap:8px
+}
+.ticker .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);animation:blink 1.2s ease-in-out infinite}
+.ticker .shine{
+  background:linear-gradient(90deg,#dc2626 0%,#dc2626 40%,#e11d48 50%,#dc2626 60%,#dc2626 100%);  /* লাল গ্রেডিয়েন্ট */
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.2s linear infinite;
+}
+
 
     @keyframes zoomPulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
     @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
