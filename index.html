@@ -7,6 +7,15 @@
   <meta name="description" content="Ifaz Travels — সাশ্রয়ী ও নির্ভরযোগ্য হজ ও উমরাহ প্যাকেজ।" />
   <link rel="icon" href="public/favicon.ico" />
 
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L3G3DPGK8Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L3G3DPGK8Y');
+  </script>
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -55,73 +64,6 @@
     body.menu-open .menu-toggle .bar{background:transparent}
     body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
     body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
-/* Booking Form */
-form {
-  max-width: 700px;
-  margin: auto;
-  display: grid;
-  gap: 16px;
-}
-form label {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
-  color: #e2e8f0;
-  text-align: left;
-}
-form input, form select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #475569;
-  border-radius: 8px;
-  background: #0f172a;
-  color: #f1f5f9;
-  font-size: 16px;
-}
-form input:focus, form select:focus {
-  outline: 2px solid var(--brand);
-}
-@media(min-width:768px) {
-  form {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  form button {
-    grid-column: span 2;
-    justify-self: center;
-  }
-}
-/* Photos Section */
-#photos .grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-}
-#photos figure {
-  background: var(--card);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0,0,0,.35);
-  transition: transform 0.3s;
-}
-#photos figure:hover {
-  transform: scale(1.03);
-}
-#photos img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-#photos figcaption {
-  padding: 10px;
-  color: #e2e8f0;
-  font-size: 14px;
-  text-align: center;
-}
-@media(min-width:992px) {
-  #photos img {
-    height: 260px;
-  }
-}
 
     /* Menu */
     .menu{display:flex;align-items:center;gap:20px}
@@ -179,14 +121,29 @@ form input:focus, form select:focus {
 
     .hero-img{width:100%;max-width:440px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
 
-    /* About + Contact (one section, two columns) */
+    /* Booking Form (responsive) */
+    form {max-width:700px;margin:auto;display:grid;gap:16px}
+    form label{display:flex;flex-direction:column;font-size:15px;color:#e2e8f0;text-align:left}
+    form input,form select{width:100%;padding:12px;border:1px solid #475569;border-radius:8px;background:#0f172a;color:#f1f5f9;font-size:16px}
+    form input:focus,form select:focus{outline:2px solid var(--brand)}
+    @media(min-width:768px){form{grid-template-columns:repeat(2,1fr)} form button{grid-column:span 2;justify-self:center}}
+
+    /* Photos (responsive) */
+    #photos .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+    #photos figure{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.35);transition:transform .3s}
+    #photos figure:hover{transform:scale(1.03)}
+    #photos img{width:100%;height:200px;object-fit:cover}
+    #photos figcaption{padding:10px;color:#e2e8f0;font-size:14px;text-align:center}
+    @media(min-width:992px){#photos img{height:260px}}
+
+    /* About + Contact (two columns) */
     #about .container{display:grid;grid-template-columns:1fr 1fr;gap:32px;text-align:left}
     @media(max-width:768px){#about .container{grid-template-columns:1fr;text-align:center}}
 
     /* Footer */
     footer{padding:32px 0;border-top:1px solid #334155;background:#111827;color:#cbd5e1;text-align:center}
 
-    /* ===== FRAME / LAYOUT FIX PATCH ===== */
+    /* Frame guard */
     html,body{max-width:100%;overflow-x:hidden}
     @media (min-width:768px){.container{padding-inline:24px}}
     .hero-grid{gap:20px}
@@ -214,16 +171,23 @@ form input:focus, form select:focus {
       <!-- Menu -->
       <nav class="menu">
         <a href="#about"   onclick="document.body.classList.remove('menu-open')">About</a>
-        <a href="#packages"onclick="document.body.classList.remove('menu-open')">Services</a>
+        <a href="#packages" onclick="document.body.classList.remove('menu-open')">Services</a>
         <a href="#contact" onclick="document.body.classList.remove('menu-open')">Contact</a>
         <a class="btn" href="#book" onclick="document.body.classList.remove('menu-open')">Book Now</a>
       </nav>
     </div>
   </header>
 
-  
-  <!-- Animated dates row -->
-  <div class="date-row" aria-label="Group departure dates">
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>আজই বুকিং দিন</h1>
+          <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
+
+          <!-- Animated dates row -->
+          <div class="date-row" aria-label="Group departure dates">
             <div class="date-card">
               <div class="num">১৯</div>
               <div class="month">
@@ -252,7 +216,6 @@ form input:focus, form select:focus {
           </div>
         </div>
 
-    
         <div>
           <img src="public/posters/posterbook.jpg" class="hero-img" alt="Umrah Poster"/>
         </div>
@@ -352,18 +315,14 @@ form input:focus, form select:focus {
       </div>
     </section>
 
-      <!-- Booking Form -->
+    <!-- Booking Form -->
     <section id="booking-form" class="section">
       <div class="container card">
         <h3 style="text-align: center; font-size: 36px;">Online Booking Form</h3>
         <form id="umrahForm" action="https://formspree.io/f/xrbyplzy" method="POST" novalidate>
           <div class="grid">
-            <label>পূর্ণ নাম<br>
-              <input name="name" required />
-            </label>
-            <label>ফোন (WhatsApp)<br>
-              <input name="phone" required pattern="^[0-9+\\-\\s]{8,}$" />
-            </label>
+            <label>পূর্ণ নাম<br><input name="name" required /></label>
+            <label>ফোন (WhatsApp)<br><input name="phone" required pattern="^[0-9+\-\s]{8,}$" /></label>
             <label>প্যাকেজ<br>
               <select name="package">
                 <option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option>
@@ -376,11 +335,7 @@ form input:focus, form select:focus {
                 <option>October 2025</option><option>November 2025</option><option>December 2025</option>
               </select>
             </label>
-            <!-- Optional email -->
-            <label>ইমেইল (Optional)<br>
-              <input type="email" name="email" placeholder="you@example.com" />
-            </label>
-            <!-- Honeypot -->
+            <label>ইমেইল (Optional)<br><input type="email" name="email" placeholder="you@example.com" /></label>
             <input type="text" name="_gotcha" style="display:none">
             <input type="hidden" name="_subject" value="New Umrah Booking - Ifaz Travels">
           </div>
@@ -391,6 +346,7 @@ form input:focus, form select:focus {
         </form>
       </div>
     </section>
+
     <!-- Photos -->
     <section id="photos" class="section">
       <div class="container">
@@ -400,12 +356,12 @@ form input:focus, form select:focus {
           <figure><img src="public/posters/office2.jpg" alt="Makkah"><figcaption>মক্কা</figcaption></figure>
           <figure><img src="public/posters/poster1.jpg" alt="Madinah"><figcaption>মদিনা</figcaption></figure>
           <figure><img src="public/posters/poster2.jpg" alt="Travel"><figcaption>ভ্রমণ</figcaption></figure>
-          <figure><img src="public/posters/posters3.jpg" alt="Group"><figcaption>গ্রুপ ট্যুর</figcaption></figure>
+          <figure><img src="public/posters/poster3.jpg" alt="Group"><figcaption>গ্রুপ ট্যুর</figcaption></figure>
         </div>
       </div>
     </section>
 
-    <!-- About + Contact (single section) -->
+    <!-- About + Contact -->
     <section id="about" class="section">
       <div class="container card">
         <div>
@@ -463,16 +419,18 @@ form input:focus, form select:focus {
             headers: { 'Accept': 'application/json' }
           });
           if(res.ok){
-            document.getElementById('successModal').style.display='flex';
             ok.style.display = 'block';
             form.reset();
-            setTimeout(closeModal, 5000);
-          }else{ err.style.display = 'block'; }
-        }catch(ex){ err.style.display = 'block'; }
-        finally{ btn.disabled = false; btn.textContent = 'Submit'; }
+          }else{
+            err.style.display = 'block';
+          }
+        }catch(ex){
+          err.style.display = 'block';
+        }finally{
+          btn.disabled = false; btn.textContent = 'Submit';
+        }
       });
     }
-    function closeModal(){ const m=document.getElementById('successModal'); if(m) m.style.display='none'; }
   </script>
 </body>
 </html>
