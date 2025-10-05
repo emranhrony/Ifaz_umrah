@@ -6,18 +6,16 @@
   <title>Ifaz Travels — Umrah Packages (2025)</title>
   <meta name="description" content="Ifaz Travels — সাশ্রয়ী ও নির্ভরযোগ্য হজ ও উমরাহ প্যাকেজ।" />
   <link rel="icon" href="public/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L3G3DPGK8Y"></script>
+  <!-- (ঐচ্ছিক) Google Analytics GA4
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-L3G3DPGK8Y');
+    function gtag(){dataLayer.push(arguments)}
+    gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');
   </script>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+  -->
 
   <style>
     :root{
@@ -37,204 +35,138 @@
     img{max-width:100%;height:auto;display:block}
     a{text-decoration:none;color:inherit}
     .container{max-width:1200px;margin:0 auto;padding:0 16px}
+    html,body{max-width:100%;overflow-x:hidden}
 
     /* Header */
-header{
-  position:sticky;top:0;left:0;right:0;
-  background:#fff;border-bottom:1px solid #e5e7eb;
-  z-index:50;
-}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px}
-.logo-img{width:42px;height:42px;border-radius:8px;object-fit:contain}
-.brand-title{font-size:22px;font-weight:800}
-.brand small{color:var(--muted)}
+    header{
+      position:sticky;top:0;left:0;right:0;z-index:60;
+      background:rgba(255,255,255,.9);
+      border-bottom:1px solid rgba(51,65,85,.15);
+      backdrop-filter:blur(8px);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:relative}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
+    .brand-title{font-size:28px;font-weight:800;color:var(--text)}
+    .brand small{color:var(--muted)}
 
-/* Menu */
-.menu{display:flex;align-items:center;gap:18px}
-.menu a{font-weight:600;color:var(--text);padding:6px 10px;border-radius:8px}
-.menu a.active{background:var(--brand);color:#fff}
-.menu a:hover{color:var(--brand)}
-
-/* Hamburger */
-.menu-toggle{
-  width:40px;height:40px;display:none;align-items:center;justify-content:center;
-  background:transparent;border:none;cursor:pointer;
-}
-.menu-toggle .bar{
-  position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
-}
-.menu-toggle .bar::before,
-.menu-toggle .bar::after{
-  content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
-}
-.menu-toggle .bar::before{top:-7px}
-.menu-toggle .bar::after{top:7px}
-body.menu-open .menu-toggle .bar{background:transparent}
-body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
-body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
-
-/* Mobile menu */
-@media(max-width:768px){
-  .menu{display:none;flex-direction:column;position:absolute;top:60px;right:16px;
-    background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
-  body.menu-open .menu{display:flex}
-  .menu-toggle{display:inline-flex}
-}
+    /* Menu + Hamburger */
+    .menu{display:flex;align-items:center;gap:20px}
+    .menu a{color:var(--text);font-weight:700}
+    .menu a:hover{color:var(--brand)}
+    .menu-toggle{
+      width:40px;height:40px;display:none;align-items:center;justify-content:center;
+      background:transparent;border:none;cursor:pointer;padding:0;margin-left:8px;
+    }
+    .menu-toggle .bar{position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s}
+    .menu-toggle .bar::before,.menu-toggle .bar::after{
+      content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s
+    }
+    .menu-toggle .bar::before{top:-7px}.menu-toggle .bar::after{top:7px}
+    body.menu-open .menu-toggle .bar{background:transparent}
+    body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
+    body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
+    .btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;border:none;cursor:pointer;display:inline-block}
+    .btn:hover{background:var(--brand-dark);box-shadow:0 8px 20px rgba(225,29,72,.25);transform:translateY(-2px)}
+    @media (max-width:768px){
+      .menu{display:none;flex-direction:column;background:rgba(255,255,255,.97);position:absolute;top:60px;right:16px;padding:16px;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,.2)}
+      body.menu-open .menu{display:flex}
+      .menu-toggle{display:inline-flex}
+    }
 
     /* Sections & cards */
     .section{padding:48px 0}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;box-shadow:0 10px 24px rgba(15,23,42,.3);color:#f1f5f9}
     .grid{display:grid;gap:16px}
     @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+    .card{
+      background:var(--card);border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;padding:20px;color:#f1f5f9;
+      box-shadow:0 10px 24px rgba(15,23,42,.3)
+    }
 
-   /* Hero + animated dates */
-.hero{padding:56px 0}
-.hero-grid{display:grid;gap:24px;align-items:center}
-@media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
-.hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;margin:0 0 12px}
-.hero p{color:var(--muted);margin:0 0 18px}
+    /* Hero + animated dates */
+    .hero{padding:56px 0}
+    .hero-grid{display:grid;gap:24px;align-items:center}
+    @media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
+    .hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
 
-.date-row{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
-.date-card{
-  flex:1 1 220px; display:flex; align-items:center; gap:14px;
-  background:#ffffff; border:1px solid #e5e7eb; border-radius:16px; padding:16px 18px;
-  box-shadow:0 10px 22px rgba(15,23,42,.12);
-}
-.num{
-  font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;
-  font-size:90px;   /* আরও বড় */
-  font-weight:900;
-  line-height:.9;
-  color:#dc2626;    /* লাল */
-  min-width:92px;
-  text-align:center;
-  animation:zoomPulse 1.8s ease-in-out infinite;
-  transform-origin:center;
-  will-change:transform;
-}
-.num.n2{animation-delay:.45s}
-.month{display:flex;flex-direction:column;gap:2px}
-.month b{font-size:20px;color:#dc2626}
-.month small{font-size:14px;color:#475569}
+    .date-row{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
+    .date-card{
+      flex:1 1 220px; display:flex; align-items:center; gap:14px;
+      background:#ffffff; border:1px solid #e5e7eb; border-radius:16px; padding:16px 18px;
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
+    }
+    .num{
+      font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;
+      font-size:84px;font-weight:900;line-height:.9;color:#dc2626;min-width:92px;text-align:center;
+      animation:zoomPulse 1.8s ease-in-out infinite;transform-origin:center;will-change:transform;
+    }
+    .num.n2{animation-delay:.45s}
+    .month{display:flex;flex-direction:column;gap:2px}
+    .month b{font-size:18px;color:#dc2626}
+    .month small{font-size:14px;color:#475569}
 
-.ticker{
-  margin-top:24px;
-  font-weight:900;
-  font-size:clamp(22px,5vw,34px); /* মোবাইলে ছোট, বড় স্ক্রিনে বড় */
-  color:#111;  /* ডিফল্ট কালো */
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  position:relative;
-  overflow:hidden;
-}
-.ticker .dot{
-  width:14px;height:14px;
-  border-radius:50%;
-  background:#dc2626;
-  animation:blink 1.2s ease-in-out infinite;
-}
-.ticker .shine{
-  background:linear-gradient(90deg,#111 0%,#dc2626 25%,#e11d48 50%,#dc2626 75%,#111 100%);
-  background-size:300% 100%;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  animation:slideRed 4s linear infinite;
-}
-
-/* Animations */
-@keyframes zoomPulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.3)}
-  100%{transform:scale(1)}
-}
-@keyframes blink{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.4;transform:scale(.85)}
-}
-@keyframes slideRed{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+    .ticker{
+      margin-top:20px;font-weight:900;font-size:clamp(22px,4vw,32px);
+      display:inline-flex;align-items:center;gap:10px
+    }
+    .ticker .dot{
+      width:12px;height:12px;border-radius:50%;background:#dc2626;animation:blink 1.2s ease-in-out infinite
+    }
+    .ticker .shine{
+      background:linear-gradient(90deg,#0f172a,#dc2626,#e11d48,#ef4444,#0f172a);
+      background-size:300% 100%;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:slideRed 4s linear infinite;
+    }
+    @keyframes zoomPulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+    @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+    @keyframes slideRed{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
     .hero-img{width:100%;max-width:440px;border-radius:16px;box-shadow:0 12px 30px rgba(15,23,42,.18)}
 
-    /* Booking Form (responsive) */
-    form {max-width:700px;margin:auto;display:grid;gap:16px}
+    /* Booking form */
+    form{max-width:700px;margin:auto;display:grid;gap:16px}
     form label{display:flex;flex-direction:column;font-size:15px;color:#e2e8f0;text-align:left}
-    form input,form select{width:100%;padding:12px;border:1px solid #475569;border-radius:8px;background:#0f172a;color:#f1f5f9;font-size:16px}
+    form input,form select{
+      width:100%;padding:12px;border:1px solid #475569;border-radius:8px;background:#0f172a;color:#f1f5f9;font-size:16px
+    }
     form input:focus,form select:focus{outline:2px solid var(--brand)}
-    @media(min-width:768px){form{grid-template-columns:repeat(2,1fr)} form button{grid-column:span 2;justify-self:center}}
+    @media(min-width:768px){
+      form{grid-template-columns:repeat(2,1fr)}
+      form button{grid-column:span 2;justify-self:center}
+    }
+    .note{font-size:14px;color:#cbd5e1;margin-top:8px}
+    .msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
+    .msg.ok{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.4);color:#d1fae5}
+    .msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fecaca}
 
-    /* Photos Section */
-#photos {
-  padding: 70px 0;
-  background: linear-gradient(135deg, #fdf2f8 0%, #fee2e2 50%, #fecaca 100%); /* হালকা লাল-গোলাপি প্রিমিয়াম ব্যাকগ্রাউন্ড */
-}
-
-#photos h3 {
-  font-size: 34px;
-  text-align: center;
-  margin-bottom: 35px;
-  color: #1f2937;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-#photos .grid {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-#photos figure {
-  background: rgba(255, 255, 255, 0.15); /* গ্লাস ইফেক্ট */
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, .25);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-#photos figure:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, .35);
-}
-
-#photos img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-#photos figcaption {
-  padding: 14px;
-  background: rgba(31, 41, 55, 0.7);
-  color: #f9fafb;
-  font-size: 16px;
-  text-align: center;
-  font-weight: 600;
-  letter-spacing: .5px;
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-
-    /* About + Contact (two columns) */
-    #about .container{display:grid;grid-template-columns:1fr 1fr;gap:32px;text-align:left}
-    @media(max-width:768px){#about .container{grid-template-columns:1fr;text-align:center}}
+    /* Photos section (better background) */
+    #photos{
+      background:
+        radial-gradient(1200px 400px at 10% 0%, rgba(225,29,72,.12), transparent 60%),
+        radial-gradient(1000px 400px at 95% 20%, rgba(14,165,233,.12), transparent 60%),
+        linear-gradient(to bottom,#f8fafc,#ffffff);
+      border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;
+    }
+    #photos .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+    #photos figure{
+      background:var(--card);border-radius:14px;overflow:hidden;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);transition:transform .25s ease
+    }
+    #photos figure:hover{transform:translateY(-3px)}
+    #photos img{width:100%;height:220px;object-fit:cover}
+    #photos figcaption{
+      padding:10px;color:#e2e8f0;font-size:14px;text-align:center;
+      background:rgba(0,0,0,.25);backdrop-filter:blur(3px)
+    }
+    @media(min-width:992px){#photos img{height:260px}}
 
     /* Footer */
     footer{padding:32px 0;border-top:1px solid #334155;background:#111827;color:#cbd5e1;text-align:center}
 
-    /* Frame guard */
-    html,body{max-width:100%;overflow-x:hidden}
+    /* Spacing tweaks */
     @media (min-width:768px){.container{padding-inline:24px}}
     .hero-grid{gap:20px}
     .date-row{gap:14px}
@@ -259,12 +191,12 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
       </button>
 
       <!-- Menu -->
-<nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-</nav>
+      <nav class="menu">
+        <a href="#about"   onclick="document.body.classList.remove('menu-open')">About</a>
+        <a href="#packages"onclick="document.body.classList.remove('menu-open')">Services</a>
+        <a href="#contact" onclick="document.body.classList.remove('menu-open')">Contact</a>
+        <a class="btn" href="#book" onclick="document.body.classList.remove('menu-open')">Book Now</a>
+      </nav>
     </div>
   </header>
 
@@ -295,6 +227,7 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
             </div>
           </div>
 
+          <!-- Ticker -->
           <div class="ticker" role="status" aria-live="polite">
             <span class="dot" aria-hidden="true"></span>
             <span class="shine">উমরাহ বুকিং চলছে</span>
@@ -338,9 +271,9 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
     </section>
 
     <!-- Packages title -->
-    <section id="packages-title" class="section">
+    <section id="packages-title" class="section" style="padding-top:24px;padding-bottom:24px">
       <div class="container card" style="text-align:center">
-        <h3 style="font-size: 38px;">আমাদের সেবা সমুহ</h3>
+        <h3 style="font-size: 34px;margin:0">প্যাকেজ সমূহ</h3>
       </div>
     </section>
 
@@ -349,53 +282,54 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
       <div class="container">
         <div class="grid cols-3">
           <div class="card">
-            <h4>✈️ এয়ার টিকেট</h4>
+            <h4>✈️ ৭ দিন</h4>
             <p class="price">Call for Price</p>
-            <p class="note">সর্বোচ্চ কমিশনে ডোমেস্টিক ও ইন্টারন্যাশনাল বিমান টিকেট করুন সকল এয়ারলাইন্সের</p>
-            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+            <p class="note">Visa, Ticket, Hotel, Transport</p>
+            <div><a class="btn" style="background:#334155" href="#booking-form">Get Quote</a></div>
           </div>
           <div class="card">
-            <h4>ট্যুর প্যাকেজ </h4>
+            <h4>🕌 ১০ দিন</h4>
             <p class="price">Call for Price</p>
-            <p class="note">আমরা নেপাল, মালদ্বীপ, থাইল্যান্ড, শ্রীলঙ্কা, ভিয়েতনাম সহ বিভিন্ন দেশের ট্যুর গ্রুপ করে থাকি।</p>
-            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+            <p class="note">Group / Family rooms</p>
+            <div><a class="btn" style="background:#334155" href="#booking-form">Get Quote</a></div>
           </div>
           <div class="card">
-            <h4>🏨 পাসপোর্ট সেবা </h4>
-            <p class="note">নতুন পাসপোর্ট ,পাসপোর্ট নবায়ন, পাসপোর্ট সংশোধন,হারানো পাসপোর্ট , নাম ও বয়স সংশোধন</p>
-            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+            <h4>🏨 ১৪ দিন</h4>
+            <p class="price">৳১,৪৫০০০</p>
+            <p class="note">খাবার ছাড়া · Near Haram</p>
+            <div><a class="btn" style="background:#334155" href="#booking-form">Get Quote</a></div>
           </div>
 
           <div class="card">
             <h4>📅 October 2025 (Group)</h4>
-            <p class="price">Medical/Double Entry Slot available</p>
-            <p class="note">আমরা অত্যন্ত দক্ষতার সাথে ইন্ডিয়ান ভিসার ফাইল প্রসেস করে থাকি। </p>
-            <div><a class="btn secondary" href="#booking-form">Reserve</a></div>
+            <p class="price">Early-bird available</p>
+            <p class="note">19 Oct departure · Guide included</p>
+            <div><a class="btn" style="background:#334155" href="#booking-form">Reserve</a></div>
           </div>
           <div class="card">
-            <h4>ভিজিট ভিসা</h4>
+            <h4>📅 November 2025 (Group)</h4>
             <p class="price">Discount available</p>
-            <p class="note">Uk, Usa, Canada, সহ সেনজেন কান্ট্রির ভিসা আবেদন করে দেয়া হয়</p>
-            <div><a class="btn secondary" href="#booking-form">Reserve</a></div>
+            <p class="note">1 Nov departure · Flexible dates</p>
+            <div><a class="btn" style="background:#334155" href="#booking-form">Reserve</a></div>
           </div>
           <div class="card">
             <h4>⭐ Custom / Private Umrah</h4>
             <p class="price">Tailored Itinerary</p>
             <p class="note">Premium hotel · Private transport</p>
-            <div><a class="btn secondary" href="#booking-form">Call for Plan</a></div>
+            <div><a class="btn" style="background:#334155" href="#booking-form">Call for Plan</a></div>
           </div>
 
           <div class="card">
             <h4>🛫 Air Ticket & Visa Assist</h4>
             <p class="price">JED / MED</p>
             <p class="note">Multiple airlines · Quick processing</p>
-            <div><a class="btn secondary" href="#booking-form">Get Quote</a></div>
+            <div><a class="btn" style="background:#334155" href="#booking-form">Get Quote</a></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Book (Callout) -->
+    <!-- Book Callout -->
     <section id="book" class="section">
       <div class="container card" style="text-align:center">
         <h3>Book Your Spot</h3>
@@ -407,52 +341,69 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
     <!-- Booking Form -->
     <section id="booking-form" class="section">
       <div class="container card">
-        <h3 style="text-align: center; font-size: 36px;">Online Booking Form</h3>
+        <h3 style="text-align:center;font-size:32px;margin-top:0">Online Booking Form</h3>
         <form id="umrahForm" action="https://formspree.io/f/xrbyplzy" method="POST" novalidate>
-          <div class="grid">
-            <label>পূর্ণ নাম<br><input name="name" required /></label>
-            <label>ফোন (WhatsApp)<br><input name="phone" required pattern="^[0-9+\-\s]{8,}$" /></label>
-            <label>প্যাকেজ<br>
-              <select name="package">
-                <option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option>
-                <option>October 2025 (Group)</option><option>November 2025 (Group)</option>
-                <option>Custom / Private</option><option>Air Ticket & Visa Assist</option>
-              </select>
-            </label>
-            <label>মাস<br>
-              <select name="month">
-                <option>October 2025</option><option>November 2025</option><option>December 2025</option>
-              </select>
-            </label>
-            <label>ইমেইল (Optional)<br><input type="email" name="email" placeholder="you@example.com" /></label>
-            <input type="text" name="_gotcha" style="display:none">
-            <input type="hidden" name="_subject" value="New Umrah Booking - Ifaz Travels">
-          </div>
-          <button id="submitBtn" class="btn" type="submit" style="margin-top:16px">Submit</button>
+          <label>পূর্ণ নাম
+            <input name="name" required />
+          </label>
+          <label>ফোন (WhatsApp)
+            <input name="phone" required pattern="^[0-9+\\-\\s]{8,}$" />
+          </label>
+          <label>প্যাকেজ
+            <select name="package">
+              <option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option>
+              <option>October 2025 (Group)</option><option>November 2025 (Group)</option>
+              <option>Custom / Private</option><option>Air Ticket & Visa Assist</option>
+            </select>
+          </label>
+          <label>মাস
+            <select name="month">
+              <option>October 2025</option><option>November 2025</option><option>December 2025</option>
+            </select>
+          </label>
+          <label>ইমেইল (Optional)
+            <input type="email" name="email" placeholder="you@example.com" />
+          </label>
+
+          <input type="text" name="_gotcha" style="display:none">
+          <input type="hidden" name="_subject" value="New Umrah Booking - Ifaz Travels">
+
+          <button id="submitBtn" class="btn" type="submit">Submit</button>
+          <div id="formOk"  class="msg ok">✅ আপনার তথ্য পাওয়া গেছে! শিগগিরই যোগাযোগ করা হবে।</div>
+          <div id="formErr" class="msg err">❌ সাবমিট করতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন বা WhatsApp-এ মেসেজ দিন।</div>
           <p class="note">* Prices subject to change. Visa approval per Embassy.</p>
         </form>
       </div>
     </section>
 
-    <section id="photos" class="section">
-  <div class="container">
-    <h3>Photos</h3>
-    <div class="grid">
-      <figure><img src="public/posters/office1.jpg" alt="Poster Main"><figcaption>Official Poster</figcaption></figure>
-      <figure><img src="public/posters/office2.jpg" alt="Makkah"><figcaption>Official Poster</figcaption></figure>
-      <figure><img src="public/posters/poster1.jpg" alt="Madinah"><figcaption>গ্রুপ</figcaption></figure>
-      <figure><img src="public/posters/poster2.jpg" alt="Travel"><figcaption>গ্রুপ</figcaption></figure>
-      <figure><img src="public/posters/poster3.jpg" alt="Group"><figcaption>গ্রুপ</figcaption></figure>
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);align-items:center;justify-content:center;z-index:120">
+      <div class="modal-content" style="background:#1e293b;padding:24px;border-radius:12px;max-width:420px;text-align:center;color:#fff;position:relative">
+        <button class="close-btn" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:20px;color:#fff;cursor:pointer" onclick="closeModal()">✖</button>
+        <h3>✅ সফলভাবে সাবমিট হয়েছে!</h3>
+        <p>আমাদের টিম শিগগিরই যোগাযোগ করবে।</p>
+      </div>
     </div>
-  </div>
-</section>
 
+    <!-- Photos -->
+    <section id="photos" class="section">
+      <div class="container">
+        <h3 style="text-align:center;margin-top:0">Photos</h3>
+        <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+          <figure><img src="public/posters/office1.jpg" alt="Poster Main"><figcaption>Official Poster</figcaption></figure>
+          <figure><img src="public/posters/office2.jpg" alt="Makkah"><figcaption>মক্কা</figcaption></figure>
+          <figure><img src="public/posters/poster1.jpg" alt="Madinah"><figcaption>মদিনা</figcaption></figure>
+          <figure><img src="public/posters/poster2.jpg" alt="Travel"><figcaption>ভ্রমণ</figcaption></figure>
+          <figure><img src="public/posters/poster3.jpg" alt="Group"><figcaption>গ্রুপ ট্যুর</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
     <!-- About + Contact -->
     <section id="about" class="section">
-      <div class="container card">
+      <div class="container card" style="display:grid;grid-template-columns:1fr;gap:32px;text-align:left">
         <div>
-          <h3 style="font-size:28px;margin:0 0 10px;">About Us</h3>
+          <h3 style="font-size:28px;margin:0 0 10px;text-align:center">About Us</h3>
           <p>ইফাজ ট্রাভেলস — সিলেট ও ঢাকাভিত্তিক বিশ্বস্ত উমরাহ সেবাদাতা। ভিসা, টিকিট, হোটেল, ট্রান্সপোর্ট, জিয়ারাহ — সব একসাথে।</p>
         </div>
         <div id="contact" style="text-align:center">
@@ -506,18 +457,16 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
             headers: { 'Accept': 'application/json' }
           });
           if(res.ok){
+            document.getElementById('successModal').style.display='flex';
             ok.style.display = 'block';
             form.reset();
-          }else{
-            err.style.display = 'block';
-          }
-        }catch(ex){
-          err.style.display = 'block';
-        }finally{
-          btn.disabled = false; btn.textContent = 'Submit';
-        }
+            setTimeout(closeModal, 5000);
+          }else{ err.style.display = 'block'; }
+        }catch(ex){ err.style.display = 'block'; }
+        finally{ btn.disabled = false; btn.textContent = 'Submit'; }
       });
     }
+    function closeModal(){ const m=document.getElementById('successModal'); if(m) m.style.display='none'; }
   </script>
 </body>
 </html>
