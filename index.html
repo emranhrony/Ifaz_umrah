@@ -6,6 +6,8 @@
   <title>Ifaz Travels — Umrah Packages (2025)</title>
   <link rel="icon" href="public/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Icons for Services -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Reusable slider styles -->
   <link rel="stylesheet" href="promo.css?v=1">
 
@@ -13,6 +15,7 @@
     :root{
       --brand:#0ea5e9; --brand-dark:#0284c7;
       --text:#0f172a;  --muted:#64748b; --border:#e5e7eb;
+      --ok:#16a34a; --err:#ef4444;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -73,14 +76,47 @@
     .btn{padding:12px 18px;border-radius:12px;background:var(--brand);color:#fff;border:1px solid var(--brand);font-weight:700;display:inline-block}
     .btn:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
 
+    /* Animated group dates */
+    .date-row{display:flex; gap:16px; align-items:flex-end; flex-wrap:wrap; margin-top:14px;}
+    .date-card{
+      flex:1 1 220px; display:flex; align-items:center; gap:14px;
+      background:#ffffff; border:1px solid #e5e7eb; border-radius:16px; padding:16px 18px;
+      box-shadow:0 10px 22px rgba(15,23,42,.10);
+    }
+    .num{
+      font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;
+      font-size:84px; font-weight:900; line-height:.9; color:#0284c7;
+      min-width:92px; text-align:center; transform-origin:center; will-change:transform;
+      animation:zoomPulse 1.8s ease-in-out infinite;
+    }
+    .num.n2{ animation-delay:.45s; }
+    .month{ display:flex; flex-direction:column; gap:2px; }
+    .month b{ font-size:18px; color:#0369a1; }
+    .month small{ font-size:14px; color:#64748b; }
+    @keyframes zoomPulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+
     /* Sections & cards */
     .section{padding:40px 0}
     .grid{display:grid;gap:16px}
+    @media(min-width:768px){.grid.cols-2{grid-template-columns:repeat(2,1fr)}}
     @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
     .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 6px 16px rgba(2,8,23,.06)}
+    /* Promo slot spacing */
+    .promo-wrap{ margin-top:18px !important; }
 
-    /* Packages title */
-    #packages-title .card{text-align:center}
+    /* Services (new) */
+    #services .title-card{text-align:center}
+    .svc-grid{display:grid;gap:16px}
+    @media(min-width:768px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
+    .svc .icon{
+      width:52px;height:52px;border-radius:12px;display:grid;place-items:center;
+      background:#e0f2fe;color:#0369a1;font-size:22px; box-shadow:inset 0 0 0 1px #bae6fd;
+    }
+    .svc h4{margin:10px 0 6px;font-size:20px;color:#0f172a}
+    .svc p{margin:0 0 6px;color:#475569}
+    .svc ul{list-style:none;margin:8px 0 0;padding:0}
+    .svc li{display:flex;gap:8px;align-items:flex-start;margin:6px 0;color:#334155;font-size:15.5px}
+    .svc li i{color:#16a34a;margin-top:3px}
 
     /* Booking form */
     form{max-width:700px;margin:auto;display:grid;gap:16px}
@@ -93,16 +129,19 @@
       form{grid-template-columns:repeat(2,1fr)}
       form button{grid-column:span 2;justify-self:center}
     }
-    .note{font-size:14px;color:#64748b;margin-top:8px}
+    .note{font-size:14px;color:var(--muted);margin-top:8px}
     .msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
     .msg.ok{background:rgba(22,163,74,.10);border:1px solid rgba(22,163,74,.35);color:#065f46}
     .msg.err{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.35);color:#991b1b}
 
-    /* Make promo slot sit nicely below header on this page */
-    .promo-wrap{ margin-top:18px !important; }
-
     /* Footer */
-    footer{padding:24px 0;border-top:1px solid #e5e7eb;background:#fff;text-align:center;color:#334155}
+    footer{padding:24px 0;border-top:1px solid var(--border);background:#fff;text-align:center;color:#334155}
+
+    /* About/Contact helpers */
+    .badge{display:inline-block;background:#dcfce7;color:#14532d;border:1px solid #86efac;padding:6px 10px;border-radius:999px;font-weight:700}
+    .checklist{list-style:none;padding-left:0;margin:12px 0}
+    .checklist li{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
+    .checklist li::before{content:"✔";color:#16a34a;font-weight:900;line-height:1.2}
   </style>
 </head>
 <body>
@@ -123,10 +162,10 @@
         <span class="bar"></span>
       </button>
 
-      <!-- Menu (3 items as requested) -->
+      <!-- Menu -->
       <nav class="menu">
-        <a href="contact.html">Contact</a>
-        <a href="about.html">About</a>
+        <a href="#contact" onclick="document.body.classList.remove('menu-open')">Contact</a>
+        <a href="#about"   onclick="document.body.classList.remove('menu-open')">About</a>
         <a href="gallery.html">Gallery</a>
       </nav>
     </div>
@@ -138,7 +177,27 @@
       <div>
         <h1>আজই বুকিং দিন</h1>
         <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
+
+        <!-- Animated group dates -->
+        <div class="date-row" aria-label="Group departure dates">
+          <div class="date-card">
+            <div class="num">১৯</div>
+            <div class="month">
+              <b>অক্টোবর ২০২৫</b>
+              <small>Group Package</small>
+            </div>
+          </div>
+          <div class="date-card">
+            <div class="num n2">০১</div>
+            <div class="month">
+              <b>নভেম্বর ২০২৫</b>
+              <small>Group Package</small>
+            </div>
+          </div>
+        </div>
+
         <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+          <a class="btn" href="#services">আমাদের সেবাসমূহ</a>
           <a class="btn" href="#packages">প্যাকেজ দেখুন</a>
           <a class="btn" style="background:#25D366;border-color:#22c55e" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">WhatsApp</a>
         </div>
@@ -147,12 +206,102 @@
     </div>
   </section>
 
-  <!-- ✅ Promo slider mount point (will render above packages) -->
+  <!-- Promo slider (reusable) -->
   <section id="promo-slot" class="promo-wrap container"></section>
+
+  <!-- ✅ আমাদের সেবাসমূহ -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="card title-card">
+        <h3 style="font-size:30px;margin:0 0 6px">আমাদের সেবাসমূহ</h3>
+        <p style="color:#64748b;margin:0">এক জায়গায় ভিসা, টিকিট, হোটেল, গ্রুপ ট্যুর, হজ/উমরাহ ও ম্যানপাওয়ার সল্যুশন।</p>
+      </div>
+
+      <div class="svc-grid" style="margin-top:16px">
+        <!-- Visa -->
+        <div class="card svc">
+          <div class="icon"><i class="fa-solid fa-passport"></i></div>
+          <h4>ভিসা প্রসেসিং</h4>
+          <p>স্টুডেন্ট/টুরিস্ট/বিজনেস—ডকুমেন্ট, অ্যাপয়েন্টমেন্ট, ট্র্যাকিং সাপোর্ট।</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> চেকলিস্ট ও ভেরিফিকেশন</li>
+            <li><i class="fa-solid fa-check"></i> বায়োমেট্রিক/ইন্টারভিউ গাইড</li>
+            <li><i class="fa-solid fa-check"></i> এম্বাসি আপডেট</li>
+          </ul>
+        </div>
+        <!-- Work Permit -->
+        <div class="card svc">
+          <div class="icon"><i class="fa-solid fa-id-card-clip"></i></div>
+          <h4>ওয়ার্ক পারমিট</h4>
+          <p>অফার লেটার যাচাই, মেডিকেল (GAMCA), সাবমিশন ও স্ট্যাটাস ট্র্যাকিং।</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> কন্ট্রাক্ট যাচাই</li>
+            <li><i class="fa-solid fa-check"></i> মেডিকেল/পোলিস ক্লিয়ারেন্স</li>
+            <li><i class="fa-solid fa-check"></i> ভিসা–টিকিট সহায়তা</li>
+          </ul>
+        </div>
+        <!-- Manpower -->
+        <div class="card svc">
+          <div class="icon"><i class="fa-solid fa-users-gear"></i></div>
+          <h4>ম্যানপাওয়ার</h4>
+          <p>স্কিলড/সেমি-স্কিলড জনবল রিক্রুটমেন্ট ও ডিপ্লয়মেন্ট।</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> স্ক্রিনিং ও ইন্টারভিউ</li>
+            <li><i class="fa-solid fa-check"></i> ট্রেনিং/ওরিয়েন্টেশন</li>
+            <li><i class="fa-solid fa-check"></i> এয়ারপোর্ট অ্যাসিস্ট</li>
+          </ul>
+        </div>
+        <!-- Hotels -->
+        <div class="card svc">
+          <div class="icon"><i class="fa-solid fa-hotel"></i></div>
+          <h4>হোটেল বুকিং</h4>
+          <p>মক্কা–মদিনা সহ গ্লোবাল হোটেল—বাজেট থেকে প্রিমিয়াম।</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> ফ্যামিলি/গ্রুপ রুম</li>
+            <li><i class="fa-solid fa-check"></i> ফ্লেক্সিবল ক্যান্সেলেশন</li>
+            <li><i class="fa-solid fa-check"></i> হারাম/রওজা নিকটবর্তী অপশন</li>
+          </ul>
+        </div>
+        <!-- Group Tours -->
+        <div class="card svc">
+          <div class="icon"><i class="fa-solid fa-people-group"></i></div>
+          <h4>গ্রুপ ট্যুর</h4>
+          <p>ফিক্সড ডিপার্চার, গাইডেড জিয়ারাহ/সিটি ট্যুর, ট্রান্সপোর্ট সহ।</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> নির্ধারিত তারিখ</li>
+            <li><i class="fa-solid fa-check"></i> লোকাল সাপোর্ট</li>
+            <li><i class="fa-solid fa-check"></i> কাস্টম ইটিনারারি</li>
+          </ul>
+        </div>
+        <!-- Hajj & Umrah -->
+        <div class="card svc">
+          <div class="icon"><i class="fa-solid fa-kaaba"></i></div>
+          <h4>হজ্ব ও ওমরাহ</h4>
+          <p>৭/১০/১৪ দিনের উমরাহ, গাইডসহ; হজ প্রস্তুতি সহায়তা।</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> ভিসা–টিকিট–হোটেল–ট্রান্সপোর্ট</li>
+            <li><i class="fa-solid fa-check"></i> রওজা পারমিট ও জিয়ারাহ</li>
+            <li><i class="fa-solid fa-check"></i> প্রাইভেট/ফ্যামিলি প্যাকেজ</li>
+          </ul>
+        </div>
+        <!-- Air Ticket -->
+        <div class="card svc">
+          <div class="icon"><i class="fa-solid fa-plane-departure"></i></div>
+          <h4>বিমান টিকিট</h4>
+          <p>JED/MED সহ দেশ–বিদেশের টিকিট; রিশিডিউল/রিফান্ড সাপোর্ট।</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> মাল্টি এয়ারলাইন্স ডিল</li>
+            <li><i class="fa-solid fa-check"></i> গ্রুপ ফেয়ার</li>
+            <li><i class="fa-solid fa-check"></i> ২৪/৭ সহায়তা</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Packages title -->
   <section id="packages-title" class="section" style="padding-top:24px;padding-bottom:24px">
-    <div class="container card">
+    <div class="container card" style="text-align:center">
       <h3 style="font-size: 34px;margin:0">প্যাকেজ সমূহ</h3>
     </div>
   </section>
@@ -247,14 +396,52 @@
     </div>
   </section>
 
-  <!-- Success Modal -->
-  <div id="successModal" class="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);align-items:center;justify-content:center;z-index:120">
-    <div class="modal-content" style="background:#ffffff;border:1px solid #e5e7eb;padding:24px;border-radius:12px;max-width:420px;text-align:center;color:#0f172a;box-shadow:0 10px 26px rgba(2,8,23,.10);position:relative">
-      <button class="close-btn" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:20px;color:#334155;cursor:pointer" onclick="closeModal()">✖</button>
-      <h3>✅ সফলভাবে সাবমিট হয়েছে!</h3>
-      <p>আমাদের টিম শিগগিরই যোগাযোগ করবে।</p>
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container card">
+      <span class="badge">About Us</span>
+      <h3 style="margin:8px 0 6px;font-size:28px">ইফাজ ট্রাভেলস — আপনার বিশ্বস্ত উমরাহ সেবাদাতা</h3>
+      <p style="color:#64748b;margin:0 0 10px">
+        ইফাজ ট্রাভেলস সিলেট ও ঢাকাভিত্তিক একটি নির্ভরযোগ্য উমরাহ ও ট্রাভেল সার্ভিস। আমরা ভিসা, এয়ার টিকিট, মানসম্মত হোটেল,
+        এয়ারপোর্ট–মক্কা–মদিনা ট্রান্সফার, জিয়ারাহ—সবকিছু একসাথে সমন্বয় করি যাতে আপনার ইবাদত ও সফর হয় আরামদায়ক।
+      </p>
+      <ul class="checklist">
+        <li>অভিজ্ঞ টিম ও দেশি গাইড—রওজা পারমিট ও জিয়ারাহ সহায়তা</li>
+        <li>গ্রুপ ও প্রাইভেট—দুই ধরনেরই কাস্টম প্ল্যান</li>
+        <li>হোটেল অপশন: হারাম/রওজা নিকটবর্তী থেকে বাজেট ফ্রেন্ডলি</li>
+        <li>ভ্রমণ বিমা ও ২৪/৭ সাপোর্ট (শর্ত প্রযোজ্য)</li>
+      </ul>
     </div>
-  </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="grid cols-2">
+        <div class="card">
+          <h3 style="margin:0 0 8px">যোগাযোগ</h3>
+          <p style="margin:0 0 6px">📞 <a href="tel:+8801712055858">01712-055858</a> (গোলাম রব্বানী)</p>
+          <p style="margin:0 0 6px">📞 <a href="tel:+8801714642113">01714-642113</a> (ইমরান এইচ রনি)</p>
+          <p style="margin:0 0 6px">📧 <a href="mailto:info@efaztravels.com">info@efaztravels.com</a></p>
+          <p style="margin:0 0 12px">📍 গোল্ডেন টাওয়ার, আম্বরখানা, সিলেট</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" style="background:#25D366;border-color:#22c55e" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn" href="#booking-form">অনলাইনে বুকিং</a>
+          </div>
+          <p class="note">অফিস সময়: শনি–বৃহস্পতি 10:00–19:00 · শুক্র 15:00–19:00</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px">কেন আমাদেরই?</h3>
+          <ul class="checklist" style="margin-top:6px">
+            <li>ট্রান্সপারেন্ট প্রাইসিং—লুকানো খরচ নেই</li>
+            <li>বেশি ডিপার্চার অপশন ও ফ্লেক্সিবল ডেট</li>
+            <li>গ্রাহক সাপোর্ট ও আপডেট—WhatsApp/Call</li>
+            <li>ভ্রমণ ডকুমেন্ট চেকলিস্ট ও গাইডবুক</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="container">© 2025 Ifaz Travels · All Rights Reserved</div>
@@ -288,16 +475,13 @@
             headers: { 'Accept': 'application/json' }
           });
           if(res.ok){
-            document.getElementById('successModal').style.display='flex';
             ok.style.display = 'block';
             form.reset();
-            setTimeout(closeModal, 5000);
           }else{ err.style.display = 'block'; }
         }catch(ex){ err.style.display = 'block'; }
         finally{ btn.disabled = false; btn.textContent = 'Submit'; }
       });
     }
-    function closeModal(){ const m=document.getElementById('successModal'); if(m) m.style.display='none'; }
   </script>
 
   <!-- Reusable Promo Slider -->
