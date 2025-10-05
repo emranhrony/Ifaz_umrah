@@ -4,8 +4,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — Ifaz Travels</title>
+
+  <!-- আপনার গ্লোবাল স্টাইল -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Promo slider (reusable) -->
+  <link rel="stylesheet" href="promo.css?v=1">
+
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- ছোট কিছু পেজ-স্পেসিফিক স্টাইল -->
+  <style>
+    :root{ --brand:#0ea5e9; --brand-dark:#0284c7; --text:#0f172a; --muted:#64748b; --border:#e5e7eb; }
+    /* Promo slider spacing */
+    .promo-wrap{ margin-top:24px !important; }
+
+    /* Quick contact form */
+    .contact-form{
+      margin-top:16px;
+      display:grid; gap:12px;
+      grid-template-columns:1fr;
+      max-width:520px;
+    }
+    .contact-form label{ display:flex; flex-direction:column; font-weight:700; color:var(--text); }
+    .contact-form input{
+      margin-top:6px; padding:12px 12px;
+      border:1px solid var(--border); border-radius:10px; font-size:16px;
+    }
+    .contact-actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .btn-wa{
+      display:inline-flex; align-items:center; gap:8px;
+      background:#25D366; color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; border:1px solid #22c55e;
+    }
+    .btn-primary{
+      background:var(--brand); color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; border:1px solid var(--brand);
+    }
+    .btn-primary:hover{ background:var(--brand-dark); border-color:var(--brand-dark); }
+    @media(min-width:768px){
+      .contact-form{ grid-template-columns:1fr 1fr; }
+      .contact-form .full{ grid-column:span 2; }
+    }
+  </style>
 </head>
 <body>
 
@@ -31,17 +71,40 @@
     </div>
   </header>
 
-  <!-- Office Info -->
+  <!-- Office Info + Quick Contact -->
   <section class="section office-info">
     <div class="container">
       <h2>আমাদের অফিস</h2>
       <p>📞 01712-055858 · 01714-642113</p>
       <p>📍 Golden Tower, Sylhet</p>
-      <a class="btn-wa" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp Chat
-      </a>
+
+      <!-- Quick WhatsApp button -->
+      <div class="contact-actions">
+        <a class="btn-wa" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> WhatsApp Chat
+        </a>
+      </div>
+
+      <!-- ✅ Name + Mobile form -->
+      <form id="quickContactForm" class="contact-form" autocomplete="on">
+        <label>
+          নাম
+          <input type="text" name="name" placeholder="আপনার নাম" required>
+        </label>
+        <label>
+          মোবাইল নম্বর (WhatsApp)
+          <input type="tel" name="phone" placeholder="01XXXXXXXXX" pattern="^[0-9+\-\s]{8,}$" required>
+        </label>
+        <div class="full contact-actions">
+          <button type="submit" class="btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp এ পাঠান</button>
+          <a class="btn-primary" href="tel:+8801712055858" style="background:#0ea5e9;border-color:#0ea5e9">কল করুন</a>
+        </div>
+      </form>
     </div>
   </section>
+
+  <!-- ✅ Promo slider (Our Team-এর উপরে) -->
+  <section id="promo-slot" class="promo-wrap container"></section>
 
   <!-- Team Section -->
   <section class="section">
@@ -102,8 +165,9 @@
     </div>
   </footer>
 
-  <!-- Script -->
+  <!-- Scripts -->
   <script>
+    // Close mobile menu when clicking outside
     document.addEventListener('click', (e)=>{
       const nav = document.querySelector('.menu');
       const toggle = document.querySelector('.menu-toggle');
@@ -112,6 +176,22 @@
         document.body.classList.remove('menu-open');
       }
     });
+
+    // Quick contact -> open WhatsApp with prefilled message
+    const quickForm = document.getElementById('quickContactForm');
+    if(quickForm){
+      quickForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const name  = quickForm.elements['name'].value.trim();
+        const phone = quickForm.elements['phone'].value.trim();
+        const waNumber = '8801712055858'; // আপনার অফিস নম্বর
+        const msg = encodeURIComponent(`Assalamu Alaikum,\nনতুন কন্ট্যাক্ট:\nনাম: ${name}\nমোবাইল: ${phone}`);
+        window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${msg}`, '_blank', 'noopener');
+      });
+    }
   </script>
+
+  <!-- Reusable Promo Slider -->
+  <script defer src="promo.js?v=1"></script>
 </body>
 </html>
