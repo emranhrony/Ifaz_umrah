@@ -292,31 +292,31 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
-    <div class="container nav">
-      <div class="brand">
-        <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo" />
-        <div>
-          <div class="brand-title">Ifaz Travels</div>
-          <small>Every journey begins with us</small>
-        </div>
+  <div class="container nav">
+    <div class="brand">
+      <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo" />
+      <div>
+        <div class="brand-title">Ifaz Travels</div>
+        <small>Every journey begins with us</small>
       </div>
-
-      <!-- Hamburger -->
-      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
-        <span class="bar"></span>
-      </button>
-
-      <!-- Menu -->
-      <nav class="menu">
-        <a href="#about"    onclick="document.body.classList.remove('menu-open')">About</a>
-        <a href="#packages" onclick="document.body.classList.remove('menu-open')">Services</a>
-        <a href="#contact"  onclick="document.body.classList.remove('menu-open')">Contact</a>
-        <a class="btn" href="#book" onclick="document.body.classList.remove('menu-open')">Book Now</a>
-      </nav>
     </div>
-  </header>
+
+    <!-- Hamburger -->
+    <button class="menu-toggle" aria-label="Toggle menu"
+            onclick="document.body.classList.toggle('menu-open')">
+      <span class="bar"></span>
+    </button>
+
+    <!-- Menu (renamed items) -->
+    <nav class="menu">
+      <a href="contact.html"  onclick="document.body.classList.remove('menu-open')">Contact</a>
+      <a href="about.html"    onclick="document.body.classList.remove('menu-open')">About</a>
+      <a href="gallery.html"  onclick="document.body.classList.remove('menu-open')">Gallery</a>
+      <a class="btn" href="#book" onclick="document.body.classList.remove('menu-open')">Book Now</a>
+    </nav>
+  </div>
+</header>
 
   <main>
     <!-- Hero -->
