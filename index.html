@@ -10,7 +10,6 @@
 
   <style>
     :root{
-      /* ✅ আগের পেজের মতো কুল ব্লু থিম */
       --brand:#0ea5e9; --brand-dark:#0284c7;
       --text:#0f172a;  --muted:#475569;
       --bg:#f8fafc;    --card:#ffffff;
@@ -23,7 +22,6 @@
       margin:0;
       font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
-      /* ✅ হালকা নীল রেডিয়াল BG (আগের পেজের vibe) */
       background:
         radial-gradient(1200px 400px at 50% -100px, #e0f2fe 12%, transparent 60%),
         linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
@@ -63,14 +61,14 @@
     body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
     body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
 
-    /* ✅ বাটন — নীল ব্র্যান্ড */
+    /* Buttons */
     .btn{
       padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;
       font-weight:700;border:1px solid var(--brand);cursor:pointer;display:inline-block;transition:.2s
     }
     .btn:hover{background:var(--brand-dark);border-color:var(--brand-dark);box-shadow:0 10px 24px rgba(2,132,199,.25);transform:translateY(-2px)}
 
-    /* ✅ মোবাইলে ড্রপডাউন মেনু — আগের পেজের মতো সাদা কার্ড */
+    /* Mobile menu */
     @media (max-width:768px){
       .menu{
         display:none;flex-direction:column;gap:8px;
@@ -83,7 +81,7 @@
       .menu-toggle{display:inline-flex}
     }
 
-    /* Sections & cards (✅ লাইট কার্ড) */
+    /* Sections & cards */
     .section{padding:48px 0}
     .grid{display:grid;gap:16px}
     @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
@@ -93,8 +91,8 @@
       box-shadow:0 6px 16px rgba(2,8,23,.06)
     }
 
-    /* Hero + animated dates */
-    .hero{padding:56px 0; /* ✅ হালকা ব্লু aura */ background:radial-gradient(1000px 360px at 10% -120px,#e0f2fe 18%,transparent 60%)}
+    /* Hero */
+    .hero{padding:56px 0;background:radial-gradient(1000px 360px at 10% -120px,#e0f2fe 18%,transparent 60%)}
     .hero-grid{display:grid;gap:24px;align-items:center}
     @media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
     .hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;margin:0 0 12px}
@@ -116,18 +114,11 @@
     .month b{font-size:18px;color:#0369a1}
     .month small{font-size:14px;color:#64748b}
 
-    .ticker{
-      margin-top:20px;font-weight:900;font-size:clamp(22px,4vw,32px);
-      display:inline-flex;align-items:center;gap:10px
-    }
-    .ticker .dot{
-      width:12px;height:12px;border-radius:50%;background:#22c55e;animation:blink 1.2s ease-in-out infinite
-    }
+    .ticker{margin-top:20px;font-weight:900;font-size:clamp(22px,4vw,32px);display:inline-flex;align-items:center;gap:10px}
+    .ticker .dot{width:12px;height:12px;border-radius:50%;background:#22c55e;animation:blink 1.2s ease-in-out infinite}
     .ticker .shine{
       background:linear-gradient(90deg,#0f172a,#0284c7,#0ea5e9,#22c55e,#0f172a);
-      background-size:300% 100%;
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-      animation:slideRed 4s linear infinite;
+      background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slideRed 4s linear infinite;
     }
     @keyframes zoomPulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
     @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
@@ -135,7 +126,7 @@
 
     .hero-img{width:100%;max-width:440px;border-radius:16px;box-shadow:0 12px 30px rgba(2,8,23,.12)}
 
-    /* ✅ লাইট ফর্ম স্টাইল */
+    /* Form */
     form{max-width:700px;margin:auto;display:grid;gap:16px}
     form label{display:flex;flex-direction:column;font-size:15px;color:#0f172a;text-align:left}
     form input,form select{
@@ -151,7 +142,7 @@
     .msg.ok{background:rgba(22,163,74,.10);border:1px solid rgba(22,163,74,.35);color:#065f46}
     .msg.err{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.35);color:#991b1b}
 
-    /* Photos section (✅ আগের vibe) */
+    /* Photos */
     #photos{
       background:
         radial-gradient(1200px 400px at 10% 0%, rgba(14,165,233,.12), transparent 60%),
@@ -166,22 +157,13 @@
     }
     #photos figure:hover{transform:translateY(-3px)}
     #photos img{width:100%;height:220px;object-fit:cover}
-    #photos figcaption{
-      padding:10px;color:#334155;font-size:14px;text-align:center;background:#f8fafc
-    }
+    #photos figcaption{padding:10px;color:#334155;font-size:14px;text-align:center;background:#f8fafc}
     @media(min-width:992px){#photos img{height:260px}}
 
     /* Footer */
     footer{padding:32px 0;border-top:1px solid #e5e7eb;background:#ffffff;color:#334155;text-align:center}
 
-    /* Spacing tweaks */
-    @media (min-width:768px){.container{padding-inline:24px}}
-    .hero-grid{gap:20px}
-    .date-row{gap:14px}
-
-    /* =========================
-       Promo Slider (above Packages)
-       ========================= */
+    /* Promo Slider */
     .promo-wrap{position:relative;margin:28px 0}
     .promo-slider{
       position:relative;overflow:hidden;border-radius:16px;border:1px solid #e5e7eb;
@@ -191,15 +173,19 @@
     .promo-slide{min-width:100%;user-select:none}
     .promo-slide a{display:block;line-height:0}
 
-    /* Text banners (no image) */
+    /* Text banners (centered) */
     .promo-banner{
       position:relative; width:100%; min-height:220px;
       border-radius:16px; overflow:hidden; color:#0f172a; display:flex;
-      align-items:center; padding:26px 24px; border:1px solid #e5e7eb;
+      align-items:center; justify-content:center;
+      padding:26px 24px; border:1px solid #e5e7eb;
     }
-    .promo-banner .inner{ max-width:920px; margin:0 auto; width:100%; }
+    .promo-banner .inner{
+      max-width:920px; margin:0 auto; width:100%;
+      display:flex; flex-direction:column; align-items:center; text-align:center;
+    }
     .promo-banner h3{ margin:0 0 6px; font-size:clamp(22px,4.5vw,38px); line-height:1.1; font-weight:900; letter-spacing:.2px }
-    .promo-banner p{ margin:0 0 12px; font-size:clamp(14px,2.8vw,18px); color:#0f172a; opacity:.85 }
+    .promo-banner p{ margin:0 12px 12px; font-size:clamp(14px,2.8vw,18px); color:#0f172a; opacity:.85 }
     .promo-banner .tag{
       display:inline-block; font-weight:800; font-size:13px;
       padding:6px 10px; border-radius:999px; background:#ffffffcc; border:1px solid #e6eef8; margin-bottom:8px;
@@ -210,14 +196,13 @@
     }
     .promo-banner .cta-chip:hover{ filter:brightness(.95); }
 
-    /* পৃথক রং/গ্রেডিয়েন্ট */
+    /* Banner themes */
     .promo-banner.b1{
       background:
         radial-gradient(800px 300px at 10% -40%, #e0f2fe 35%, transparent 60%),
         linear-gradient(90deg, #ffffff, #f8fafc);
     }
     .promo-banner.b2{
-      color:#0f172a;
       background:
         radial-gradient(800px 300px at 100% 0%, rgba(255,163,163,.35), transparent 60%),
         linear-gradient(90deg, #fff7f7, #ffffff);
@@ -227,6 +212,17 @@
         radial-gradient(900px 320px at 0% 0%, rgba(125,211,252,.30), transparent 60%),
         radial-gradient(700px 280px at 100% 100%, rgba(134,239,172,.32), transparent 60%),
         linear-gradient(90deg, #ffffff, #f8fafc);
+    }
+    /* extra themes */
+    .promo-banner.b4{
+      background:
+        radial-gradient(800px 300px at 0% 0%, rgba(252,211,77,.35), transparent 60%),
+        linear-gradient(90deg, #fffbea, #ffffff);
+    }
+    .promo-banner.b5{
+      background:
+        radial-gradient(900px 320px at 100% 100%, rgba(196,181,253,.32), transparent 60%),
+        linear-gradient(90deg, #faf5ff, #ffffff);
     }
 
     /* Arrows */
@@ -249,7 +245,7 @@
     }
     .promo-dot.active{background:#0ea5e9;border-color:#0284c7}
 
-    /* Mobile spacing */
+    /* Mobile */
     @media (max-width:768px){
       .promo-wrap{margin:16px 0}
       .promo-banner{ min-height:180px; padding:20px }
@@ -274,7 +270,7 @@
         <span class="bar"></span>
       </button>
 
-      <!-- ✅ Mobile/desktop menu (সাদা কার্ড ড্রপডাউন) -->
+      <!-- Menu -->
       <nav class="menu">
         <a href="#about"    onclick="document.body.classList.remove('menu-open')">About</a>
         <a href="#packages" onclick="document.body.classList.remove('menu-open')">Services</a>
@@ -292,7 +288,6 @@
           <h1>আজই বুকিং দিন</h1>
           <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
 
-        <!-- Animated dates row -->
           <div class="date-row" aria-label="Group departure dates">
             <div class="date-card">
               <div class="num">১৯</div>
@@ -301,7 +296,6 @@
                 <small>Group Package</small>
               </div>
             </div>
-
             <div class="date-card">
               <div class="num n2">০১</div>
               <div class="month">
@@ -311,7 +305,6 @@
             </div>
           </div>
 
-          <!-- Ticker -->
           <div class="ticker" role="status" aria-live="polite">
             <span class="dot" aria-hidden="true"></span>
             <span class="shine">উমরাহ বুকিং চলছে</span>
@@ -329,61 +322,13 @@
       </div>
     </section>
 
-    <!-- =========================
-         Promo Slider ABOVE Packages
-         ========================= -->
+    <!-- Promo Slider ABOVE Packages -->
     <section class="section" id="promo-slider">
       <div class="container promo-wrap">
         <div class="promo-slider" aria-roledescription="carousel" aria-label="Featured offers">
-          <div class="promo-track" id="promoTrack">
-            <!-- Banner 1 -->
-            <div class="promo-slide">
-              <a href="air-ticket-dhaka-jeddah.html" aria-label="Dhaka-Jedda Air Ticke — Lowest Price Book Now">
-                <div class="promo-banner b1">
-                  <div class="inner">
-                    <span class="tag">Air Ticket</span>
-                    <h3>Dhaka–Jedda Air Ticke</h3>
-                    <p>Lowest Price · Book Now</p>
-                  <span class="cta-chip">Book Now →</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Banner 2 -->
-            <div class="promo-slide">
-              <a href="china-visa.html" aria-label="Chaina Visa — No Visa, No fee">
-                <div class="promo-banner b2">
-                  <div class="inner">
-                    <span class="tag">Visa Service</span>
-                    <h3>Chaina Visa</h3>
-                    <p>No Visa, No fee</p>
-                    <span class="cta-chip">Apply Now →</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- Banner 3 -->
-            <div class="promo-slide">
-              <a href="domestic-ticket.html" aria-label="Domestic Ticket 5% Discount">
-                <div class="promo-banner b3">
-                  <div class="inner">
-                    <span class="tag">Domestic Flight</span>
-                    <h3>Domestic Ticket 5% Discount</h3>
-                    <p>Limited time · Online booking</p>
-                    <span class="cta-chip">Grab Offer →</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Arrows -->
+          <div class="promo-track" id="promoTrack"></div>
           <button class="promo-arrow promo-prev" id="promoPrev" aria-label="Previous slide">‹</button>
           <button class="promo-arrow promo-next" id="promoNext" aria-label="Next slide">›</button>
-
-          <!-- Dots -->
           <div class="promo-dots" id="promoDots" role="tablist" aria-label="Slide dots"></div>
         </div>
       </div>
@@ -595,11 +540,7 @@
         ok.style.display = 'none'; err.style.display = 'none';
         btn.disabled = true; btn.textContent = 'Submitting...';
         try{
-          const res = await fetch(form.action, {
-            method:'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
+          const res = await fetch(form.action, { method:'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }});
           if(res.ok){
             document.getElementById('successModal').style.display='flex';
             ok.style.display = 'block';
@@ -613,11 +554,80 @@
     function closeModal(){ const m=document.getElementById('successModal'); if(m) m.style.display='none'; }
 
     // =========================
-    // Promo Slider JS (vanilla)
+    // Promo Slider (config + render) — Always Auto Slide
     // =========================
     (function(){
+      // ✅ কাস্টমাইজ ব্যানার—এখানেই টেক্সট/লিংক পরিবর্তন করুন
+      const slidesConfig = [
+        {
+          tag: "Air Ticket",
+          title: "Dhaka–Jeddah Air Ticket",
+          subtitle: "Lowest Price · Book Now",
+          ctaText: "Book Now →",
+          href: "air-ticket-dhaka-jeddah.html",
+          theme: "b1"
+        },
+        {
+          tag: "Visa Service",
+          title: "China Visa",
+          subtitle: "No Visa, No Fee",
+          ctaText: "Apply Now →",
+          href: "china-visa.html",
+          theme: "b2"
+        },
+        {
+          tag: "Domestic Flight",
+          title: "Domestic Ticket 5% Discount",
+          subtitle: "Limited time · Online booking",
+          ctaText: "Grab Offer →",
+          href: "domestic-ticket.html",
+          theme: "b3"
+        },
+        {
+          tag: "Hajj 2026",
+          title: "Hajj 2026 Pre-Booking",
+          subtitle: "Early Bird · Limited Seats",
+          ctaText: "Pre-Book →",
+          href: "hajj-2026.html",
+          theme: "b4"
+        },
+        {
+          tag: "Hotel",
+          title: "Hotel Near Haram",
+          subtitle: "Makkah & Madinah · Best Rates",
+          ctaText: "Check Rooms →",
+          href: "hotel-near-haram.html",
+          theme: "b5"
+        },
+        {
+          tag: "Malaysia Visa",
+          title: "Malaysia Tourist Visa",
+          subtitle: "Express Processing Available",
+          ctaText: "Apply →",
+          href: "malaysia-visa.html",
+          theme: "b1"
+        }
+      ];
+
       const track = document.getElementById('promoTrack');
       if(!track) return;
+
+      // Render slides
+      track.innerHTML = slidesConfig.map(s => `
+        <div class="promo-slide">
+          <a href="${s.href}" aria-label="${s.title}">
+            <div class="promo-banner ${s.theme}">
+              <div class="inner">
+                ${s.tag ? `<span class="tag">${s.tag}</span>` : ""}
+                ${s.title ? `<h3>${s.title}</h3>` : ""}
+                ${s.subtitle ? `<p>${s.subtitle}</p>` : ""}
+                ${s.ctaText ? `<span class="cta-chip">${s.ctaText}</span>` : ""}
+              </div>
+            </div>
+          </a>
+        </div>
+      `).join('');
+
       const slides = Array.from(track.children);
       const prev = document.getElementById('promoPrev');
       const next = document.getElementById('promoNext');
@@ -626,7 +636,8 @@
       let index = 0, timer = null, touchStartX = 0, touchDiff = 0;
       const total = slides.length;
 
-      // build dots
+      // Dots
+      dotsWrap.innerHTML = "";
       slides.forEach((_, i)=>{
         const d = document.createElement('button');
         d.className = 'promo-dot' + (i===0?' active':'');
@@ -634,44 +645,38 @@
         d.addEventListener('click', ()=>go(i,true));
         dotsWrap.appendChild(d);
       });
-
       const dots = Array.from(dotsWrap.children);
 
       function update(){
         track.style.transform = `translateX(-${index*100}%)`;
         dots.forEach((d,i)=>d.classList.toggle('active', i===index));
       }
-
       function go(i, user=false){
         index = (i+total)%total;
         update();
-        if(user) restart();
+        if(user) restart(); // user interaction হলে সাথে সাথে রিস্টার্ট
       }
-
       function nextSlide(){ go(index+1); }
       function prevSlide(){ go(index-1); }
 
-      function start(){ timer = setInterval(nextSlide, 4500); }
+      // Always auto slide (no hover pause)
+      function start(){ if(timer) return; timer = setInterval(nextSlide, 4500); }
       function stop(){ clearInterval(timer); timer = null; }
       function restart(){ stop(); start(); }
 
-      // events
+      // Controls
       if(next) next.addEventListener('click', ()=>go(index+1,true));
       if(prev) prev.addEventListener('click', ()=>go(index-1,true));
 
-      // pause on hover
+      // Keyboard
       const slider = document.querySelector('.promo-slider');
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
-
-      // keyboard
       slider.setAttribute('tabindex','0');
       slider.addEventListener('keydown', (e)=>{
         if(e.key==='ArrowRight') { e.preventDefault(); go(index+1,true); }
         if(e.key==='ArrowLeft')  { e.preventDefault(); go(index-1,true); }
       });
 
-      // touch swipe
+      // Touch swipe (swipe করলে থামে, ছেড়ে দিলে আবার চালু)
       slider.addEventListener('touchstart', (e)=>{ touchStartX = e.touches[0].clientX; touchDiff=0; stop(); }, {passive:true});
       slider.addEventListener('touchmove',  (e)=>{ touchDiff = e.touches[0].clientX - touchStartX; }, {passive:true});
       slider.addEventListener('touchend',   ()=>{
