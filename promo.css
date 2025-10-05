@@ -1,38 +1,78 @@
-/* promo.css v4 — text-only promo slider */
+/* promo.css v5 — text-only promo slider with aura backgrounds */
 .promo-wrap{margin-top:18px}
 .promo{
   position:relative;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;
-  background:#f8fbff;box-shadow:0 10px 26px rgba(2,8,23,.08);
+  background:#ffffff;box-shadow:0 10px 26px rgba(2,8,23,.08);
 }
 .promo-viewport{overflow:hidden;width:100%}
 .promo-track{display:flex;transition:transform .5s ease}
 
-/* প্রতিটি স্লাইড এখন কেবল টেক্সট ব্লক */
+/* Slides: text only */
 .promo-slide{
   flex:0 0 100%;
   display:flex;align-items:center;justify-content:center;
-  min-height:200px; padding:22px;
-  text-decoration:none;color:inherit;
+  min-height:220px;padding:28px 22px;text-align:center;
+  text-decoration:none;color:#0f172a; position:relative; isolation:isolate;
 }
-@media(min-width:992px){ .promo-slide{ min-height:240px; } }
+@media(min-width:992px){ .promo-slide{ min-height:260px; } }
 
-/* থিম ব্যাকগ্রাউন্ড (সফট গ্রেডিয়েন্ট) */
-.promo-slide.theme-blue  { background:linear-gradient(135deg,#e0f2fe,#f1f5f9); }
-.promo-slide.theme-green { background:linear-gradient(135deg,#dcfce7,#f0fdf4); }
-.promo-slide.theme-rose  { background:linear-gradient(135deg,#ffe4e6,#fff1f2); }
-.promo-slide.theme-amber { background:linear-gradient(135deg,#fef3c7,#fff7ed); }
-.promo-slide.theme-sky   { background:linear-gradient(135deg,#bae6fd,#e0f2fe); }
-.promo-slide.theme-lime  { background:linear-gradient(135deg,#d9f99d,#ecfccb); }
-
-/* টেক্সট কন্টেন্ট */
-.promo-content{text-align:center;max-width:900px}
+.promo-content{max-width:900px;margin:auto}
 .promo-badge{
   display:inline-block;background:#dcfce7;color:#14532d;border:1px solid #86efac;
   font-weight:800;padding:6px 10px;border-radius:999px;margin-bottom:8px
 }
-.promo-title{font-size:clamp(20px,3.4vw,30px);margin:4px 0 6px;font-weight:900;color:#0f172a}
+.promo-title{font-size:clamp(20px,3.6vw,32px);margin:4px 0 6px;font-weight:900;color:#0f172a}
 .promo-sub{margin:0;color:#475569;font-size:clamp(14px,2.2vw,18px)}
 .promo-cta{display:inline-block;margin-top:10px;font-weight:800;color:#0284c7}
+
+/* ===== Aura backgrounds (like the first page) ===== */
+/* Blue — primary aura */
+.promo-slide.theme-blue,
+.promo-slide.theme-sky{
+  background:
+    radial-gradient(1000px 360px at 10% -120px, #e0f2fe 28%, transparent 60%),
+    radial-gradient(900px 300px at 92% 18%, rgba(14,165,233,.18), transparent 60%),
+    linear-gradient(135deg,#ffffff 0%, #f0f9ff 100%);
+}
+
+/* Green aura */
+.promo-slide.theme-green{
+  background:
+    radial-gradient(900px 320px at 12% -80px, rgba(34,197,94,.18), transparent 62%),
+    radial-gradient(780px 260px at 90% 22%, rgba(16,185,129,.16), transparent 60%),
+    linear-gradient(135deg,#ffffff 0%, #f0fdf4 100%);
+}
+
+/* Rose/Red aura (soft) */
+.promo-slide.theme-rose{
+  background:
+    radial-gradient(900px 320px at 8% -80px, rgba(244,63,94,.16), transparent 62%),
+    radial-gradient(820px 260px at 92% 18%, rgba(255,99,132,.14), transparent 60%),
+    linear-gradient(135deg,#fff1f2 0%, #ffe4e6 100%);
+}
+
+/* Amber/Gold aura */
+.promo-slide.theme-amber{
+  background:
+    radial-gradient(900px 320px at 10% -80px, rgba(245,158,11,.18), transparent 62%),
+    radial-gradient(820px 260px at 92% 18%, rgba(251,191,36,.16), transparent 60%),
+    linear-gradient(135deg,#fff7ed 0%, #fef3c7 100%);
+}
+
+/* Lime aura */
+.promo-slide.theme-lime{
+  background:
+    radial-gradient(880px 300px at 12% -80px, rgba(132,204,22,.18), transparent 62%),
+    radial-gradient(800px 240px at 92% 20%, rgba(163,230,53,.16), transparent 60%),
+    linear-gradient(135deg,#ecfccb 0%, #f7fee7 100%);
+}
+
+/* subtle glossy sheen (very light) */
+.promo-slide::after{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:-1;
+  background: linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,0), rgba(255,255,255,.15));
+  opacity:.35; mix-blend-mode:overlay;
+}
 
 /* arrows */
 .promo-nav{
@@ -47,12 +87,9 @@
   position:relative;top:12px
 }
 .promo-nav.next::before{transform:rotate(-135deg)}
-/* মোবাইলে arrow লুকানো */
-@media(max-width:768px){.promo-nav{display:none}}
+@media(max-width:768px){.promo-nav{display:none}} /* mobile: hide arrows */
 
 /* dots */
 .promo-dots{display:flex;gap:6px;justify-content:center;padding:10px;background:#fff}
-.promo-dot{
-  width:9px;height:9px;border-radius:999px;background:#cbd5e1;border:0;cursor:pointer
-}
+.promo-dot{width:9px;height:9px;border-radius:999px;background:#cbd5e1;border:0;cursor:pointer}
 .promo-dot.active{background:#0284c7}
