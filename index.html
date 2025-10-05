@@ -15,16 +15,25 @@
       --text:#0f172a;  --muted:#64748b; --border:#e5e7eb;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;color:var(--text);
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;
+      color:var(--text);
       background:
         radial-gradient(1200px 400px at 50% -100px, #e0f2fe 12%, transparent 60%),
-        linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);}
+        linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+    }
     img{max-width:100%;height:auto;display:block}
     a{text-decoration:none;color:inherit}
     .container{max-width:1200px;margin:0 auto;padding:0 16px}
+    html,body{max-width:100%;overflow-x:hidden}
 
     /* Header */
-    header{position:sticky;top:0;left:0;right:0;z-index:60;background:#fff;border-bottom:1px solid var(--border);backdrop-filter:blur(8px) saturate(160%)}
+    header{
+      position:sticky;top:0;left:0;right:0;z-index:60;background:#fff;
+      border-bottom:1px solid var(--border);backdrop-filter:blur(8px) saturate(160%);
+    }
     .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:relative}
     .brand{display:flex;align-items:center;gap:10px}
     .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:10px}
@@ -47,12 +56,15 @@
 
     /* Mobile menu */
     @media(max-width:768px){
-      .menu{display:none;flex-direction:column;gap:8px;position:absolute;top:60px;right:16px;min-width:220px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.18);padding:12px;z-index:80}
+      .menu{
+        display:none;flex-direction:column;gap:8px;position:absolute;top:60px;right:16px;min-width:220px;
+        background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.18);padding:12px;z-index:80
+      }
       body.menu-open .menu{display:flex}
       .menu-toggle{display:inline-flex}
     }
 
-    /* Hero (sample) */
+    /* Hero */
     .hero{padding:48px 0}
     .hero-grid{display:grid;gap:24px;align-items:center}
     @media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
@@ -60,10 +72,37 @@
     .hero p{color:var(--muted)}
     .btn{padding:12px 18px;border-radius:12px;background:var(--brand);color:#fff;border:1px solid var(--brand);font-weight:700;display:inline-block}
     .btn:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
+
+    /* Sections & cards */
     .section{padding:40px 0}
     .grid{display:grid;gap:16px}
     @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
     .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 6px 16px rgba(2,8,23,.06)}
+
+    /* Packages title */
+    #packages-title .card{text-align:center}
+
+    /* Booking form */
+    form{max-width:700px;margin:auto;display:grid;gap:16px}
+    form label{display:flex;flex-direction:column;font-size:15px;color:#0f172a;text-align:left}
+    form input,form select{
+      width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:#ffffff;color:#0f172a;font-size:16px
+    }
+    form input:focus,form select:focus{outline:2px solid var(--brand);box-shadow:0 0 0 4px rgba(14,165,233,.15)}
+    @media(min-width:768px){
+      form{grid-template-columns:repeat(2,1fr)}
+      form button{grid-column:span 2;justify-self:center}
+    }
+    .note{font-size:14px;color:#64748b;margin-top:8px}
+    .msg{display:none;margin-top:12px;padding:10px;border-radius:10px}
+    .msg.ok{background:rgba(22,163,74,.10);border:1px solid rgba(22,163,74,.35);color:#065f46}
+    .msg.err{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.35);color:#991b1b}
+
+    /* Make promo slot sit nicely below header on this page */
+    .promo-wrap{ margin-top:18px !important; }
+
+    /* Footer */
+    footer{padding:24px 0;border-top:1px solid #e5e7eb;background:#fff;text-align:center;color:#334155}
   </style>
 </head>
 <body>
@@ -84,7 +123,7 @@
         <span class="bar"></span>
       </button>
 
-      <!-- Menu: 3 items as requested (no Book Now) -->
+      <!-- Menu (3 items as requested) -->
       <nav class="menu">
         <a href="contact.html">Contact</a>
         <a href="about.html">About</a>
@@ -93,9 +132,6 @@
     </div>
   </header>
 
-  <!-- ✅ Promo slider mount point (shared across pages) -->
-  <section id="promo-slot" class="promo-wrap container"></section>
-
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-grid">
@@ -103,7 +139,7 @@
         <h1>আজই বুকিং দিন</h1>
         <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
         <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-          <a class="btn" href="#packages">See Packages</a>
+          <a class="btn" href="#packages">প্যাকেজ দেখুন</a>
           <a class="btn" style="background:#25D366;border-color:#22c55e" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
@@ -111,22 +147,120 @@
     </div>
   </section>
 
-  <!-- Some sample sections -->
+  <!-- ✅ Promo slider mount point (will render above packages) -->
+  <section id="promo-slot" class="promo-wrap container"></section>
+
+  <!-- Packages title -->
+  <section id="packages-title" class="section" style="padding-top:24px;padding-bottom:24px">
+    <div class="container card">
+      <h3 style="font-size: 34px;margin:0">প্যাকেজ সমূহ</h3>
+    </div>
+  </section>
+
+  <!-- Packages -->
   <section class="section" id="packages">
     <div class="container">
       <div class="grid cols-3">
-        <div class="card"><h3>৭ দিন</h3><p>Visa · Ticket · Hotel · Transport</p></div>
-        <div class="card"><h3>১০ দিন</h3><p>Group / Family rooms</p></div>
-        <div class="card"><h3>১৪ দিন</h3><p>৳১,৪৫০০০ · খাবার ছাড়া</p></div>
+        <div class="card">
+          <h4>✈️ ৭ দিন</h4>
+          <p class="price">Call for Price</p>
+          <p class="note">Visa, Ticket, Hotel, Transport</p>
+          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
+        </div>
+        <div class="card">
+          <h4>🕌 ১০ দিন</h4>
+          <p class="price">Call for Price</p>
+          <p class="note">Group / Family rooms</p>
+          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
+        </div>
+        <div class="card">
+          <h4>🏨 ১৪ দিন</h4>
+          <p class="price">৳১,৪৫০০০</p>
+          <p class="note">খাবার ছাড়া · Near Haram</p>
+          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
+        </div>
+
+        <div class="card">
+          <h4>📅 October 2025 (Group)</h4>
+          <p class="price">Early-bird available</p>
+          <p class="note">19 Oct departure · Guide included</p>
+          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Reserve</a></div>
+        </div>
+        <div class="card">
+          <h4>📅 November 2025 (Group)</h4>
+          <p class="price">Discount available</p>
+          <p class="note">1 Nov departure · Flexible dates</p>
+          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Reserve</a></div>
+        </div>
+        <div class="card">
+          <h4>⭐ Custom / Private Umrah</h4>
+          <p class="price">Tailored Itinerary</p>
+          <p class="note">Premium hotel · Private transport</p>
+          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Call for Plan</a></div>
+        </div>
+
+        <div class="card">
+          <h4>🛫 Air Ticket & Visa Assist</h4>
+          <p class="price">JED / MED</p>
+          <p class="note">Multiple airlines · Quick processing</p>
+          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer style="padding:24px 0;border-top:1px solid #e5e7eb;background:#fff;text-align:center;color:#334155">
+  <!-- Booking Form -->
+  <section id="booking-form" class="section">
+    <div class="container card">
+      <h3 style="text-align:center;font-size:32px;margin-top:0">Online Booking Form</h3>
+      <form id="umrahForm" action="https://formspree.io/f/xrbyplzy" method="POST" novalidate>
+        <label>পূর্ণ নাম
+          <input name="name" required />
+        </label>
+        <label>ফোন (WhatsApp)
+          <input name="phone" required pattern="^[0-9+\\-\\s]{8,}$" />
+        </label>
+        <label>প্যাকেজ
+          <select name="package">
+            <option>৭ দিন</option><option>১০ দিন</option><option>১৪ দিন</option>
+            <option>October 2025 (Group)</option><option>November 2025 (Group)</option>
+            <option>Custom / Private</option><option>Air Ticket & Visa Assist</option>
+          </select>
+        </label>
+        <label>মাস
+          <select name="month">
+            <option>October 2025</option><option>November 2025</option><option>December 2025</option>
+          </select>
+        </label>
+        <label>ইমেইল (Optional)
+          <input type="email" name="email" placeholder="you@example.com" />
+        </label>
+
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="New Umrah Booking - Ifaz Travels">
+
+        <button id="submitBtn" class="btn" type="submit">Submit</button>
+        <div id="formOk"  class="msg ok">✅ আপনার তথ্য পাওয়া গেছে! শিগগিরই যোগাযোগ করা হবে।</div>
+        <div id="formErr" class="msg err">❌ সাবমিট করতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন বা WhatsApp-এ মেসেজ দিন।</div>
+        <p class="note">* Prices subject to change. Visa approval per Embassy.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);align-items:center;justify-content:center;z-index:120">
+    <div class="modal-content" style="background:#ffffff;border:1px solid #e5e7eb;padding:24px;border-radius:12px;max-width:420px;text-align:center;color:#0f172a;box-shadow:0 10px 26px rgba(2,8,23,.10);position:relative">
+      <button class="close-btn" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:20px;color:#334155;cursor:pointer" onclick="closeModal()">✖</button>
+      <h3>✅ সফলভাবে সাবমিট হয়েছে!</h3>
+      <p>আমাদের টিম শিগগিরই যোগাযোগ করবে।</p>
+    </div>
+  </div>
+
+  <footer>
     <div class="container">© 2025 Ifaz Travels · All Rights Reserved</div>
   </footer>
 
-  <!-- Close mobile menu on outside click + Reusable slider JS -->
+  <!-- Close mobile menu on outside click -->
   <script>
     document.addEventListener('click', (e)=>{
       const nav = document.querySelector('.menu');
@@ -136,7 +270,37 @@
         document.body.classList.remove('menu-open');
       }
     });
+
+    // Booking form JS
+    const form = document.getElementById('umrahForm');
+    if(form){
+      const btn  = document.getElementById('submitBtn');
+      const ok   = document.getElementById('formOk');
+      const err  = document.getElementById('formErr');
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        ok.style.display = 'none'; err.style.display = 'none';
+        btn.disabled = true; btn.textContent = 'Submitting...';
+        try{
+          const res = await fetch(form.action, {
+            method:'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if(res.ok){
+            document.getElementById('successModal').style.display='flex';
+            ok.style.display = 'block';
+            form.reset();
+            setTimeout(closeModal, 5000);
+          }else{ err.style.display = 'block'; }
+        }catch(ex){ err.style.display = 'block'; }
+        finally{ btn.disabled = false; btn.textContent = 'Submit'; }
+      });
+    }
+    function closeModal(){ const m=document.getElementById('successModal'); if(m) m.style.display='none'; }
   </script>
+
+  <!-- Reusable Promo Slider -->
   <script defer src="promo.js?v=1"></script>
 </body>
 </html>
