@@ -112,7 +112,28 @@
 </head>
 <body>
 
-  <header>About Ifaz Travels</header>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo">
+        <div>
+          <div class="brand-title">Ifaz Travels</div>
+          <small>Every journey begins with us</small>
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
+        <span class="bar"></span>
+      </button>
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
 
   <div class="container">
     <h2>আমাদের সম্পর্কে</h2>
