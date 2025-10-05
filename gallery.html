@@ -8,60 +8,75 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --brand:#0ea5e9;        /* ব্র্যান্ড রঙ */
+      --brand-dark:#0284c7;
+      --text:#0f172a;
+      --muted:#64748b;
+    }
+    *{box-sizing:border-box}
     body{
       margin:0;
       font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;
       background:#fff;
-      color:#111;
+      color:var(--text);
     }
+    img{max-width:100%;display:block;height:auto}
+    a{text-decoration:none;color:inherit}
     .container{max-width:1200px;margin:0 auto;padding:0 16px}
 
     /* Header */
-header{
-  position:sticky;top:0;left:0;right:0;
-  background:#fff;border-bottom:1px solid #e5e7eb;
-  z-index:50;
-}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px}
-.logo-img{width:42px;height:42px;border-radius:8px;object-fit:contain}
-.brand-title{font-size:22px;font-weight:800}
-.brand small{color:var(--muted)}
+    header{
+      position:sticky;top:0;left:0;right:0;
+      background:#fff;border-bottom:1px solid #e5e7eb;
+      z-index:50;
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 0; position:relative; /* mobile menu anchor */
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo-img{width:42px;height:42px;border-radius:8px;object-fit:contain}
+    .brand-title{font-size:22px;font-weight:800}
+    .brand small{color:var(--muted);display:block;margin-top:2px}
 
-/* Menu */
-.menu{display:flex;align-items:center;gap:18px}
-.menu a{font-weight:600;color:var(--text);padding:6px 10px;border-radius:8px}
-.menu a.active{background:var(--brand);color:#fff}
-.menu a:hover{color:var(--brand)}
+    /* Menu (desktop) */
+    .menu{display:flex;align-items:center;gap:18px}
+    .menu a{font-weight:700;color:var(--text);padding:6px 10px;border-radius:10px;border:1px solid transparent;transition:.2s}
+    .menu a:hover{color:var(--brand-dark);background:#f1f9ff;border-color:#e5e7eb}
+    .menu a.active{background:var(--brand);color:#fff;border-color:var(--brand)}
 
-/* Hamburger */
-.menu-toggle{
-  width:40px;height:40px;display:none;align-items:center;justify-content:center;
-  background:transparent;border:none;cursor:pointer;
-}
-.menu-toggle .bar{
-  position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
-}
-.menu-toggle .bar::before,
-.menu-toggle .bar::after{
-  content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
-}
-.menu-toggle .bar::before{top:-7px}
-.menu-toggle .bar::after{top:7px}
-body.menu-open .menu-toggle .bar{background:transparent}
-body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
-body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
+    /* Hamburger */
+    .menu-toggle{
+      width:40px;height:40px;display:none;align-items:center;justify-content:center;
+      background:transparent;border:none;cursor:pointer;border-radius:10px;
+    }
+    .menu-toggle .bar{
+      position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
+    }
+    .menu-toggle .bar::before,
+    .menu-toggle .bar::after{
+      content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
+    }
+    .menu-toggle .bar::before{top:-7px}
+    .menu-toggle .bar::after{top:7px}
+    body.menu-open .menu-toggle .bar{background:transparent}
+    body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
+    body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
 
-/* Mobile menu */
-@media(max-width:768px){
-  .menu{display:none;flex-direction:column;position:absolute;top:60px;right:16px;
-    background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
-  body.menu-open .menu{display:flex}
-  .menu-toggle{display:inline-flex}
-}
+    /* Mobile menu */
+    @media(max-width:768px){
+      .menu{
+        display:none;flex-direction:column;gap:8px;
+        position:absolute;top:60px;right:16px;min-width:220px;
+        background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;
+        box-shadow:0 10px 24px rgba(0,0,0,.18);padding:12px;z-index:80;
+      }
+      body.menu-open .menu{display:flex}
+      .menu-toggle{display:inline-flex}
+    }
 
-
-    /* Photos Section (new bg like About) */
+    /* Photos Section */
     #photos{
       padding:70px 0;
       background:linear-gradient(135deg,#fdf2f8 0%,#fee2e2 50%,#fecaca 100%);
@@ -98,7 +113,7 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
       font-weight:600;
     }
 
-    /* Footer (dark like About page) */
+    /* Footer */
     footer{
       padding:24px 0;
       background:#111827;
@@ -120,6 +135,13 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
           <small>Every journey begins with us</small>
         </div>
       </div>
+
+      <!-- ✅ Hamburger button (mobile) -->
+      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
+        <span class="bar"></span>
+      </button>
+
+      <!-- ✅ Menu items -->
       <nav class="menu">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -149,5 +171,16 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
       <p>© 2025 Ifaz Travels · All Rights Reserved</p>
     </div>
   </footer>
+
+  <!-- Small JS: close mobile menu on outside click -->
+  <script>
+    document.addEventListener('click', (e)=>{
+      const nav = document.querySelector('.menu');
+      const toggle = document.querySelector('.menu-toggle');
+      if(!nav || !toggle) return;
+      const withinMenu = nav.contains(e.target) || toggle.contains(e.target);
+      if(!withinMenu) document.body.classList.remove('menu-open');
+    });
+  </script>
 </body>
 </html>
