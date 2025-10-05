@@ -178,6 +178,82 @@
     @media (min-width:768px){.container{padding-inline:24px}}
     .hero-grid{gap:20px}
     .date-row{gap:14px}
+
+    /* =========================
+       Promo Slider (above Packages)
+       ========================= */
+    .promo-wrap{position:relative;margin:28px 0}
+    .promo-slider{
+      position:relative;overflow:hidden;border-radius:16px;border:1px solid #e5e7eb;
+      box-shadow:0 10px 26px rgba(2,8,23,.08);background:#fff
+    }
+    .promo-track{display:flex;transition:transform .45s ease}
+    .promo-slide{min-width:100%;user-select:none}
+    .promo-slide a{display:block;line-height:0}
+
+    /* Text banners (no image) */
+    .promo-banner{
+      position:relative; width:100%; min-height:220px;
+      border-radius:16px; overflow:hidden; color:#0f172a; display:flex;
+      align-items:center; padding:26px 24px; border:1px solid #e5e7eb;
+    }
+    .promo-banner .inner{ max-width:920px; margin:0 auto; width:100%; }
+    .promo-banner h3{ margin:0 0 6px; font-size:clamp(22px,4.5vw,38px); line-height:1.1; font-weight:900; letter-spacing:.2px }
+    .promo-banner p{ margin:0 0 12px; font-size:clamp(14px,2.8vw,18px); color:#0f172a; opacity:.85 }
+    .promo-banner .tag{
+      display:inline-block; font-weight:800; font-size:13px;
+      padding:6px 10px; border-radius:999px; background:#ffffffcc; border:1px solid #e6eef8; margin-bottom:8px;
+    }
+    .promo-banner .cta-chip{
+      display:inline-block; font-weight:800; padding:10px 14px; border-radius:12px;
+      background:#0ea5e9; color:#fff; border:1px solid #0284c7;
+    }
+    .promo-banner .cta-chip:hover{ filter:brightness(.95); }
+
+    /* পৃথক রং/গ্রেডিয়েন্ট */
+    .promo-banner.b1{
+      background:
+        radial-gradient(800px 300px at 10% -40%, #e0f2fe 35%, transparent 60%),
+        linear-gradient(90deg, #ffffff, #f8fafc);
+    }
+    .promo-banner.b2{
+      color:#0f172a;
+      background:
+        radial-gradient(800px 300px at 100% 0%, rgba(255,163,163,.35), transparent 60%),
+        linear-gradient(90deg, #fff7f7, #ffffff);
+    }
+    .promo-banner.b3{
+      background:
+        radial-gradient(900px 320px at 0% 0%, rgba(125,211,252,.30), transparent 60%),
+        radial-gradient(700px 280px at 100% 100%, rgba(134,239,172,.32), transparent 60%),
+        linear-gradient(90deg, #ffffff, #f8fafc);
+    }
+
+    /* Arrows */
+    .promo-arrow{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:42px;height:42px;border-radius:50%;border:1px solid #e6eef8;
+      background:#ffffff;display:grid;place-items:center;cursor:pointer;
+      box-shadow:0 8px 20px rgba(2,8,23,.12);transition:.2s
+    }
+    .promo-arrow:hover{background:#f8fafc}
+    .promo-prev{left:10px} .promo-next{right:10px}
+
+    /* Dots */
+    .promo-dots{
+      position:absolute;left:0;right:0;bottom:10px;display:flex;gap:8px;
+      justify-content:center;align-items:center
+    }
+    .promo-dot{
+      width:10px;height:10px;border-radius:50%;background:#cbd5e1;border:1px solid #94a3b8;cursor:pointer;opacity:.9
+    }
+    .promo-dot.active{background:#0ea5e9;border-color:#0284c7}
+
+    /* Mobile spacing */
+    @media (max-width:768px){
+      .promo-wrap{margin:16px 0}
+      .promo-banner{ min-height:180px; padding:20px }
+    }
   </style>
 </head>
 <body>
@@ -216,7 +292,7 @@
           <h1>আজই বুকিং দিন</h1>
           <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
 
-          <!-- Animated dates row -->
+        <!-- Animated dates row -->
           <div class="date-row" aria-label="Group departure dates">
             <div class="date-card">
               <div class="num">১৯</div>
@@ -249,6 +325,66 @@
 
         <div>
           <img src="public/posters/posterbook.jpg" class="hero-img" alt="Umrah Poster"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         Promo Slider ABOVE Packages
+         ========================= -->
+    <section class="section" id="promo-slider">
+      <div class="container promo-wrap">
+        <div class="promo-slider" aria-roledescription="carousel" aria-label="Featured offers">
+          <div class="promo-track" id="promoTrack">
+            <!-- Banner 1 -->
+            <div class="promo-slide">
+              <a href="air-ticket-dhaka-jeddah.html" aria-label="Dhaka-Jedda Air Ticke — Lowest Price Book Now">
+                <div class="promo-banner b1">
+                  <div class="inner">
+                    <span class="tag">Air Ticket</span>
+                    <h3>Dhaka–Jedda Air Ticke</h3>
+                    <p>Lowest Price · Book Now</p>
+                  <span class="cta-chip">Book Now →</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Banner 2 -->
+            <div class="promo-slide">
+              <a href="china-visa.html" aria-label="Chaina Visa — No Visa, No fee">
+                <div class="promo-banner b2">
+                  <div class="inner">
+                    <span class="tag">Visa Service</span>
+                    <h3>Chaina Visa</h3>
+                    <p>No Visa, No fee</p>
+                    <span class="cta-chip">Apply Now →</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Banner 3 -->
+            <div class="promo-slide">
+              <a href="domestic-ticket.html" aria-label="Domestic Ticket 5% Discount">
+                <div class="promo-banner b3">
+                  <div class="inner">
+                    <span class="tag">Domestic Flight</span>
+                    <h3>Domestic Ticket 5% Discount</h3>
+                    <p>Limited time · Online booking</p>
+                    <span class="cta-chip">Grab Offer →</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Arrows -->
+          <button class="promo-arrow promo-prev" id="promoPrev" aria-label="Previous slide">‹</button>
+          <button class="promo-arrow promo-next" id="promoNext" aria-label="Next slide">›</button>
+
+          <!-- Dots -->
+          <div class="promo-dots" id="promoDots" role="tablist" aria-label="Slide dots"></div>
         </div>
       </div>
     </section>
@@ -475,6 +611,79 @@
       });
     }
     function closeModal(){ const m=document.getElementById('successModal'); if(m) m.style.display='none'; }
+
+    // =========================
+    // Promo Slider JS (vanilla)
+    // =========================
+    (function(){
+      const track = document.getElementById('promoTrack');
+      if(!track) return;
+      const slides = Array.from(track.children);
+      const prev = document.getElementById('promoPrev');
+      const next = document.getElementById('promoNext');
+      const dotsWrap = document.getElementById('promoDots');
+
+      let index = 0, timer = null, touchStartX = 0, touchDiff = 0;
+      const total = slides.length;
+
+      // build dots
+      slides.forEach((_, i)=>{
+        const d = document.createElement('button');
+        d.className = 'promo-dot' + (i===0?' active':'');
+        d.setAttribute('aria-label', `Go to slide ${i+1}`);
+        d.addEventListener('click', ()=>go(i,true));
+        dotsWrap.appendChild(d);
+      });
+
+      const dots = Array.from(dotsWrap.children);
+
+      function update(){
+        track.style.transform = `translateX(-${index*100}%)`;
+        dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+      }
+
+      function go(i, user=false){
+        index = (i+total)%total;
+        update();
+        if(user) restart();
+      }
+
+      function nextSlide(){ go(index+1); }
+      function prevSlide(){ go(index-1); }
+
+      function start(){ timer = setInterval(nextSlide, 4500); }
+      function stop(){ clearInterval(timer); timer = null; }
+      function restart(){ stop(); start(); }
+
+      // events
+      if(next) next.addEventListener('click', ()=>go(index+1,true));
+      if(prev) prev.addEventListener('click', ()=>go(index-1,true));
+
+      // pause on hover
+      const slider = document.querySelector('.promo-slider');
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+
+      // keyboard
+      slider.setAttribute('tabindex','0');
+      slider.addEventListener('keydown', (e)=>{
+        if(e.key==='ArrowRight') { e.preventDefault(); go(index+1,true); }
+        if(e.key==='ArrowLeft')  { e.preventDefault(); go(index-1,true); }
+      });
+
+      // touch swipe
+      slider.addEventListener('touchstart', (e)=>{ touchStartX = e.touches[0].clientX; touchDiff=0; stop(); }, {passive:true});
+      slider.addEventListener('touchmove',  (e)=>{ touchDiff = e.touches[0].clientX - touchStartX; }, {passive:true});
+      slider.addEventListener('touchend',   ()=>{
+        if(Math.abs(touchDiff) > 50){
+          if(touchDiff < 0) go(index+1,true); else go(index-1,true);
+        }
+        start();
+      });
+
+      // init
+      update(); start();
+    })();
   </script>
 </body>
 </html>
