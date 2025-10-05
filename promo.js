@@ -18,11 +18,11 @@
     */
     const slides = [
       { id:'dhaka-jed',   title:'Dhaka → Riyad Air Ticket',  subtitle:'Lowest Price • Book Now', href:'contact.html', badge:'Hot',     theme:'sky'   },
-      { id:'china-visa',  title:'China Business Visa', subtitle:'12000 Taka Only',                 subtitle:'No Visa • No Fee',       href:'contact.html', badge:'Visa',    theme:'rose'  },
+      { id:'china-visa',  title:'China Business Visa',                  subtitle:'No Visa • No Fee'subtitle:'12000 Taka Only',       href:'contact.html', badge:'Visa',    theme:'rose'  },
       { id:'domestic-5',  title:'Domestic Air Ticket',         subtitle:'Flat 5% Discount',       href:'contact.html', badge:'Deal',    theme:'amber' },
 
       { id:'malaysia',    title:'Malaysia Single/Multiple Visit Visa',               subtitle:'Fast Processing • Tourist / Business', href:'contact.html', badge:'New',   theme:'green' },
-      { id:'hajj-pre',    title:'Hajj Pre-Registration চলছে',       subtitle:'সহজ প্রক্রিয়া • সীমিত আসন',          href:'contact.html', badge:'Hajj',  theme:'blue'  },
+      { id:'hajj-pre',    title:'Hajj Pre-Registration চলছে.....',       subtitle:'সহজ প্রক্রিয়া • সীমিত আসন',          href:'contact.html', badge:'Hajj',  theme:'blue'  },
       { id:'gamca',       title:'GAMCA Medical Slip',          subtitle:'Instant e-Slip • Verified',             href:'contact.html', badge:'Work',  theme:'lime'  },
       { id:'one-minute',  title:'কাতার ম্যানপাওয়ার',           subtitle:'Attached/Non-Atteched → WhatsApp',           href:'https://api.whatsapp.com/send?phone=8801712055858', badge:'Instant', theme:'sky' }
     ];
