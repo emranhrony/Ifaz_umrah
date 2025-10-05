@@ -5,31 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — Ifaz Travels</title>
 
-  <!-- আপনার গ্লোবাল স্টাইল -->
+  <!-- Global styles -->
   <link rel="stylesheet" href="style.css">
 
   <!-- Promo slider (reusable) -->
-  <link rel="stylesheet" href="promo.css?v=1">
+  <link rel="stylesheet" href="promo.css?v=5">
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- ছোট কিছু পেজ-স্পেসিফিক স্টাইল -->
+  <!-- Page-specific tweaks -->
   <style>
     :root{ --brand:#0ea5e9; --brand-dark:#0284c7; --text:#0f172a; --muted:#64748b; --border:#e5e7eb; }
+
+    /* Header/nav (inherits from your style.css) */
 
     /* Promo slider spacing */
     .promo-wrap{ margin-top:24px !important; }
 
-    /* Office info: center align */
+    /* Office info container center */
     .office-info .container{ text-align:center; }
-    .office-brand{
-      margin:8px 0 14px;
+
+    /* ---- Title + brand area ---- */
+    .office-info h2{
+      font-size:20px;                 /* ছোট */
+      line-height:1.2;
+      font-weight:800;
+      color:var(--muted);
+      text-decoration: underline;     /* আন্ডারলাইন */
+      text-underline-offset: 4px;
+      margin-bottom:10px;
+      letter-spacing:.2px;
     }
+    .office-brand{ margin:6px 0 14px; }
     .office-brand .name{
       display:block;
-      font-size:22px;
-      font-weight:900;
+      font-size:28px;                 /* বড় */
+      font-weight:900;                /* বোল্ড */
       color:var(--brand-dark);
       letter-spacing:.2px;
     }
@@ -44,30 +56,47 @@
       font-weight:800;
     }
 
-    /* Quick contact form (centered) */
+    /* ---- Form card shape (centered) ---- */
+    .form-card{
+      margin:18px auto 0;             /* সেন্টার */
+      max-width:640px;
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:0 10px 24px rgba(2,8,23,.08);
+      padding:18px;
+      text-align:left;                /* ফর্ম লেবেল বামে */
+    }
+    .form-card .form-title{
+      margin:0 0 10px;
+      font-size:20px;
+      font-weight:800;
+      color:var(--text);
+      text-align:center;
+    }
+
+    /* Form grid */
     .contact-form{
-      margin:16px auto 0;            /* ⬅️ horizontally center */
+      margin:0;                       /* আলাদা কার্ডে, তাই টপ-মার্জিন নেই */
       display:grid; gap:12px;
       grid-template-columns:1fr;
-      max-width:520px;               /* ⬅️ nice width */
-      text-align:left;               /* labels/inputs keep left */
+      max-width:none;
     }
     .contact-form label{ display:flex; flex-direction:column; font-weight:700; color:var(--text); }
     .contact-form input{
       margin-top:6px; padding:12px 12px;
       border:1px solid var(--border); border-radius:10px; font-size:16px;
     }
-    .contact-actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center; }
-
-    .btn-wa{
-      display:inline-flex; align-items:center; gap:8px;
-      background:#25D366; color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; border:1px solid #22c55e;
+    .contact-actions{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center;
+      margin-top:4px;
     }
     .btn-primary{
       background:var(--brand); color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; border:1px solid var(--brand);
     }
     .btn-primary:hover{ background:var(--brand-dark); border-color:var(--brand-dark); }
 
+    /* Responsive: 2 columns on md+ */
     @media(min-width:768px){
       .contact-form{ grid-template-columns:1fr 1fr; }
       .contact-form .full{ grid-column:span 2; }
@@ -103,7 +132,6 @@
     <div class="container">
       <h2>আমাদের অফিস</h2>
 
-      <!-- ✅ ব্র্যান্ড নাম + লাইসেন্স -->
       <div class="office-brand">
         <span class="name">ইফাজ ট্রাভেলস</span>
         <span class="license">সরকার অনুমোদিত লাইসেন্স নং: 0015059</span>
@@ -112,25 +140,32 @@
       <p>📞 01712-055858 · 01714-642113</p>
       <p>📍 Golden Tower, Sylhet</p>
 
-      <!-- ✅ Name + Mobile form (centered) -->
-      <form id="quickContactForm" class="contact-form" autocomplete="on">
-        <label>
-          নাম
-          <input type="text" name="name" placeholder="আপনার নাম" required>
-        </label>
-        <label>
-          মোবাইল নম্বর (WhatsApp)
-          <input type="tel" name="phone" placeholder="01XXXXXXXXX" pattern="^[0-9+\-\s]{8,}$" required>
-        </label>
-        <div class="full contact-actions">
-          <button type="submit" class="btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp এ পাঠান</button>
-          <a class="btn-primary" href="tel:+8801712055858" style="background:#0ea5e9;border-color:#0ea5e9">কল করুন</a>
-        </div>
-      </form>
+      <!-- ✅ Form in separate "shape/card" -->
+      <div class="form-card">
+        <h3 class="form-title">দ্রুত যোগাযোগ</h3>
+        <form id="quickContactForm" class="contact-form" autocomplete="on">
+          <label>
+            নাম
+            <input type="text" name="name" placeholder="আপনার নাম" required>
+          </label>
+          <label>
+            মোবাইল নম্বর (WhatsApp)
+            <input type="tel" name="phone" placeholder="01XXXXXXXXX" pattern="^[0-9+\-\s]{8,}$" required>
+          </label>
+          <div class="full contact-actions">
+            <button type="submit" class="btn-primary">
+              <i class="fab fa-whatsapp"></i> WhatsApp এ পাঠান
+            </button>
+            <a class="btn-primary" href="tel:+8801712055858" style="background:#0ea5e9;border-color:#0ea5e9">
+              কল করুন
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- ✅ Promo slider (Our Team-এর উপরে) -->
+  <!-- ✅ Promo slider (Team-এর উপরে) -->
   <section id="promo-slot" class="promo-wrap container"></section>
 
   <!-- Team Section -->
@@ -155,7 +190,7 @@
 
         <!-- Manager -->
         <article class="team-card">
-          <img class="team-photo" src="public/team/manager.jpg" alt="Manager">
+          <img class="team-photo" src="public/team/manager.jpg" alt="Manager" width="1000" height="1000">
           <div class="social-overlay">
             <a class="social-btn"
                href="https://www.facebook.com/ronyinsyl"
@@ -183,7 +218,7 @@
 
         <!-- Staff -->
         <article class="team-card">
-          <img class="team-photo" src="public/team/staff.jpg" alt="Assistant">
+          <img class="team-photo" src="public/team/staff.jpg" alt="Office Assistant" width="1000" height="1000">
           <div class="social-overlay">
             <a class="social-btn" href="#"><i class="fab fa-facebook-f"></i></a>
             <a class="social-btn" href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -225,7 +260,7 @@
         e.preventDefault();
         const name  = quickForm.elements['name'].value.trim();
         const phone = quickForm.elements['phone'].value.trim();
-        const waNumber = '8801712055858'; // আপনার অফিস নম্বর
+        const waNumber = '8801712055858'; // অফিস নম্বর
         const msg = encodeURIComponent(`Assalamu Alaikum,\nনতুন কন্ট্যাক্ট:\nনাম: ${name}\nমোবাইল: ${phone}`);
         window.open(`https://api.whatsapp.com/send?phone=${waNumber}&text=${msg}`, '_blank', 'noopener');
       });
@@ -233,6 +268,6 @@
   </script>
 
   <!-- Reusable Promo Slider -->
-  <script defer src="promo.js?v=1"></script>
+  <script defer src="promo.js?v=6"></script>
 </body>
 </html>
