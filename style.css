@@ -104,6 +104,15 @@ body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
 .team-meta{padding:14px}
 .team-name{font-size:20px;font-weight:700}
 .team-role{color:#475569;font-size:14px}
+/* টিম-ফটো স্কয়ারে ক্রপ করে শার্প রাখে */
+.team-photo{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
 
 /* Overlay social icons */
 .social-overlay{
