@@ -250,6 +250,44 @@
       .promo-wrap{margin:16px 0}
       .promo-banner{ min-height:180px; padding:20px }
     }
+    /* স্লাইডার সবসময় মাঝে থাকবে */
+.promo-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 28px auto;
+}
+
+.promo-slider {
+  width: clamp(320px, 96%, 1080px); /* ছোট স্ক্রিনে 96%, বড়তে 1080px */
+  margin: 0 auto;
+}
+
+.promo-slide a {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.promo-banner {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center; /* টেক্সট সব সেন্টার */
+}
+
+/* ডটস সবসময় সেন্টারে */
+.promo-dots {
+  left: 0;
+  right: 0;
+  justify-content: center;
+}
+
+/* মোবাইলে next/prev button লুকিয়ে ফেলুন */
+@media (max-width: 768px) {
+  .promo-prev,
+  .promo-next {
+    display: none !important;
+  }
+}
   </style>
 </head>
 <body>
