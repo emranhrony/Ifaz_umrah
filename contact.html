@@ -17,22 +17,48 @@
   <!-- ছোট কিছু পেজ-স্পেসিফিক স্টাইল -->
   <style>
     :root{ --brand:#0ea5e9; --brand-dark:#0284c7; --text:#0f172a; --muted:#64748b; --border:#e5e7eb; }
+
     /* Promo slider spacing */
     .promo-wrap{ margin-top:24px !important; }
 
-    /* Quick contact form */
+    /* Office info: center align */
+    .office-info .container{ text-align:center; }
+    .office-brand{
+      margin:8px 0 14px;
+    }
+    .office-brand .name{
+      display:block;
+      font-size:22px;
+      font-weight:900;
+      color:var(--brand-dark);
+      letter-spacing:.2px;
+    }
+    .office-brand .license{
+      display:inline-block;
+      margin-top:6px;
+      padding:6px 10px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background:#f8fafc;
+      color:var(--text);
+      font-weight:800;
+    }
+
+    /* Quick contact form (centered) */
     .contact-form{
-      margin-top:16px;
+      margin:16px auto 0;            /* ⬅️ horizontally center */
       display:grid; gap:12px;
       grid-template-columns:1fr;
-      max-width:520px;
+      max-width:520px;               /* ⬅️ nice width */
+      text-align:left;               /* labels/inputs keep left */
     }
     .contact-form label{ display:flex; flex-direction:column; font-weight:700; color:var(--text); }
     .contact-form input{
       margin-top:6px; padding:12px 12px;
       border:1px solid var(--border); border-radius:10px; font-size:16px;
     }
-    .contact-actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .contact-actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center; }
+
     .btn-wa{
       display:inline-flex; align-items:center; gap:8px;
       background:#25D366; color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; border:1px solid #22c55e;
@@ -41,6 +67,7 @@
       background:var(--brand); color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; border:1px solid var(--brand);
     }
     .btn-primary:hover{ background:var(--brand-dark); border-color:var(--brand-dark); }
+
     @media(min-width:768px){
       .contact-form{ grid-template-columns:1fr 1fr; }
       .contact-form .full{ grid-column:span 2; }
@@ -75,11 +102,17 @@
   <section class="section office-info">
     <div class="container">
       <h2>আমাদের অফিস</h2>
+
+      <!-- ✅ ব্র্যান্ড নাম + লাইসেন্স -->
+      <div class="office-brand">
+        <span class="name">ইফাজ ট্রাভেলস</span>
+        <span class="license">সরকার অনুমোদিত লাইসেন্স নং: 0015059</span>
+      </div>
+
       <p>📞 01712-055858 · 01714-642113</p>
       <p>📍 Golden Tower, Sylhet</p>
 
-
-      <!-- ✅ Name + Mobile form -->
+      <!-- ✅ Name + Mobile form (centered) -->
       <form id="quickContactForm" class="contact-form" autocomplete="on">
         <label>
           নাম
@@ -121,40 +154,32 @@
         </article>
 
         <!-- Manager -->
-       <article class="team-card">
-  <img class="team-photo" src="public/team/manager.jpg" alt="Manager">
-
-  <div class="social-overlay">
-    <!-- Facebook -->
-    <a class="social-btn"
-       href="https://www.facebook.com/ronyinsyl"
-       target="_blank" rel="noopener"
-       aria-label="Emran H Rony on Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-
-    <!-- LinkedIn (লিংক না থাকলে পরে যোগ করুন) -->
-    <a class="social-btn"
-       href="#"
-       aria-label="Emran H Rony on LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-
-    <!-- WhatsApp -->
-    <a class="social-btn"
-       href="https://wa.link/pq50eq"
-       target="_blank" rel="noopener"
-       aria-label="WhatsApp Emran H Rony">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  </div>
-
-  <div class="team-meta">
-    <h3 class="team-name">Emran H Rony</h3>
-    <p class="team-role">General Manager</p>
-  </div>
-</article>
-
+        <article class="team-card">
+          <img class="team-photo" src="public/team/manager.jpg" alt="Manager">
+          <div class="social-overlay">
+            <a class="social-btn"
+               href="https://www.facebook.com/ronyinsyl"
+               target="_blank" rel="noopener"
+               aria-label="Emran H Rony on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="social-btn"
+               href="#"
+               aria-label="Emran H Rony on LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a class="social-btn"
+               href="https://wa.link/pq50eq"
+               target="_blank" rel="noopener"
+               aria-label="WhatsApp Emran H Rony">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+          <div class="team-meta">
+            <h3 class="team-name">Emran H Rony</h3>
+            <p class="team-role">General Manager</p>
+          </div>
+        </article>
 
         <!-- Staff -->
         <article class="team-card">
