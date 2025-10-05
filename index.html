@@ -39,45 +39,48 @@
     .container{max-width:1200px;margin:0 auto;padding:0 16px}
 
     /* Header */
-    header{position:sticky;top:0;left:0;right:0;width:100%;
-      background:rgba(255,255,255,.9);border-bottom:1px solid rgba(51,65,85,.15);backdrop-filter:blur(8px);z-index:50}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:relative}
-    .brand{display:flex;align-items:center;gap:10px}
-    .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:8px}
-    .brand-title{font-size:28px;font-weight:800;color:var(--text)}
-    .brand small{color:var(--muted)}
+header{
+  position:sticky;top:0;left:0;right:0;
+  background:#fff;border-bottom:1px solid #e5e7eb;
+  z-index:50;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand{display:flex;align-items:center;gap:10px}
+.logo-img{width:42px;height:42px;border-radius:8px;object-fit:contain}
+.brand-title{font-size:22px;font-weight:800}
+.brand small{color:var(--muted)}
 
-    /* Hamburger */
-    .menu-toggle{
-      width:40px;height:40px;display:none;align-items:center;justify-content:center;
-      background:transparent;border:none;cursor:pointer;padding:0;margin:0 0 0 8px;
-    }
-    .menu-toggle .bar{
-      position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s ease;
-    }
-    .menu-toggle .bar::before,
-    .menu-toggle .bar::after{
-      content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s ease;
-    }
-    .menu-toggle .bar::before{top:-7px}
-    .menu-toggle .bar::after{top:7px}
-    body.menu-open .menu-toggle .bar{background:transparent}
-    body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
-    body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
+/* Menu */
+.menu{display:flex;align-items:center;gap:18px}
+.menu a{font-weight:600;color:var(--text);padding:6px 10px;border-radius:8px}
+.menu a.active{background:var(--brand);color:#fff}
+.menu a:hover{color:var(--brand)}
 
-    /* Menu */
-    .menu{display:flex;align-items:center;gap:20px}
-    .menu a{color:var(--text);font-weight:600}
-    .menu a:hover{color:var(--brand)}
-    .btn{padding:12px 20px;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;border:none;cursor:pointer;display:inline-block}
-    .btn:hover{background:var(--brand-dark);box-shadow:0 8px 20px rgba(225,29,72,.25);transform:translateY(-2px)}
+/* Hamburger */
+.menu-toggle{
+  width:40px;height:40px;display:none;align-items:center;justify-content:center;
+  background:transparent;border:none;cursor:pointer;
+}
+.menu-toggle .bar{
+  position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
+}
+.menu-toggle .bar::before,
+.menu-toggle .bar::after{
+  content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s;
+}
+.menu-toggle .bar::before{top:-7px}
+.menu-toggle .bar::after{top:7px}
+body.menu-open .menu-toggle .bar{background:transparent}
+body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
+body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
 
-    /* Mobile menu */
-    @media (max-width:768px){
-      .menu{display:none;flex-direction:column;background:rgba(255,255,255,.97);position:absolute;top:60px;right:16px;padding:16px;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,.2)}
-      body.menu-open .menu{display:flex}
-      .menu-toggle{display:inline-flex}
-    }
+/* Mobile menu */
+@media(max-width:768px){
+  .menu{display:none;flex-direction:column;position:absolute;top:60px;right:16px;
+    background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+  body.menu-open .menu{display:flex}
+  .menu-toggle{display:inline-flex}
+}
 
     /* Sections & cards */
     .section{padding:48px 0}
