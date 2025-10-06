@@ -47,6 +47,8 @@
     .menu{display:flex;align-items:center;gap:18px}
     .menu a{font-weight:700;color:var(--text);padding:8px 10px;border-radius:10px;border:1px solid transparent;transition:.2s}
     .menu a:hover{color:var(--brand-dark);background:#f1f9ff;border-color:#e5e7eb}
+    /* NEW: Admin pill */
+    .menu a.admin{border:1px dashed #cfe8fb;background:#f8fbff}
 
     /* Hamburger */
     .menu-toggle{width:40px;height:40px;display:none;align-items:center;justify-content:center;background:transparent;border:none;border-radius:10px;cursor:pointer}
@@ -142,6 +144,18 @@
     .checklist{list-style:none;padding-left:0;margin:12px 0}
     .checklist li{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
     .checklist li::before{content:"✔";color:#16a34a;font-weight:900;line-height:1.2}
+
+    /* ===== NEW: Admin login modal ===== */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;padding:16px}
+    .modal.show{display:flex}
+    .modal .box{width:100%;max-width:420px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 16px 36px rgba(0,0,0,.25);padding:18px}
+    .modal h3{margin:0 0 10px}
+    .modal label{display:flex;flex-direction:column;font-weight:800}
+    .modal input{margin-top:6px;padding:12px;border:1px solid var(--border);border-radius:10px}
+    .modal .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+    .btn.inline{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--border);font-weight:800;cursor:pointer}
+    .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+    .btn.secondary{background:#f8fafc}
   </style>
 </head>
 <body>
@@ -165,8 +179,10 @@
       <!-- Menu -->
       <nav class="menu">
         <a href="contact.html">Contact</a>
-         <a href="about.html">About</a>
+        <a href="about.html">About</a>
         <a href="gallery.html">Gallery</a>
+        <!-- NEW: Admin open button -->
+        <a href="#" class="admin" id="openAdmin">Admin</a>
       </nav>
     </div>
   </header>
@@ -447,6 +463,23 @@
     <div class="container">© 2025 Ifaz Travels · All Rights Reserved</div>
   </footer>
 
+  <!-- ===== NEW: Admin Login Modal ===== -->
+  <div class="modal" id="adminModal" aria-hidden="true">
+    <div class="box">
+      <h3>Admin Login</h3>
+      <form id="adminLoginForm">
+        <label>Password
+          <input id="adminPass" type="password" placeholder="••••••••" required>
+        </label>
+        <div id="adminError" style="color:#b91c1c;font-weight:800;display:none;margin-top:8px">Wrong password</div>
+        <div class="actions">
+          <button type="button" class="btn inline secondary" id="closeAdmin">Cancel</button>
+          <button type="submit" class="btn inline primary">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Close mobile menu on outside click -->
   <script>
     document.addEventListener('click', (e)=>{
@@ -482,6 +515,46 @@
         finally{ btn.disabled = false; btn.textContent = 'Submit'; }
       });
     }
+
+    // ===== NEW: Admin modal open/close + password check =====
+    (function(){
+      const ADMIN_HASH = 'ea2c95fc59fecaaae824eb5ebaa723919280d5135bcdddd1ecdc591cb34be3dd'; // 'ifaz2025!'
+
+      const modal = document.getElementById('adminModal');
+      const openBtn = document.getElementById('openAdmin');
+      const closeBtn = document.getElementById('closeAdmin');
+      const form = document.getElementById('adminLoginForm');
+      const pass = document.getElementById('adminPass');
+      const err  = document.getElementById('adminError');
+
+      function show(){ modal.classList.add('show'); pass.focus(); }
+      function hide(){ modal.classList.remove('show'); err.style.display='none'; pass.value=''; }
+
+      if(openBtn){
+        openBtn.addEventListener('click', (e)=>{ e.preventDefault(); show(); });
+      }
+      if(closeBtn){ closeBtn.addEventListener('click', hide); }
+      modal.addEventListener('click', (e)=>{ if(e.target===modal) hide(); });
+
+      async function sha256Hex(txt){
+        const enc = new TextEncoder().encode(txt);
+        const buf = await crypto.subtle.digest('SHA-256', enc);
+        return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+      }
+
+      if(form){
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          const h = await sha256Hex(pass.value.trim());
+          if(h === ADMIN_HASH){
+            localStorage.setItem('ifaz_auth','1');
+            window.location.href = 'admin.html';
+          } else {
+            err.style.display = 'block';
+          }
+        });
+      }
+    })();
   </script>
 
   <!-- Reusable Promo Slider -->
