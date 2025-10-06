@@ -1,11 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin — Ifaz Travels</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Promo slider styles (same file used on site pages) -->
   <link rel="stylesheet" href="promo.css?v=6">
+
   <style>
     :root{ --brand:#0ea5e9; --brand-dark:#0284c7; --border:#e5e7eb; --text:#0f172a; --muted:#64748b; }
     body{margin:0;font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;color:var(--text);background:#f7fbff}
@@ -32,6 +37,8 @@
     @media(max-width:768px){.grid2{grid-template-columns:1fr}}
     .foot-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
     .hint{color:var(--muted);font-weight:700}
+    /* promo preview spacing */
+    #promo-slot.promo-wrap{margin-top:8px}
   </style>
 </head>
 <body>
@@ -91,7 +98,9 @@
     </div>
   </div>
 
+  <!-- Same promo script as site pages (renders preview) -->
   <script defer src="promo.js?v=6"></script>
+
   <script>
     // ---- Guard: require login ----
     (function(){
@@ -100,31 +109,44 @@
       }
     })();
 
-    const PROMO_KEY = 'ifaz_promos_v1';
-    const PKG_KEY   = 'ifaz_packages_v1';
+    // Unified keys (match site-data.js & promo.js)
+    const PROMO_KEY = 'ifaz_promos';
+    const PKG_KEY   = 'ifaz_packages';
 
     const defaultPromos = [
-      { title:'Dhaka → Jeddah Air Ticket',  subtitle:'Lowest Price • Book Now',       badge:'Hot',    theme:'sky',   href:'contact.html' },
-      { title:'China Visa',                  subtitle:'No Visa • No Fee',             badge:'Visa',   theme:'rose',  href:'contact.html' },
-      { title:'Domestic Air Ticket',         subtitle:'Flat 5% Discount',             badge:'Deal',   theme:'amber', href:'contact.html' },
-      { title:'Malaysia Visa',               subtitle:'Fast Processing • Tourist/Business', badge:'New', theme:'green', href:'contact.html' },
-      { title:'Hajj Pre-Registration',       subtitle:'সহজ প্রক্রিয়া • সীমিত আসন',    badge:'Hajj',   theme:'blue',  href:'contact.html' },
-      { title:'GAMCA Medical Slip',          subtitle:'Instant e-Slip • Verified',    badge:'Work',   theme:'lime',  href:'contact.html' },
-      { title:'১ মিনিটে ডেলিভারি',           subtitle:'Visa / Slip PDF → WhatsApp',  badge:'Instant',theme:'sky',   href:'https://api.whatsapp.com/send?phone=8801712055858' },
+      { title:'Dhaka → Jeddah Air Ticket',  subtitle:'Lowest Price • Book Now',             badge:'Hot',    theme:'sky',   href:'contact.html' },
+      { title:'China Visa',                  subtitle:'No Visa • No Fee',                   badge:'Visa',   theme:'rose',  href:'contact.html' },
+      { title:'Domestic Air Ticket',         subtitle:'Flat 5% Discount',                   badge:'Deal',   theme:'amber', href:'contact.html' },
+      { title:'Malaysia Visa',               subtitle:'Fast Processing • Tourist/Business', badge:'New',    theme:'green', href:'contact.html' },
+      { title:'Hajj Pre-Registration',       subtitle:'সহজ প্রক্রিয়া • সীমিত আসন',          badge:'Hajj',   theme:'blue',  href:'contact.html' },
+      { title:'GAMCA Medical Slip',          subtitle:'Instant e-Slip • Verified',          badge:'Work',   theme:'lime',  href:'contact.html' },
+      { title:'১ মিনিটে ডেলিভারি',           subtitle:'Visa / Slip PDF → WhatsApp',        badge:'Instant',theme:'sky',    href:'https://api.whatsapp.com/send?phone=8801712055858' },
     ];
 
     const defaultPackages = [
-      { title:'✈️ ৭ দিন', price:'Call for Price', note:'Visa, Ticket, Hotel, Transport', ctaText:'Get Quote', ctaHref:'#booking-form' },
-      { title:'🕌 ১০ দিন', price:'Call for Price', note:'Group / Family rooms',           ctaText:'Get Quote', ctaHref:'#booking-form' },
-      { title:'🏨 ১৪ দিন', price:'৳১,৪৫০০০',       note:'খাবার ছাড়া · Near Haram',       ctaText:'Get Quote', ctaHref:'#booking-form' },
-      { title:'📅 October 2025 (Group)', price:'Early-bird available', note:'19 Oct departure · Guide included', ctaText:'Reserve', ctaHref:'#booking-form' },
-      { title:'📅 November 2025 (Group)', price:'Discount available',  note:'1 Nov departure · Flexible dates', ctaText:'Reserve', ctaHref:'#booking-form' },
-      { title:'⭐ Custom / Private Umrah', price:'Tailored Itinerary', note:'Premium hotel · Private transport', ctaText:'Call for Plan', ctaHref:'#booking-form' },
-      { title:'🛫 Air Ticket & Visa Assist', price:'JED / MED', note:'Multiple airlines · Quick processing',     ctaText:'Get Quote', ctaHref:'#booking-form' },
+      { title:'✈️ ৭ দিন', price:'Call for Price',         note:'Visa, Ticket, Hotel, Transport',            ctaText:'Get Quote',     ctaHref:'#booking-form' },
+      { title:'🕌 ১০ দিন', price:'Call for Price',         note:'Group / Family rooms',                      ctaText:'Get Quote',     ctaHref:'#booking-form' },
+      { title:'🏨 ১৪ দিন', price:'৳১,৪৫০০০',             note:'খাবার ছাড়া · Near Haram',                  ctaText:'Get Quote',     ctaHref:'#booking-form' },
+      { title:'📅 October 2025 (Group)', price:'Early-bird available', note:'19 Oct departure · Guide included', ctaText:'Reserve',      ctaHref:'#booking-form' },
+      { title:'📅 November 2025 (Group)', price:'Discount available',  note:'1 Nov departure · Flexible dates', ctaText:'Reserve',      ctaHref:'#booking-form' },
+      { title:'⭐ Custom / Private Umrah', price:'Tailored Itinerary', note:'Premium hotel · Private transport', ctaText:'Call for Plan',ctaHref:'#booking-form' },
+      { title:'🛫 Air Ticket & Visa Assist', price:'JED / MED',        note:'Multiple airlines · Quick processing', ctaText:'Get Quote', ctaHref:'#booking-form' },
     ];
 
-    function read(key, fallback){ try{ const x=JSON.parse(localStorage.getItem(key)); return Array.isArray(x)?x:fallback }catch{ return fallback } }
+    function read(key, fallback){
+      try{ const x = JSON.parse(localStorage.getItem(key)); return Array.isArray(x)? x : fallback; }
+      catch{ return fallback; }
+    }
     function write(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+
+    // Safe attribute escape
+    function escAttr(v){
+      return String(v ?? '')
+        .replaceAll('&','&amp;')
+        .replaceAll('"','&quot;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;');
+    }
 
     // ----- Promo table -----
     const promoTBody = document.querySelector('#promoTable tbody');
@@ -133,15 +155,15 @@
       list.forEach((p, i)=>{
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><input type="text" value="${p.title||''}" data-k="title"></td>
-          <td><input type="text" value="${p.subtitle||''}" data-k="subtitle"></td>
-          <td><input type="text" value="${p.badge||''}" data-k="badge"></td>
+          <td><input type="text" value="${escAttr(p.title)}" data-k="title"></td>
+          <td><input type="text" value="${escAttr(p.subtitle)}" data-k="subtitle"></td>
+          <td><input type="text" value="${escAttr(p.badge)}" data-k="badge"></td>
           <td>
             <select data-k="theme">
               ${['sky','blue','rose','amber','green','lime'].map(t=>`<option ${p.theme===t?'selected':''}>${t}</option>`).join('')}
             </select>
           </td>
-          <td><input type="text" value="${p.href||''}" data-k="href"></td>
+          <td><input type="text" value="${escAttr(p.href)}" data-k="href"></td>
           <td class="row-actions">
             <button class="btn" data-act="up">↑</button>
             <button class="btn" data-act="down">↓</button>
@@ -156,9 +178,9 @@
             list[i][k] = inp.value;
           });
         });
-        tr.querySelector('[data-act="up"]').onclick   = ()=>{ if(i>0){ [list[i-1],list[i]]=[list[i],list[i-1]]; renderPromos(list) } };
-        tr.querySelector('[data-act="down"]').onclick = ()=>{ if(i<list.length-1){ [list[i+1],list[i]]=[list[i],list[i+1]]; renderPromos(list) } };
-        tr.querySelector('[data-act="del"]').onclick  = ()=>{ list.splice(i,1); renderPromos(list) };
+        tr.querySelector('[data-act="up"]').onclick   = ()=>{ if(i>0){ [list[i-1],list[i]]=[list[i],list[i-1]]; renderPromos(list); } };
+        tr.querySelector('[data-act="down"]').onclick = ()=>{ if(i<list.length-1){ [list[i+1],list[i]]=[list[i],list[i+1]]; renderPromos(list); } };
+        tr.querySelector('[data-act="del"]').onclick  = ()=>{ list.splice(i,1); renderPromos(list); };
       });
     }
 
@@ -169,11 +191,11 @@
       list.forEach((p, i)=>{
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><input type="text" value="${p.title||''}" data-k="title"></td>
-          <td><input type="text" value="${p.price||''}" data-k="price"></td>
-          <td><input type="text" value="${p.note||''}" data-k="note"></td>
-          <td><input type="text" value="${p.ctaText||''}" data-k="ctaText"></td>
-          <td><input type="text" value="${p.ctaHref||''}" data-k="ctaHref"></td>
+          <td><input type="text" value="${escAttr(p.title)}"   data-k="title"></td>
+          <td><input type="text" value="${escAttr(p.price)}"   data-k="price"></td>
+          <td><input type="text" value="${escAttr(p.note)}"    data-k="note"></td>
+          <td><input type="text" value="${escAttr(p.ctaText)}" data-k="ctaText"></td>
+          <td><input type="text" value="${escAttr(p.ctaHref)}" data-k="ctaHref"></td>
           <td class="row-actions">
             <button class="btn" data-act="up">↑</button>
             <button class="btn" data-act="down">↓</button>
@@ -188,9 +210,9 @@
             list[i][k] = inp.value;
           });
         });
-        tr.querySelector('[data-act="up"]').onclick   = ()=>{ if(i>0){ [list[i-1],list[i]]=[list[i],list[i-1]]; renderPkgs(list) } };
-        tr.querySelector('[data-act="down"]').onclick = ()=>{ if(i<list.length-1){ [list[i+1],list[i]]=[list[i],list[i+1]]; renderPkgs(list) } };
-        tr.querySelector('[data-act="del"]').onclick  = ()=>{ list.splice(i,1); renderPkgs(list) };
+        tr.querySelector('[data-act="up"]').onclick   = ()=>{ if(i>0){ [list[i-1],list[i]]=[list[i],list[i-1]]; renderPkgs(list); } };
+        tr.querySelector('[data-act="down"]').onclick = ()=>{ if(i<list.length-1){ [list[i+1],list[i]]=[list[i],list[i+1]]; renderPkgs(list); } };
+        tr.querySelector('[data-act="del"]').onclick  = ()=>{ list.splice(i,1); renderPkgs(list); };
       });
     }
 
@@ -202,16 +224,18 @@
     renderPromos(promos);
     renderPkgs(pkgs);
 
-    // Buttons
-    document.getElementById('addPromo').onclick = ()=>{ promos.push({title:'New promo',subtitle:'',badge:'',theme:'sky',href:'#'}); renderPromos(promos) };
-    document.getElementById('resetPromo').onclick = ()=>{ promos = defaultPromos.slice(); renderPromos(promos) };
-    document.getElementById('savePromo').onclick = ()=>{ write(PROMO_KEY, promos); alert('✅ Promos saved'); location.reload(); };
+    // Buttons — Promos
+    document.getElementById('addPromo').onclick    = ()=>{ promos.push({title:'New promo',subtitle:'',badge:'',theme:'sky',href:'#'}); renderPromos(promos); };
+    document.getElementById('resetPromo').onclick  = ()=>{ promos = defaultPromos.slice(); renderPromos(promos); };
+    document.getElementById('savePromo').onclick   = ()=>{ write(PROMO_KEY, promos); alert('✅ Promos saved'); location.reload(); };
 
-    document.getElementById('addPkg').onclick = ()=>{ pkgs.push({title:'New package',price:'',note:'',ctaText:'Details',ctaHref:'#'}); renderPkgs(pkgs) };
-    document.getElementById('resetPkg').onclick = ()=>{ pkgs = defaultPackages.slice(); renderPkgs(pkgs) };
-    document.getElementById('savePkg').onclick = ()=>{ write(PKG_KEY, pkgs); alert('✅ Packages saved'); };
+    // Buttons — Packages
+    document.getElementById('addPkg').onclick      = ()=>{ pkgs.push({title:'New package',price:'',note:'',ctaText:'Details',ctaHref:'#'}); renderPkgs(pkgs); };
+    document.getElementById('resetPkg').onclick    = ()=>{ pkgs = defaultPackages.slice(); renderPkgs(pkgs); };
+    document.getElementById('savePkg').onclick     = ()=>{ write(PKG_KEY, pkgs); alert('✅ Packages saved'); };
 
-    document.getElementById('logoutBtn').onclick = ()=>{ localStorage.removeItem('ifaz_auth'); location.href='index.html'; };
+    // Logout
+    document.getElementById('logoutBtn').onclick   = ()=>{ localStorage.removeItem('ifaz_auth'); location.href='index.html'; };
   </script>
 </body>
 </html>
