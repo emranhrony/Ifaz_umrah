@@ -1,223 +1,212 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About — Ifaz Travels</title>
-
-  <link rel="icon" href="public/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Shared Promo Slider CSS -->
-  <link rel="stylesheet" href="promo.css?v=1">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Ifaz Travels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      /* index-এর সাথে মিল রেখে ব্লু থিম */
-      --brand:#0ea5e9; --brand-dark:#0284c7;
-      --text:#0f172a;  --muted:#64748b;
-      --card:#ffffff;  --border:#e5e7eb;
-      --shadow:0 10px 26px rgba(2,8,23,.10);
-      --ok:#16a34a;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 380px at 50% -120px, #e0f2fe 14%, transparent 60%),
-        linear-gradient(to bottom,#ffffff,#f8fafc);
-    }
-    img{max-width:100%;height:auto;display:block}
-    a{text-decoration:none;color:inherit}
-    .container{max-width:1200px;margin:0 auto;padding:0 16px}
-
-    /* Header */
-    header{
-      position:sticky;top:0;left:0;right:0;z-index:60;background:#fff;
-      border-bottom:1px solid var(--border);backdrop-filter:blur(8px) saturate(160%);
-    }
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;position:relative}
-    .brand{display:flex;align-items:center;gap:10px}
-    .brand .logo-img{width:42px;height:42px;object-fit:contain;border-radius:10px}
-    .brand-title{font-size:24px;font-weight:800}
-    .brand small{color:var(--muted)}
-
-    /* Menu */
-    .menu{display:flex;align-items:center;gap:18px}
-    .menu a{
-      font-weight:700;color:var(--text);padding:8px 10px;border-radius:10px;
-      border:1px solid transparent;transition:.2s;
-    }
-    .menu a:hover{color:var(--brand-dark);background:#f1f9ff;border-color:#e5e7eb}
-    .menu a.active{background:var(--brand);color:#fff;border-color:var(--brand)}
-
-    /* Hamburger */
-    .menu-toggle{
-      width:40px;height:40px;display:none;align-items:center;justify-content:center;
-      background:transparent;border:none;border-radius:10px;cursor:pointer
-    }
-    .menu-toggle .bar{position:relative;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s}
-    .menu-toggle .bar::before,.menu-toggle .bar::after{
-      content:"";position:absolute;left:0;width:24px;height:2px;background:#0f172a;border-radius:2px;transition:.3s
-    }
-    .menu-toggle .bar::before{top:-7px}.menu-toggle .bar::after{top:7px}
-    body.menu-open .menu-toggle .bar{background:transparent}
-    body.menu-open .menu-toggle .bar::before{top:0;transform:rotate(45deg)}
-    body.menu-open .menu-toggle .bar::after{top:0;transform:rotate(-45deg)}
-
-    /* Mobile menu */
-    @media(max-width:768px){
-      .menu{
-        display:none;flex-direction:column;gap:8px;position:absolute;top:60px;right:16px;min-width:220px;
-        background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:12px;z-index:80
-      }
-      body.menu-open .menu{display:flex}
-      .menu-toggle{display:inline-flex}
-    }
-
-    /* Sections & cards */
-    .section{padding:40px 0}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 6px 16px rgba(2,8,23,.06)}
+    :root{--brand:#0ea5e9;--brand-dark:#0284c7;--text:#0f172a;--muted:#64748b;--border:#e5e7eb}
+    *{box-sizing:border-box} body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;background:#f8fafc;color:var(--text)}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);padding:12px 0;z-index:10}
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .nav .left{display:flex;gap:10px;align-items:center;font-weight:800}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#fff;font-weight:800;cursor:pointer}
+    .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+    .btn.danger{background:#fee2e2;border-color:#fecaca;color:#991b1b}
+    main{padding:24px 0}
     .grid{display:grid;gap:16px}
-    @media(min-width:768px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-
-    /* About hero */
-    .about-hero{padding:42px 0}
-    .about-hero h1{font-size:clamp(28px,6vw,44px);margin:0 0 10px}
-    .lead{color:var(--muted);font-size:18px;margin:0}
-
-    /* Info cards */
-    .info h3{margin:8px 0 6px;color:#0f172a}
-    .info p{color:#475569;margin:0}
-
-    /* Process */
-    .process{margin-top:18px}
-    .steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .step{background:#fff;border:1px dashed #cdeafe;padding:14px;border-radius:12px}
-    .step b{display:block;color:#0369a1;margin-bottom:6px}
-    .step small{color:#64748b}
-
-    footer{padding:24px 0;border-top:1px solid var(--border);background:#fff;text-align:center;color:#334155}
-    .promo-wrap{margin-top:16px !important;}
+    @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    .card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 8px 20px rgba(2,8,23,.06)}
+    h2{margin:0 0 10px}
+    h3{margin:10px 0}
+    input,select,textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:10px;font-size:16px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .row3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+    .list{display:grid;gap:10px;margin:10px 0}
+    .small{color:var(--muted);font-size:14px}
+    .flex{display:flex;gap:8px;flex-wrap:wrap}
+    .muted{color:var(--muted)}
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{border:1px solid #e5e7eb;padding:8px;border-radius:6px;text-align:left;background:#fff}
+    .table th{background:#f1f5f9}
+    .foot{display:flex;gap:10px;justify-content:flex-end;margin-top:10px}
+    .ok{display:none;margin-top:8px;color:#065f46;background:#dcfce7;border:1px solid #86efac;padding:8px 10px;border-radius:10px;font-weight:700}
   </style>
 </head>
 <body>
-
-  <!-- Header -->
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <a href="index.html" style="display:flex;align-items:center;gap:10px">
-          <img class="logo-img" src="public/logo.png" alt="Ifaz Travels logo" />
-          <div>
-            <div class="brand-title">Ifaz Travels</div>
-            <small>Every journey begins with us</small>
-          </div>
-        </a>
-      </div>
-
-      <!-- Hamburger -->
-      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
-        <span class="bar"></span>
-      </button>
-
-      <!-- ✅ Header buttons: Home, Contact, Gallery, About -->
-      <nav class="menu">
-        <a href="index.html"  onclick="document.body.classList.remove('menu-open')">Home</a>
-        <a href="contact.html" onclick="document.body.classList.remove('menu-open')">Contact</a>
-        <a href="gallery.html" onclick="document.body.classList.remove('menu-open')">Gallery</a>
-        <a href="about.html"   class="active" onclick="document.body.classList.remove('menu-open')">About</a>
-      </nav>
+<header>
+  <div class="container nav">
+    <div class="left">🛠️ Admin Panel <span class="small muted">Ifaz Travels</span></div>
+    <div class="flex">
+      <a class="btn" href="index.html" target="_blank" rel="noopener">↗️ View Site</a>
+      <button id="logout" class="btn danger">Logout</button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- ✅ Shared Promo Slider (loads from promo.js for all pages) -->
-  <section id="promo-slot" class="promo-wrap container"></section>
+<main class="container">
+  <div class="grid">
+    <!-- PROMO MANAGER -->
+    <section class="card">
+      <h2>Promo Slider</h2>
+      <p class="small">* শুধু লেখা-ভিত্তিক স্লাইড। ট্যাপ/ক্লিকে ঐ লিংকে যাবে।</p>
+      <div id="promoList" class="list"></div>
+      <div class="flex">
+        <button id="addPromo" class="btn">+ Add Promo</button>
+        <button id="savePromo" class="btn primary">💾 Save</button>
+      </div>
+      <div id="okPromo" class="ok">✅ Promo saved</div>
+    </section>
 
-  <!-- About hero -->
-  <section class="about-hero">
-    <div class="container">
-      <div class="card" style="text-align:center">
-        <h1>আমাদের সম্পর্কে</h1>
-        <p class="lead">ইফাজ ট্রাভেলস — সিলেট ও ঢাকাভিত্তিক বিশ্বস্ত ট্রাভেল ও হজ/উমরাহ সেবাদাতা। ২০১০ সাল থেকে
-          ভিসা, টিকিট, হোটেল, ট্রান্সপোর্ট, জিয়ারাহ—সবকিছু একসাথে সমন্বয় করি, যাতে আপনার সফর হয় আরামদায়ক ও নিশ্চিন্ত।</p>
+    <!-- PACKAGES MANAGER -->
+    <section class="card">
+      <h2>Packages</h2>
+      <p class="small">* index পেজের প্যাকেজ কার্ডের টেক্সট আপডেট হবে।</p>
+      <div style="overflow:auto">
+        <table class="table" id="pkgTable">
+          <thead>
+            <tr><th>#</th><th>Title</th><th>Price</th><th>Note</th><th>Button</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </div>
-  </section>
+      <div class="foot">
+        <button id="resetPkg" class="btn">↺ Reset Default</button>
+        <button id="savePkg" class="btn primary">💾 Save</button>
+      </div>
+      <div id="okPkg" class="ok">✅ Packages saved</div>
+    </section>
 
-  <!-- Info cards -->
-  <section class="section">
-    <div class="container grid cols-3">
-      <div class="card info">
-        <h3><i class="fa-solid fa-bullseye" style="color:#0284c7"></i> আমাদের মিশন</h3>
-        <p>সর্বোচ্চ মানের, ট্রান্সপারেন্ট ও সময়মতো সেবা দিয়ে প্রতিটি যাত্রাকে সহজ করা।</p>
+    <!-- OFFICE / CONTACT -->
+    <section class="card">
+      <h2>Office / Contact</h2>
+      <div class="row">
+        <label>Phone 1<input id="ph1" placeholder="01712-055858"></label>
+        <label>Phone 2<input id="ph2" placeholder="01714-642113"></label>
       </div>
-      <div class="card info">
-        <h3><i class="fa-solid fa-eye" style="color:#0284c7"></i> আমাদের ভিশন</h3>
-        <p>বিশ্বমানের ট্রাভেল ব্র্যান্ড হিসেবে নির্ভরযোগ্যতা ও সুনাম অর্জন।</p>
+      <label style="margin-top:10px">Address
+        <input id="addr" placeholder="Golden Tower, Amborkhana, Sylhet">
+      </label>
+      <div class="foot">
+        <button id="saveOffice" class="btn primary">💾 Save</button>
       </div>
-      <div class="card info">
-        <h3><i class="fa-solid fa-people-group" style="color:#0284c7"></i> আমাদের টিম</h3>
-        <p>ভিসা বিশেষজ্ঞ, টিকিটিং এক্সপার্ট, লোকাল গাইড ও সাপোর্ট স্টাফ—সবাই প্রস্তুত আপনার সহায়তায়।</p>
-      </div>
-    </div>
-  </section>
+      <div id="okOffice" class="ok">✅ Office info saved</div>
+      <p class="small muted">* index/contact পেজে নম্বর/ঠিকানা আপডেট করতে <code>site-data.js</code> ব্যবহার করছে।</p>
+    </section>
+  </div>
+</main>
 
-  <!-- Process -->
-  <section class="section process">
-    <div class="container card">
-      <h3 style="margin:0 0 10px;text-align:center">আমরা কীভাবে কাজ করি</h3>
-      <div class="steps">
-        <div class="step">
-          <b>১) পরামর্শ ও পরিকল্পনা</b>
-          <small>ফোন/WhatsApp/অফিসে চাহিদা অনুযায়ী বাজেট ও ইটিনারারি সেটআপ।</small>
-        </div>
-        <div class="step">
-          <b>২) ডকুমেন্ট প্রস্তুতি</b>
-          <small>চেকলিস্ট দিয়ে কাগজপত্র সংগ্রহ ও যাচাই—ভিসা/পারমিটের জন্য।</small>
-        </div>
-        <div class="step">
-          <b>৩) বুকিং ও প্রসেসিং</b>
-          <small>টিকিট/হোটেল/ভিসা সাবমিশন, ট্র্যাকিং ও আপডেট।</small>
-        </div>
-        <div class="step">
-          <b>৪) অন-ট্রিপ সাপোর্ট</b>
-          <small>এয়ারপোর্ট অ্যাসিস্ট, লোকাল গাইড, জিয়ারাহ/সিটি ট্যুর কোরডিনেশন।</small>
-        </div>
-      </div>
-      <p style="color:#64748b;margin:10px 0 0;text-align:center">* ভিসা অনুমোদন সম্পূর্ণ এম্বাসির বিবেচ্য।</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
-        <a class="btn" style="background:#25D366;border:1px solid #22c55e;color:#fff;padding:10px 16px;border-radius:10px;font-weight:800" href="https://api.whatsapp.com/send?phone=8801712055858" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp করুন
-        </a>
-        <a class="btn" style="background:var(--brand);border:1px solid var(--brand);color:#fff;padding:10px 16px;border-radius:10px;font-weight:800" href="index.html#booking-form">
-          <i class="fa-solid fa-paper-plane"></i> অনলাইনে বুকিং
-        </a>
-      </div>
-    </div>
-  </section>
+<script>
+  // Auth guard
+  if(localStorage.getItem('ifaz_auth')!=='1'){ window.location.href='index.html'; }
 
-  <footer>
-    <div class="container">© 2025 Ifaz Travels · All Rights Reserved</div>
-  </footer>
+  const DEFAULT_PROMOS = [
+    { text:'Dhaka → Jeddah Air Ticket — Lowest Price • Book Now', href:'#packages' },
+    { text:'China Visa — No Visa, No Fee', href:'#contact' },
+    { text:'Domestic Ticket — 5% Discount', href:'#packages' },
+    { text:'Malaysia Visa Support', href:'#services' },
+    { text:'Hajj Pre-Registration — চলছে', href:'#services' },
+    { text:'GAMCA Medical Slip — 1 Minute Delivery*', href:'#services' }
+  ];
 
-  <!-- Close mobile menu on outside click -->
-  <script>
-    document.addEventListener('click', (e)=>{
-      const nav = document.querySelector('.menu');
-      const toggle = document.querySelector('.menu-toggle');
-      if(!nav || !toggle) return;
-      if(!nav.contains(e.target) && !toggle.contains(e.target)){
-        document.body.classList.remove('menu-open');
-      }
+  const DEFAULT_PKGS = [
+    {title:'✈️ ৭ দিন', price:'Call for Price', note:'Visa, Ticket, Hotel, Transport', btn:'Get Quote'},
+    {title:'🕌 ১০ দিন', price:'Call for Price', note:'Group / Family rooms', btn:'Get Quote'},
+    {title:'🏨 ১৪ দিন', price:'৳১,৪৫০০০', note:'খাবার ছাড়া · Near Haram', btn:'Get Quote'},
+    {title:'📅 October 2025 (Group)', price:'Early-bird available', note:'19 Oct departure · Guide included', btn:'Reserve'},
+    {title:'📅 November 2025 (Group)', price:'Discount available', note:'1 Nov departure · Flexible dates', btn:'Reserve'},
+    {title:'⭐ Custom / Private Umrah', price:'Tailored Itinerary', note:'Premium hotel · Private transport', btn:'Call for Plan'},
+    {title:'🛫 Air Ticket & Visa Assist', price:'JED / MED', note:'Multiple airlines · Quick processing', btn:'Get Quote'}
+  ];
+
+  // --- PROMO UI ---
+  const promoList = document.getElementById('promoList');
+  function loadPromos(){ return JSON.parse(localStorage.getItem('ifaz_promos')||'null') || DEFAULT_PROMOS; }
+  function renderPromos(){
+    promoList.innerHTML='';
+    loadPromos().forEach((p,i)=>{
+      const wrap=document.createElement('div'); wrap.className='row3';
+      wrap.innerHTML = `
+        <input placeholder="Promo text" value="${p.text?.replaceAll('"','&quot;')||''}">
+        <input placeholder="Link (e.g. #packages)" value="${p.href||'#'}">
+        <div class="flex">
+          <button class="btn danger" data-i="${i}">Delete</button>
+        </div>`;
+      promoList.appendChild(wrap);
     });
-  </script>
+  }
+  function collectPromos(){
+    const rows=[...promoList.querySelectorAll('.row3')];
+    return rows.map(r=>({ text:r.children[0].value.trim(), href:r.children[1].value.trim()||'#' }))
+               .filter(p=>p.text);
+  }
+  document.getElementById('addPromo').onclick = ()=> {
+    const arr = loadPromos(); arr.push({text:'New promo text', href:'#'});
+    localStorage.setItem('ifaz_promos', JSON.stringify(arr)); renderPromos();
+  };
+  document.getElementById('savePromo').onclick = ()=> {
+    localStorage.setItem('ifaz_promos', JSON.stringify(collectPromos()));
+    document.getElementById('okPromo').style.display='block';
+    setTimeout(()=>document.getElementById('okPromo').style.display='none',1500);
+  };
+  promoList.addEventListener('click', (e)=>{
+    if(e.target.matches('.btn.danger')){
+      const i=+e.target.dataset.i;
+      const arr=loadPromos(); arr.splice(i,1);
+      localStorage.setItem('ifaz_promos', JSON.stringify(arr)); renderPromos();
+    }
+  });
 
-  <!-- Shared Promo Slider JS -->
-  <script defer src="promo.js?v=1"></script>
+  // --- PKG UI ---
+  const pkgTBody = document.querySelector('#pkgTable tbody');
+  function loadPkgs(){ return JSON.parse(localStorage.getItem('ifaz_packages')||'null') || DEFAULT_PKGS; }
+  function renderPkgs(){
+    const data=loadPkgs(); pkgTBody.innerHTML='';
+    data.forEach((p,i)=>{
+      const tr=document.createElement('tr');
+      tr.innerHTML = `
+        <td>${i+1}</td>
+        <td><input value="${p.title?.replaceAll('"','&quot;')||''}"></td>
+        <td><input value="${p.price?.replaceAll('"','&quot;')||''}"></td>
+        <td><input value="${p.note?.replaceAll('"','&quot;')||''}"></td>
+        <td><input value="${p.btn?.replaceAll('"','&quot;')||''}"></td>
+      `;
+      pkgTBody.appendChild(tr);
+    });
+  }
+  function collectPkgs(){
+    const rows=[...pkgTBody.querySelectorAll('tr')];
+    return rows.map(r=>{
+      const t=[...r.querySelectorAll('input')].map(i=>i.value);
+      return {title:t[0],price:t[1],note:t[2],btn:t[3]};
+    });
+  }
+  document.getElementById('savePkg').onclick = ()=>{
+    localStorage.setItem('ifaz_packages', JSON.stringify(collectPkgs()));
+    document.getElementById('okPkg').style.display='block';
+    setTimeout(()=>document.getElementById('okPkg').style.display='none',1500);
+  };
+  document.getElementById('resetPkg').onclick = ()=>{
+    localStorage.removeItem('ifaz_packages'); renderPkgs();
+  };
+
+  // --- OFFICE ---
+  const ph1=document.getElementById('ph1'), ph2=document.getElementById('ph2'), addr=document.getElementById('addr');
+  function loadOffice(){ return JSON.parse(localStorage.getItem('ifaz_office')||'null') || {ph1:'01712-055858', ph2:'01714-642113', addr:'Golden Tower, Amborkhana, Sylhet'}; }
+  function renderOffice(){ const o=loadOffice(); ph1.value=o.ph1||''; ph2.value=o.ph2||''; addr.value=o.addr||''; }
+  document.getElementById('saveOffice').onclick = ()=>{
+    localStorage.setItem('ifaz_office', JSON.stringify({ph1:ph1.value.trim(), ph2:ph2.value.trim(), addr:addr.value.trim()}));
+    document.getElementById('okOffice').style.display='block';
+    setTimeout(()=>document.getElementById('okOffice').style.display='none',1500);
+  };
+
+  // Logout
+  document.getElementById('logout').onclick = ()=>{ localStorage.removeItem('ifaz_auth'); window.location.href='index.html'; };
+
+  // Init
+  renderPromos(); renderPkgs(); renderOffice();
+</script>
 </body>
 </html>
