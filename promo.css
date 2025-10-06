@@ -1,95 +1,53 @@
-/* promo.css v5 — text-only promo slider with aura backgrounds */
-.promo-wrap{margin-top:18px}
+/* promo.css v8 — bigger, center, pretty themes */
+:root{
+  --border:#e5e7eb; --text:#0f172a; --muted:#64748b;
+}
+.promo-wrap{max-width:1100px;margin:22px auto}
 .promo{
-  position:relative;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;
-  background:#ffffff;box-shadow:0 10px 26px rgba(2,8,23,.08);
+  position:relative; overflow:hidden; border:1px solid var(--border);
+  border-radius:18px; background:#fff;
+  min-height:220px; box-shadow:0 10px 24px rgba(2,8,23,.08);
 }
-.promo-viewport{overflow:hidden;width:100%}
-.promo-track{display:flex;transition:transform .5s ease}
+@media (max-width:1024px){ .promo{min-height:190px} }
+@media (max-width:768px){  .promo{min-height:160px} }
 
-/* Slides: text only */
-.promo-slide{
-  flex:0 0 100%;
-  display:flex;align-items:center;justify-content:center;
-  min-height:220px;padding:28px 22px;text-align:center;
-  text-decoration:none;color:#0f172a; position:relative; isolation:isolate;
+.promo-track{display:flex; transition:transform .45s ease}
+.promo-slide{flex:0 0 100%; display:grid; place-items:center; padding:22px}
+.promo-card{
+  width:100%; max-width:940px; margin:auto;
+  border-radius:16px; padding:22px 26px;
+  color:#0f172a; border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 10px 26px rgba(2,8,23,.08);
+  background:linear-gradient(135deg,#ffffffcc,#f8fafc);
 }
-@media(min-width:992px){ .promo-slide{ min-height:260px; } }
-
-.promo-content{max-width:900px;margin:auto}
+.promo-title{font-weight:900; font-size:28px; margin:0 0 4px}
+.promo-sub{color:var(--muted); font-weight:700; margin:0 0 10px}
 .promo-badge{
-  display:inline-block;background:#dcfce7;color:#14532d;border:1px solid #86efac;
-  font-weight:800;padding:6px 10px;border-radius:999px;margin-bottom:8px
-}
-.promo-title{font-size:clamp(20px,3.6vw,32px);margin:4px 0 6px;font-weight:900;color:#0f172a}
-.promo-sub{margin:0;color:#475569;font-size:clamp(14px,2.2vw,18px)}
-.promo-cta{display:inline-block;margin-top:10px;font-weight:800;color:#0284c7}
-
-/* ===== Aura backgrounds (like the first page) ===== */
-/* Blue — primary aura */
-.promo-slide.theme-blue,
-.promo-slide.theme-sky{
-  background:
-    radial-gradient(1000px 360px at 10% -120px, #e0f2fe 28%, transparent 60%),
-    radial-gradient(900px 300px at 92% 18%, rgba(14,165,233,.18), transparent 60%),
-    linear-gradient(135deg,#ffffff 0%, #f0f9ff 100%);
+  display:inline-block; font-weight:900; font-size:12px; letter-spacing:.3px;
+  padding:6px 10px; border-radius:999px; border:1px solid #0001; background:#fff7;
+  backdrop-filter:saturate(160%) blur(6px); margin-bottom:6px
 }
 
-/* Green aura */
-.promo-slide.theme-green{
-  background:
-    radial-gradient(900px 320px at 12% -80px, rgba(34,197,94,.18), transparent 62%),
-    radial-gradient(780px 260px at 90% 22%, rgba(16,185,129,.16), transparent 60%),
-    linear-gradient(135deg,#ffffff 0%, #f0fdf4 100%);
-}
+/* Dots */
+.promo-dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:8px;justify-content:center}
+.promo-dot{width:8px;height:8px;border-radius:999px;border:1px solid #0002;background:#ffffff99}
+.promo-dot.active{width:22px;background:#0ea5e9;border-color:#0ea5e9}
 
-/* Rose/Red aura (soft) */
-.promo-slide.theme-rose{
-  background:
-    radial-gradient(900px 320px at 8% -80px, rgba(244,63,94,.16), transparent 62%),
-    radial-gradient(820px 260px at 92% 18%, rgba(255,99,132,.14), transparent 60%),
-    linear-gradient(135deg,#fff1f2 0%, #ffe4e6 100%);
-}
-
-/* Amber/Gold aura */
-.promo-slide.theme-amber{
-  background:
-    radial-gradient(900px 320px at 10% -80px, rgba(245,158,11,.18), transparent 62%),
-    radial-gradient(820px 260px at 92% 18%, rgba(251,191,36,.16), transparent 60%),
-    linear-gradient(135deg,#fff7ed 0%, #fef3c7 100%);
-}
-
-/* Lime aura */
-.promo-slide.theme-lime{
-  background:
-    radial-gradient(880px 300px at 12% -80px, rgba(132,204,22,.18), transparent 62%),
-    radial-gradient(800px 240px at 92% 20%, rgba(163,230,53,.16), transparent 60%),
-    linear-gradient(135deg,#ecfccb 0%, #f7fee7 100%);
-}
-
-/* subtle glossy sheen (very light) */
-.promo-slide::after{
-  content:""; position:absolute; inset:0; pointer-events:none; z-index:-1;
-  background: linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,0), rgba(255,255,255,.15));
-  opacity:.35; mix-blend-mode:overlay;
-}
-
-/* arrows */
+/* Arrows (hidden on mobile) */
 .promo-nav{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:40px;height:40px;border-radius:999px;background:#fff;border:1px solid #e5e7eb;
-  box-shadow:0 8px 18px rgba(0,0,0,.12);cursor:pointer
+  position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+  width:38px;height:38px;border-radius:999px;border:1px solid var(--border);
+  background:#fff; display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 6px 16px rgba(2,8,23,.12)
 }
-.promo-nav.prev{left:10px}
-.promo-nav.next{right:10px}
-.promo-nav::before{
-  content:"";display:block;width:10px;height:10px;border:2px solid #0f172a;border-top:0;border-right:0;margin:0 auto;transform:rotate(45deg);
-  position:relative;top:12px
-}
-.promo-nav.next::before{transform:rotate(-135deg)}
-@media(max-width:768px){.promo-nav{display:none}} /* mobile: hide arrows */
+.promo-prev{left:12px} .promo-next{right:12px}
+@media (max-width:768px){ .promo-nav{display:none} }
 
-/* dots */
-.promo-dots{display:flex;gap:6px;justify-content:center;padding:10px;background:#fff}
-.promo-dot{width:9px;height:9px;border-radius:999px;background:#cbd5e1;border:0;cursor:pointer}
-.promo-dot.active{background:#0284c7}
+/* Color themes */
+.theme-sky  .promo-card{background:linear-gradient(135deg,#e0f2fe,#ffffff)}
+.theme-blue .promo-card{background:linear-gradient(135deg,#dbeafe,#ffffff)}
+.theme-rose .promo-card{background:linear-gradient(135deg,#ffe4e6,#ffffff)}
+.theme-amber.promo .promo-card{background:linear-gradient(135deg,#ffedd5,#ffffff)}
+.theme-amber .promo-card{background:linear-gradient(135deg,#ffedd5,#ffffff)}
+.theme-green .promo-card{background:linear-gradient(135deg,#dcfce7,#ffffff)}
+.theme-lime  .promo-card{background:linear-gradient(135deg,#ecfccb,#ffffff)}
