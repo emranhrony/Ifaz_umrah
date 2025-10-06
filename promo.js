@@ -1,57 +1,124 @@
-// promo.js
-(function(){
-  const DEFAULTS = [
-    { text:'Dhaka → Jeddah Air Ticket — Lowest Price • Book Now', href:'#packages' },
-    { text:'China Visa — No Visa, No Fee', href:'#contact' },
-    { text:'Domestic Ticket — 5% Discount', href:'#packages' },
-    { text:'Malaysia Visa Support', href:'#services' },
-    { text:'Hajj Pre-Registration — চলছে', href:'#services' },
-    { text:'GAMCA Medical Slip — 1 Minute Delivery*', href:'#services' }
-  ];
-  const promos = JSON.parse(localStorage.getItem('ifaz_promos')||'null') || DEFAULTS;
+<!-- index.html, gallery.html, contact.html, admin.html—সকল পেজে এই ফাইল লোড করবেন -->
+<script>
+// promo.js v8 — slider + packages (localStorage powered)
 
-  const mount = document.getElementById('promo-slot');
-  if(!mount) return;
+const PROMO_KEY = 'ifaz_promos_v1';
+const PKG_KEY   = 'ifaz_packages_v1';
 
-  // Bigger height & font, nice gradients
-  const style = document.createElement('style');
-  style.textContent = `
-  .promo{position:relative;overflow:hidden;border:1px solid #e5e7eb;border-radius:14px;background:#fff;box-shadow:0 10px 24px rgba(2,8,23,.06)}
-  .promo-track{display:flex;transition:transform .6s ease}
-  .promo-item{min-width:100%;min-height:110px;padding:20px 16px;display:grid;place-items:center}
-  .promo-item a{font-weight:900;font-size:clamp(18px,2.6vw,24px);line-height:1.35;text-align:center;text-decoration:none;color:#0f172a}
-  .grad0{background:linear-gradient(90deg,#e0f2fe 0%,#f0f9ff 100%)}
-  .grad1{background:linear-gradient(90deg,#fef3c7 0%,#e0f2fe 100%)}
-  .grad2{background:linear-gradient(90deg,#dcfce7 0%,#e0f2fe 100%)}
-  .grad3{background:linear-gradient(90deg,#fee2e2 0%,#e0f2fe 100%)}
-  .promo .nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;padding:0 6px}
-  .promo button{border:none;background:rgba(255,255,255,.85);width:36px;height:36px;border-radius:50%;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.18);font-size:18px}
-  @media(max-width:640px){ .promo .nav{display:none} }
-  `;
-  document.head.appendChild(style);
+// Fallbacks (only used if nothing saved yet)
+const DEFAULT_PROMOS = [
+  { title:'Dhaka → Jeddah Air Ticket',  subtitle:'Lowest Price • Book Now',       badge:'Hot',    theme:'sky',   href:'contact.html' },
+  { title:'China Visa',                  subtitle:'No Visa • No Fee',             badge:'Visa',   theme:'rose',  href:'contact.html' },
+  { title:'Domestic Air Ticket',         subtitle:'Flat 5% Discount',             badge:'Deal',   theme:'amber', href:'contact.html' },
+  { title:'Malaysia Visa',               subtitle:'Fast Processing • Tourist/Business', badge:'New', theme:'green', href:'contact.html' },
+  { title:'Hajj Pre-Registration',       subtitle:'সহজ প্রক্রিয়া • সীমিত আসন',      badge:'Hajj',   theme:'blue',  href:'contact.html' },
+  { title:'GAMCA Medical Slip',          subtitle:'Instant e-Slip • Verified',     badge:'Work',   theme:'lime',  href:'contact.html' },
+  { title:'১ মিনিটে ডেলিভারি',           subtitle:'Visa / Slip PDF → WhatsApp',   badge:'Instant',theme:'sky',   href:'https://api.whatsapp.com/send?phone=8801712055858' },
+];
 
-  const wrap = document.createElement('div');
-  wrap.className = 'promo';
-  wrap.innerHTML = `
-    <div class="promo-track"></div>
-    <div class="nav">
-      <button id="pPrev">‹</button>
-      <button id="pNext">›</button>
+const DEFAULT_PACKAGES = [
+  { title:'✈️ ৭ দিন', price:'Call for Price', note:'Visa, Ticket, Hotel, Transport', ctaText:'Get Quote', ctaHref:'#booking-form' },
+  { title:'🕌 ১০ দিন', price:'Call for Price', note:'Group / Family rooms',           ctaText:'Get Quote', ctaHref:'#booking-form' },
+  { title:'🏨 ১৪ দিন', price:'৳১,৪৫০০০',       note:'খাবার ছাড়া · Near Haram',       ctaText:'Get Quote', ctaHref:'#booking-form' },
+  { title:'📅 October 2025 (Group)', price:'Early-bird available', note:'19 Oct departure · Guide included', ctaText:'Reserve', ctaHref:'#booking-form' },
+  { title:'📅 November 2025 (Group)', price:'Discount available',  note:'1 Nov departure · Flexible dates', ctaText:'Reserve', ctaHref:'#booking-form' },
+  { title:'⭐ Custom / Private Umrah', price:'Tailored Itinerary', note:'Premium hotel · Private transport', ctaText:'Call for Plan', ctaHref:'#booking-form' },
+  { title:'🛫 Air Ticket & Visa Assist', price:'JED / MED', note:'Multiple airlines · Quick processing',     ctaText:'Get Quote', ctaHref:'#booking-form' },
+];
+
+function readLS(key, fb){ try{ const x=JSON.parse(localStorage.getItem(key)); return Array.isArray(x)&&x.length?x:fb }catch{ return fb } }
+
+// ---------- Promo slider ----------
+function mountPromo(){
+  const host = document.getElementById('promo-slot');
+  if(!host) return;
+
+  const promos = readLS(PROMO_KEY, DEFAULT_PROMOS);
+
+  host.innerHTML = `
+    <div class="promo theme-${(promos[0]?.theme||'sky')}">
+      <button class="promo-nav promo-prev" aria-label="Previous">‹</button>
+      <div class="promo-track"></div>
+      <button class="promo-nav promo-next" aria-label="Next">›</button>
+      <div class="promo-dots"></div>
     </div>
   `;
-  mount.appendChild(wrap);
 
-  const track = wrap.querySelector('.promo-track');
+  const promoEl  = host.querySelector('.promo');
+  const track    = host.querySelector('.promo-track');
+  const dotsBox  = host.querySelector('.promo-dots');
+
   promos.forEach((p,i)=>{
-    const it=document.createElement('div');
-    it.className = `promo-item grad${i%4}`;
-    it.innerHTML = `<a href="${p.href||'#'}">${p.text||''}</a>`;
-    track.appendChild(it);
+    const a = document.createElement('a');
+    a.className = 'promo-slide';
+    a.href = p.href || '#';
+    a.innerHTML = `
+      <div class="promo-card">
+        ${p.badge?`<span class="promo-badge">${p.badge}</span>`:''}
+        <div class="promo-title">${p.title||''}</div>
+        ${p.subtitle?`<div class="promo-sub">${p.subtitle}</div>`:''}
+      </div>
+    `;
+    track.appendChild(a);
+
+    const d = document.createElement('button');
+    d.className = 'promo-dot' + (i===0?' active':'');
+    d.setAttribute('aria-label','Go to slide '+(i+1));
+    d.onclick = ()=>go(i);
+    dotsBox.appendChild(d);
   });
 
-  let i=0, N=promos.length;
-  function go(k){ i=(k+N)%N; track.style.transform=`translateX(-${i*100}%)`; }
-  wrap.querySelector('#pPrev').onclick = ()=>go(i-1);
-  wrap.querySelector('#pNext').onclick = ()=>go(i+1);
-  setInterval(()=>go(i+1), 4500);
-})();
+  let i = 0, N = promos.length, timer = null;
+
+  function applyTheme(idx){
+    promoEl.className = 'promo theme-' + (promos[idx]?.theme || 'sky');
+  }
+  function go(idx){
+    i = (idx+N)%N;
+    track.style.transform = `translateX(${-i*100}%)`;
+    dotsBox.querySelectorAll('.promo-dot').forEach((d,k)=>d.classList.toggle('active', k===i));
+    applyTheme(i);
+  }
+  function next(){ go(i+1) }
+  function prev(){ go(i-1) }
+
+  host.querySelector('.promo-next').onclick = next;
+  host.querySelector('.promo-prev').onclick = prev;
+
+  function start(){ stop(); timer=setInterval(next, 4000) }
+  function stop(){ if(timer) clearInterval(timer) }
+
+  promoEl.addEventListener('mouseenter', stop);
+  promoEl.addEventListener('mouseleave', start);
+  start();
+
+  // keep full width on resize
+  window.addEventListener('resize', ()=>go(i));
+}
+
+// ---------- Packages (hydrate from localStorage) ----------
+function mountPackages(){
+  const grid = document.getElementById('pkg-grid') || document.querySelector('#packages .grid');
+  if(!grid) return;
+
+  const pkgs = readLS(PKG_KEY, DEFAULT_PACKAGES);
+  grid.innerHTML = ''; // wipe fallback cards if any
+
+  pkgs.forEach(p=>{
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <h4>${p.title||''}</h4>
+      <p class="price">${p.price||''}</p>
+      <p class="note">${p.note||''}</p>
+      <div><a class="btn" href="${p.ctaHref||'#'}" style="background:#334155;border-color:#334155">${p.ctaText||'Details'}</a></div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  mountPromo();
+  mountPackages();
+});
+</script>
