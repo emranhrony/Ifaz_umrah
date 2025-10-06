@@ -1,4 +1,5 @@
 /* promo.css v8 — টেক্সট-ওনলি স্লাইড, বড় ও সেন্টারড */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap');
 .promo-wrap{margin-top:18px}
 .promo{
   position:relative; overflow:hidden;
@@ -39,3 +40,32 @@
 .promo-card.amber{background:linear-gradient(135deg,#fff4d6,#ffedd5)}
 .promo-card.green{background:linear-gradient(135deg,#e7f8ef,#d9fbe3)}
 .promo-card.lime{background:linear-gradient(135deg,#f2ffe4,#e7ffcf)}
+/* Bengali-aware typography for promo slider */
+.promo-card,
+.promo-card h3,
+.promo-card p,
+.promo-badge{
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* পুরো পেজে html lang="bn" থাকলেই এটা অটো লাগবে */
+:lang(bn) .promo-card,
+:lang(bn) .promo-card h3,
+:lang(bn) .promo-card p,
+:lang(bn) .promo-badge{
+  font-family: 'Hind Siliguri','Noto Sans Bengali',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  letter-spacing: .1px;
+}
+
+:lang(bn) .promo-card h3{
+  font-weight: 800;
+  line-height: 1.25;
+}
+:lang(bn) .promo-card p{
+  font-weight: 700;
+  line-height: 1.4;
+}
+:lang(bn) .promo-badge{
+  font-weight: 800;
+}
