@@ -1,119 +1,57 @@
-/* promo.js v6 — text-only shared promo slider with LocalStorage */
-(function () {
-  const KEY = 'ifaz_promos_v1';
-  const FALLBACK = [
-    { title:'Dhaka → Jeddah Air Ticket',  subtitle:'Lowest Price • Book Now',       href:'contact.html', badge:'Hot',    theme:'sky'   },
-    { title:'China Visa',                  subtitle:'No Visa • No Fee',             href:'contact.html', badge:'Visa',   theme:'rose'  },
-    { title:'Domestic Air Ticket',         subtitle:'Flat 5% Discount',             href:'contact.html', badge:'Deal',   theme:'amber' },
-    { title:'Malaysia Visa',               subtitle:'Fast Processing • Tourist / Business', href:'contact.html', badge:'New',   theme:'green' },
-    { title:'Hajj Pre-Registration',       subtitle:'সহজ প্রক্রিয়া • সীমিত আসন',    href:'contact.html', badge:'Hajj',  theme:'blue'  },
-    { title:'GAMCA Medical Slip',          subtitle:'Instant e-Slip • Verified',    href:'contact.html', badge:'Work',  theme:'lime'  },
-    { title:'১ মিনিটে ডেলিভারি',           subtitle:'Visa / Slip PDF → WhatsApp',  href:'https://api.whatsapp.com/send?phone=8801712055858', badge:'Instant', theme:'sky' }
+// promo.js
+(function(){
+  const DEFAULTS = [
+    { text:'Dhaka → Jeddah Air Ticket — Lowest Price • Book Now', href:'#packages' },
+    { text:'China Visa — No Visa, No Fee', href:'#contact' },
+    { text:'Domestic Ticket — 5% Discount', href:'#packages' },
+    { text:'Malaysia Visa Support', href:'#services' },
+    { text:'Hajj Pre-Registration — চলছে', href:'#services' },
+    { text:'GAMCA Medical Slip — 1 Minute Delivery*', href:'#services' }
   ];
+  const promos = JSON.parse(localStorage.getItem('ifaz_promos')||'null') || DEFAULTS;
 
-  function getPromos(){
-    try{
-      const x = JSON.parse(localStorage.getItem(KEY));
-      return Array.isArray(x) && x.length ? x : FALLBACK;
-    }catch(e){ return FALLBACK; }
-  }
+  const mount = document.getElementById('promo-slot');
+  if(!mount) return;
 
-  const SLIDES = getPromos();
+  // Minimal inline styles (promo.css থাকলে সেটাই প্রাধান্য পাবে)
+  const style = document.createElement('style');
+  style.textContent = `
+  .promo{position:relative;overflow:hidden;border:1px solid #e5e7eb;border-radius:14px;background:#fff;box-shadow:0 10px 24px rgba(2,8,23,.06)}
+  .promo-track{display:flex;transition:transform .6s ease}
+  .promo-item{min-width:100%;padding:16px;display:grid;place-items:center;height:76px}
+  .promo-item a{font-weight:800;text-decoration:none}
+  .grad0{background:linear-gradient(90deg,#e0f2fe,#f0f9ff)}
+  .grad1{background:linear-gradient(90deg,#fef3c7,#e0f2fe)}
+  .grad2{background:linear-gradient(90deg,#dcfce7,#e0f2fe)}
+  .grad3{background:linear-gradient(90deg,#fee2e2,#e0f2fe)}
+  .promo .nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;padding:0 6px}
+  .promo button{border:none;background:rgba(255,255,255,.8);width:34px;height:34px;border-radius:50%;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+  @media(max-width:640px){ .promo .nav{display:none} }
+  `;
+  document.head.appendChild(style);
 
-  function init() {
-    // avoid double
-    if (document.documentElement.dataset.promoInited) return;
-    document.documentElement.dataset.promoInited = '1';
+  const wrap = document.createElement('div');
+  wrap.className = 'promo';
+  wrap.innerHTML = `
+    <div class="promo-track"></div>
+    <div class="nav">
+      <button id="pPrev">‹</button>
+      <button id="pNext">›</button>
+    </div>
+  `;
+  mount.appendChild(wrap);
 
-    let mount = document.getElementById('promo-slot');
-    if (!mount) {
-      const header = document.querySelector('header');
-      mount = document.createElement('section');
-      mount.id = 'promo-slot';
-      mount.className = 'promo-wrap container';
-      if (header && header.parentNode) {
-        header.parentNode.insertBefore(mount, header.nextElementSibling);
-      } else {
-        document.body.prepend(mount);
-      }
-    }
+  const track = wrap.querySelector('.promo-track');
+  promos.forEach((p,i)=>{
+    const it=document.createElement('div');
+    it.className = `promo-item grad${i%4}`;
+    it.innerHTML = `<a href="${p.href||'#'}">${p.text || ''}</a>`;
+    track.appendChild(it);
+  });
 
-    if (!SLIDES.length) return;
-
-    mount.innerHTML = `
-      <div class="promo" role="region" aria-label="Promotions">
-        <button class="promo-nav prev" aria-label="Previous slide"></button>
-        <div class="promo-viewport"><div class="promo-track"></div></div>
-        <button class="promo-nav next" aria-label="Next slide"></button>
-        <div class="promo-dots" role="tablist"></div>
-      </div>
-    `;
-
-    const track  = mount.querySelector('.promo-track');
-    const dots   = mount.querySelector('.promo-dots');
-    const prevBt = mount.querySelector('.promo-nav.prev');
-    const nextBt = mount.querySelector('.promo-nav.next');
-
-    SLIDES.forEach((s, i) => {
-      const a = document.createElement('a');
-      a.className = `promo-slide theme-${s.theme || 'blue'}`;
-      a.href = s.href || '#';
-      a.innerHTML = `
-        <div class="promo-content">
-          ${s.badge ? `<span class="promo-badge">${s.badge}</span>` : ''}
-          <h3 class="promo-title">${s.title || ''}</h3>
-          ${s.subtitle ? `<p class="promo-sub">${s.subtitle}</p>` : ''}
-          <span class="promo-cta">Learn more →</span>
-        </div>
-      `;
-      track.appendChild(a);
-
-      const d = document.createElement('button');
-      d.className = 'promo-dot';
-      d.addEventListener('click', () => goTo(i));
-      dots.appendChild(d);
-    });
-
-    let idx = 0, timer = null;
-    function vpWidth() {
-      const vp = mount.querySelector('.promo-viewport');
-      return vp ? vp.clientWidth : mount.clientWidth;
-    }
-    function update(){
-      const w = vpWidth();
-      track.style.transform = `translateX(-${idx * w}px)`;
-      [...dots.children].forEach((el, i)=> el.classList.toggle('active', i===idx));
-    }
-    function goTo(i){ idx = (i+SLIDES.length)%SLIDES.length; update(); restart(); }
-    function next(){ goTo(idx+1) }
-    function prev(){ goTo(idx-1) }
-
-    function start(){ stop(); timer = setInterval(next, 3500) }
-    function stop(){ if(timer) clearInterval(timer); timer = null }
-    function restart(){ start() }
-
-    const ro = new ResizeObserver(update);
-    ro.observe(mount.querySelector('.promo-viewport'));
-    setTimeout(update,0); setTimeout(update,150);
-
-    mount.addEventListener('mouseenter', stop);
-    mount.addEventListener('mouseleave', start);
-    mount.addEventListener('focusin', stop);
-    mount.addEventListener('focusout', start);
-
-    prevBt.addEventListener('click', prev);
-    nextBt.addEventListener('click', next);
-
-    function toggleArrows(){
-      const mobile = matchMedia('(max-width:768px)').matches;
-      prevBt.style.display = nextBt.style.display = mobile ? 'none' : 'block';
-    }
-    toggleArrows(); addEventListener('resize', toggleArrows);
-
-    goTo(0); start();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once:true });
-  } else { init(); }
+  let i=0, N=promos.length;
+  function go(k){ i=(k+N)%N; track.style.transform=`translateX(-${i*100}%)`; }
+  wrap.querySelector('#pPrev').onclick = ()=>go(i-1);
+  wrap.querySelector('#pNext').onclick = ()=>go(i+1);
+  setInterval(()=>go(i+1), 4500);
 })();
