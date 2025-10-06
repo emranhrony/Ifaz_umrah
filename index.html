@@ -8,8 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Icons for Services -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Reusable slider styles -->
-  <link rel="stylesheet" href="promo.css?v=1">
+  <!-- Reusable slider styles (v8) -->
+  <link rel="stylesheet" href="promo.css?v=8">
 
   <style>
     :root{
@@ -47,7 +47,6 @@
     .menu{display:flex;align-items:center;gap:18px}
     .menu a{font-weight:700;color:var(--text);padding:8px 10px;border-radius:10px;border:1px solid transparent;transition:.2s}
     .menu a:hover{color:var(--brand-dark);background:#f1f9ff;border-color:#e5e7eb}
-    /* NEW: Admin pill */
     .menu a.admin{border:1px dashed #cfe8fb;background:#f8fbff}
 
     /* Hamburger */
@@ -145,7 +144,7 @@
     .checklist li{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
     .checklist li::before{content:"✔";color:#16a34a;font-weight:900;line-height:1.2}
 
-    /* ===== NEW: Admin login modal ===== */
+    /* Admin login modal */
     .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;padding:16px}
     .modal.show{display:flex}
     .modal .box{width:100%;max-width:420px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 16px 36px rgba(0,0,0,.25);padding:18px}
@@ -181,7 +180,6 @@
         <a href="contact.html">Contact</a>
         <a href="about.html">About</a>
         <a href="gallery.html">Gallery</a>
-        <!-- NEW: Admin open button -->
         <a href="#" class="admin" id="openAdmin">Admin</a>
       </nav>
     </div>
@@ -225,7 +223,7 @@
   <!-- Promo slider (reusable) -->
   <section id="promo-slot" class="promo-wrap container"></section>
 
-  <!-- ✅ আমাদের সেবাসমূহ -->
+  <!-- Services -->
   <section id="services" class="section">
     <div class="container">
       <div class="card title-card">
@@ -234,7 +232,6 @@
       </div>
 
       <div class="svc-grid" style="margin-top:16px">
-        <!-- Visa -->
         <div class="card svc">
           <div class="icon"><i class="fa-solid fa-passport"></i></div>
           <h4>ভিসা প্রসেসিং</h4>
@@ -245,7 +242,6 @@
             <li><i class="fa-solid fa-check"></i> এম্বাসি আপডেট</li>
           </ul>
         </div>
-        <!-- Work Permit -->
         <div class="card svc">
           <div class="icon"><i class="fa-solid fa-id-card-clip"></i></div>
           <h4>ওয়ার্ক পারমিট</h4>
@@ -256,7 +252,6 @@
             <li><i class="fa-solid fa-check"></i> ভিসা–টিকিট সহায়তা</li>
           </ul>
         </div>
-        <!-- Manpower -->
         <div class="card svc">
           <div class="icon"><i class="fa-solid fa-users-gear"></i></div>
           <h4>ম্যানপাওয়ার</h4>
@@ -267,7 +262,6 @@
             <li><i class="fa-solid fa-check"></i> এয়ারপোর্ট অ্যাসিস্ট</li>
           </ul>
         </div>
-        <!-- Hotels -->
         <div class="card svc">
           <div class="icon"><i class="fa-solid fa-hotel"></i></div>
           <h4>হোটেল বুকিং</h4>
@@ -278,7 +272,6 @@
             <li><i class="fa-solid fa-check"></i> হারাম/রওজা নিকটবর্তী অপশন</li>
           </ul>
         </div>
-        <!-- Group Tours -->
         <div class="card svc">
           <div class="icon"><i class="fa-solid fa-people-group"></i></div>
           <h4>গ্রুপ ট্যুর</h4>
@@ -289,7 +282,6 @@
             <li><i class="fa-solid fa-check"></i> কাস্টম ইটিনারারি</li>
           </ul>
         </div>
-        <!-- Hajj & Umrah -->
         <div class="card svc">
           <div class="icon"><i class="fa-solid fa-kaaba"></i></div>
           <h4>হজ্ব ও ওমরাহ</h4>
@@ -300,7 +292,6 @@
             <li><i class="fa-solid fa-check"></i> প্রাইভেট/ফ্যামিলি প্যাকেজ</li>
           </ul>
         </div>
-        <!-- Air Ticket -->
         <div class="card svc">
           <div class="icon"><i class="fa-solid fa-plane-departure"></i></div>
           <h4>বিমান টিকিট</h4>
@@ -325,7 +316,9 @@
   <!-- Packages -->
   <section class="section" id="packages">
     <div class="container">
-      <div class="grid cols-3">
+      <!-- IMPORTANT: give id so promo.js can hydrate from localStorage -->
+      <div class="grid cols-3" id="pkg-grid">
+        <!-- Fallback items (will be replaced by promo.js if LS has data) -->
         <div class="card">
           <h4>✈️ ৭ দিন</h4>
           <p class="price">Call for Price</p>
@@ -344,7 +337,6 @@
           <p class="note">খাবার ছাড়া · Near Haram</p>
           <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
         </div>
-
         <div class="card">
           <h4>📅 October 2025 (Group)</h4>
           <p class="price">Early-bird available</p>
@@ -363,7 +355,6 @@
           <p class="note">Premium hotel · Private transport</p>
           <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Call for Plan</a></div>
         </div>
-
         <div class="card">
           <h4>🛫 Air Ticket & Visa Assist</h4>
           <p class="price">JED / MED</p>
@@ -463,7 +454,7 @@
     <div class="container">© 2025 Ifaz Travels · All Rights Reserved</div>
   </footer>
 
-  <!-- ===== NEW: Admin Login Modal ===== -->
+  <!-- Admin Login Modal -->
   <div class="modal" id="adminModal" aria-hidden="true">
     <div class="box">
       <h3>Admin Login</h3>
@@ -516,7 +507,7 @@
       });
     }
 
-    // ===== NEW: Admin modal open/close + password check =====
+    // Admin modal open/close + password check
     (function(){
       const ADMIN_HASH = 'ea2c95fc59fecaaae824eb5ebaa723919280d5135bcdddd1ecdc591cb34be3dd'; // 'ifaz2025!'
 
@@ -530,9 +521,7 @@
       function show(){ modal.classList.add('show'); pass.focus(); }
       function hide(){ modal.classList.remove('show'); err.style.display='none'; pass.value=''; }
 
-      if(openBtn){
-        openBtn.addEventListener('click', (e)=>{ e.preventDefault(); show(); });
-      }
+      if(openBtn){ openBtn.addEventListener('click', (e)=>{ e.preventDefault(); show(); }); }
       if(closeBtn){ closeBtn.addEventListener('click', hide); }
       modal.addEventListener('click', (e)=>{ if(e.target===modal) hide(); });
 
@@ -557,7 +546,7 @@
     })();
   </script>
 
-  <!-- Reusable Promo Slider -->
-  <script defer src="promo.js?v=1"></script>
+  <!-- Reusable Promo Slider (v8) -->
+  <script defer src="promo.js?v=8"></script>
 </body>
 </html>
