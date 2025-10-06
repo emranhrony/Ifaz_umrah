@@ -6,9 +6,9 @@
   <title>Ifaz Travels — Umrah Packages (2025)</title>
   <link rel="icon" href="public/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Icons for Services -->
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Reusable slider styles (v8) -->
+  <!-- Reusable slider styles -->
   <link rel="stylesheet" href="promo.css?v=8">
 
   <style>
@@ -105,7 +105,7 @@
     /* Promo slot spacing */
     .promo-wrap{ margin-top:18px !important; }
 
-    /* Services (new) */
+    /* Services */
     #services .title-card{text-align:center}
     .svc-grid{display:grid;gap:16px}
     @media(min-width:768px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
@@ -170,12 +170,10 @@
         </div>
       </div>
 
-      <!-- Hamburger -->
       <button class="menu-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
         <span class="bar"></span>
       </button>
 
-      <!-- Menu -->
       <nav class="menu">
         <a href="contact.html">Contact</a>
         <a href="about.html">About</a>
@@ -192,7 +190,6 @@
         <h1>আজই বুকিং দিন</h1>
         <p>সাশ্রয়ী মূল্য, বিশ্বস্ত সেবা, আপনার ভ্রমণকে আরামদায়ক করতে আমরা প্রতিশ্রুতিবদ্ধ।</p>
 
-        <!-- Animated group dates -->
         <div class="date-row" aria-label="Group departure dates">
           <div class="date-card">
             <div class="num">১৯</div>
@@ -313,55 +310,10 @@
     </div>
   </section>
 
-  <!-- Packages -->
+  <!-- Packages (dynamic) -->
   <section class="section" id="packages">
     <div class="container">
-      <!-- IMPORTANT: give id so promo.js can hydrate from localStorage -->
-      <div class="grid cols-3" id="pkg-grid">
-        <!-- Fallback items (will be replaced by promo.js if LS has data) -->
-        <div class="card">
-          <h4>✈️ ৭ দিন</h4>
-          <p class="price">Call for Price</p>
-          <p class="note">Visa, Ticket, Hotel, Transport</p>
-          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
-        </div>
-        <div class="card">
-          <h4>🕌 ১০ দিন</h4>
-          <p class="price">Call for Price</p>
-          <p class="note">Group / Family rooms</p>
-          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
-        </div>
-        <div class="card">
-          <h4>🏨 ১৪ দিন</h4>
-          <p class="price">৳১,৪৫০০০</p>
-          <p class="note">খাবার ছাড়া · Near Haram</p>
-          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
-        </div>
-        <div class="card">
-          <h4>📅 October 2025 (Group)</h4>
-          <p class="price">Early-bird available</p>
-          <p class="note">19 Oct departure · Guide included</p>
-          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Reserve</a></div>
-        </div>
-        <div class="card">
-          <h4>📅 November 2025 (Group)</h4>
-          <p class="price">Discount available</p>
-          <p class="note">1 Nov departure · Flexible dates</p>
-          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Reserve</a></div>
-        </div>
-        <div class="card">
-          <h4>⭐ Custom / Private Umrah</h4>
-          <p class="price">Tailored Itinerary</p>
-          <p class="note">Premium hotel · Private transport</p>
-          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Call for Plan</a></div>
-        </div>
-        <div class="card">
-          <h4>🛫 Air Ticket & Visa Assist</h4>
-          <p class="price">JED / MED</p>
-          <p class="note">Multiple airlines · Quick processing</p>
-          <div><a class="btn" href="#booking-form" style="background:#334155;border-color:#334155">Get Quote</a></div>
-        </div>
-      </div>
+      <div id="pkgGrid" class="grid cols-3"></div>
     </div>
   </section>
 
@@ -482,7 +434,7 @@
       }
     });
 
-    // Booking form JS
+    // Booking form
     const form = document.getElementById('umrahForm');
     if(form){
       const btn  = document.getElementById('submitBtn');
@@ -507,7 +459,7 @@
       });
     }
 
-    // Admin modal open/close + password check
+    // Admin modal + login
     (function(){
       const ADMIN_HASH = 'ea2c95fc59fecaaae824eb5ebaa723919280d5135bcdddd1ecdc591cb34be3dd'; // 'ifaz2025!'
 
@@ -537,6 +489,7 @@
           const h = await sha256Hex(pass.value.trim());
           if(h === ADMIN_HASH){
             localStorage.setItem('ifaz_auth','1');
+            localStorage.setItem('ifaz_last_saved', Date.now().toString());
             window.location.href = 'admin.html';
           } else {
             err.style.display = 'block';
@@ -544,9 +497,45 @@
         });
       }
     })();
+
+    // ===== Dynamic packages (LocalStorage → ifaz_packages_v1) =====
+    (function(){
+      const PKG_KEY = 'ifaz_packages_v1';
+      const defaults = [
+        { title:'✈️ ৭ দিন', price:'Call for Price', note:'Visa, Ticket, Hotel, Transport', ctaText:'Get Quote', ctaHref:'#booking-form' },
+        { title:'🕌 ১০ দিন', price:'Call for Price', note:'Group / Family rooms', ctaText:'Get Quote', ctaHref:'#booking-form' },
+        { title:'🏨 ১৪ দিন', price:'৳১,৪৫০০০', note:'খাবার ছাড়া · Near Haram', ctaText:'Get Quote', ctaHref:'#booking-form' },
+        { title:'📅 October 2025 (Group)', price:'Early-bird available', note:'19 Oct departure · Guide included', ctaText:'Reserve', ctaHref:'#booking-form' },
+        { title:'📅 November 2025 (Group)', price:'Discount available',  note:'1 Nov departure · Flexible dates', ctaText:'Reserve', ctaHref:'#booking-form' },
+        { title:'⭐ Custom / Private Umrah', price:'Tailored Itinerary', note:'Premium hotel · Private transport', ctaText:'Call for Plan', ctaHref:'#booking-form' },
+        { title:'🛫 Air Ticket & Visa Assist', price:'JED / MED', note:'Multiple airlines · Quick processing', ctaText:'Get Quote', ctaHref:'#booking-form' },
+      ];
+      function getPkgs(){
+        try{
+          const x = JSON.parse(localStorage.getItem(PKG_KEY));
+          return (Array.isArray(x) && x.length) ? x : defaults;
+        }catch{ return defaults }
+      }
+      function renderPkgs(){
+        const grid = document.getElementById('pkgGrid');
+        const list = getPkgs();
+        grid.innerHTML = list.map(p => `
+          <div class="card">
+            <h4>${p.title||''}</h4>
+            <p class="price">${p.price||''}</p>
+            <p class="note">${p.note||''}</p>
+            <div><a class="btn" href="${p.ctaHref||'#'}" style="background:#334155;border-color:#334155">${p.ctaText||'Details'}</a></div>
+          </div>
+        `).join('');
+      }
+      renderPkgs();
+      window.addEventListener('storage', (e)=>{
+        if(e.key === PKG_KEY || e.key === 'ifaz_last_saved'){ renderPkgs(); }
+      });
+    })();
   </script>
 
-  <!-- Reusable Promo Slider (v8) -->
+  <!-- Reusable Promo Slider -->
   <script defer src="promo.js?v=8"></script>
 </body>
 </html>
