@@ -11,6 +11,7 @@
   <!-- Reusable slider styles -->
   <link rel="stylesheet" href="promo.css?v=8">
 
+
   <style>
     :root{
       --brand:#0ea5e9; --brand-dark:#0284c7;
@@ -310,12 +311,13 @@
     </div>
   </section>
 
-<!-- Packages -->
 <section class="section" id="packages">
   <div class="container">
+    <!-- ডায়নামিক রেন্ডারের জন্য শুধু এই কন্টেইনার -->
     <div class="grid cols-3" id="packages-grid"></div>
   </div>
 </section>
+
 
 <!-- packages.js লোড করুন (promo.js-এর পরে) -->
 <script defer src="packages.js?v=2"></script>
@@ -540,5 +542,21 @@
 
   <!-- Reusable Promo Slider -->
   <script defer src="promo.js?v=8"></script>
+  <!-- ভার্সন গার্ড: নতুন রিলিজে পুরনো লোকালস্টোরেজ ক্লিয়ার -->
+<script>
+(function(){
+  const VER='2025.10.06-1';
+  const KEY='ifaz_version';
+  if(localStorage.getItem(KEY)!==VER){
+    localStorage.removeItem('ifaz_promos_v1');
+    localStorage.removeItem('ifaz_packages_v1');
+    localStorage.setItem(KEY, VER);
+  }
+})();
+</script>
+
+<!-- শেয়ার্ড প্রমো স্লাইডার -->
+<script defer src="promo.js?v=8"></script>
+  <script defer src="packages.js?v=1"></script>
 </body>
 </html>
