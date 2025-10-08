@@ -24,6 +24,14 @@
         `).join('');
       }
     }
+    window.IFAZ_DATA = {
+  promos: [
+    // এখানে আপনার প্রমো অবজেক্টগুলো (title, subtitle, badge, theme, href)
+  ],
+  packages: [
+    // এখানে আপনার প্যাকেজ অবজেক্টগুলো (title, price, note, ctaText, ctaHref)
+  ]
+};
 
     // ---- Update contact info if present ----
     if(office){
