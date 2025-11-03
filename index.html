@@ -156,20 +156,26 @@
     .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
     .btn.secondary{background:#f8fafc}
 
-    /* ====== ✅ Hero Slider (added, everything else unchanged) ====== */
-    .hero-slider{
-      position:relative; border-radius:16px; overflow:hidden;
-      box-shadow:0 12px 30px rgba(2,8,23,.12);
-      height:clamp(220px,40vw,420px); background:#000;
-    }
-    .hero-slider .slides{display:flex;width:100%;height:100%;transition:transform .6s ease}
-    .hero-slider .slide{min-width:100%;height:100%;background-size:cover;background-position:center}
-    .hero-slider .nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
-    .hero-slider button{pointer-events:auto;background:rgba(0,0,0,.45);border:0;width:40px;height:40px;border-radius:50%;color:#fff;display:grid;place-items:center;cursor:pointer}
-    .hero-slider button:hover{background:rgba(0,0,0,.6)}
-    .hero-slider .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:6px;justify-content:center}
-    .hero-slider .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.6);border:0}
-    .hero-slider .dot.active{background:#fff}
+   /* Hero slider (full image, no crop) */
+.hero-slider{
+  position:relative; border-radius:16px; overflow:hidden;
+  box-shadow:0 12px 30px rgba(2,8,23,.12);
+  /* একটু বড় হাইট যাতে লম্বা পোস্টারও সুন্দর দেখায় */
+  height:clamp(260px, 48vw, 560px); 
+  background:#000;
+}
+.hero-slider .slides{display:flex;width:100%;height:100%;transition:transform .6s ease}
+.hero-slider .slide{min-width:100%;height:100%;display:grid;place-items:center;background:none}
+.hero-slider .slide img{
+  width:100%; height:100%;
+  object-fit:contain;         /* 👉 পুরো ছবি দেখাবে, ক্রপ করবে না */
+}
+.hero-slider .nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.hero-slider button{pointer-events:auto;background:rgba(0,0,0,.45);border:0;width:40px;height:40px;border-radius:50%;color:#fff;display:grid;place-items:center;cursor:pointer}
+.hero-slider button:hover{background:rgba(0,0,0,.6)}
+.hero-slider .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:6px;justify-content:center}
+.hero-slider .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.6);border:0}
+.hero-slider .dot.active{background:#fff}
   </style>
 </head>
 <body>
@@ -562,70 +568,73 @@
     })();
   </script>
 
-  <!-- ✅ Hero slider init (posterbook1/2/3) -->
   <script>
-  (function(){
-    const IMAGES = [
-      'public/posters/posterbook1.jpg',
-      'public/posters/posterbook2.jpg',
-      'public/posters/posterbook3.jpg'
-    ];
-    const slider = document.getElementById('heroSlider');
-    if(!slider) return;
+(function(){
+  const IMAGES = [
+    'public/posters/posterbook1.jpg',
+    'public/posters/posterbook2.jpg',
+    'public/posters/posterbook3.jpg'
+  ];
 
-    const slides = slider.querySelector('.slides');
-    const dots   = slider.querySelector('.dots');
+  const slider = document.getElementById('heroSlider');
+  if(!slider) return;
 
-    IMAGES.forEach((src, idx)=>{
-      const s = document.createElement('div');
-      s.className = 'slide';
-      s.style.backgroundImage = `url(${src})`;
-      s.setAttribute('role','img');
-      s.setAttribute('aria-label', `Slide ${idx+1}`);
-      slides.appendChild(s);
+  const slides = slider.querySelector('.slides');
+  const dots   = slider.querySelector('.dots');
 
-      const d = document.createElement('button');
-      d.className = 'dot';
-      d.setAttribute('aria-label', `Go to slide ${idx+1}`);
-      d.addEventListener('click', ()=> go(idx, true));
-      dots.appendChild(d);
-    });
+  // 👉 প্রতিটি স্লাইডে img এলিমেন্ট বসাচ্ছি (ক্রপ ছাড়া ফুলসাইজ দেখানোর জন্য)
+  IMAGES.forEach((src, idx)=>{
+    const s = document.createElement('div');
+    s.className = 'slide';
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `Poster ${idx+1}`;
+    s.appendChild(img);
+    slides.appendChild(s);
 
-    let i = 0, timer;
-    const total = IMAGES.length;
+    const d = document.createElement('button');
+    d.className = 'dot';
+    d.setAttribute('aria-label', `Go to slide ${idx+1}`);
+    d.addEventListener('click', ()=> go(idx, true));
+    dots.appendChild(d);
+  });
 
-    function go(idx, userTriggered){
-      i = (idx + total) % total;
-      slides.style.transform = `translateX(-${i*100}%)`;
-      [...dots.children].forEach((d, j)=> d.classList.toggle('active', j===i));
-      if(userTriggered) restart();
-    }
-    function next(){ go(i+1); }
-    function prev(){ go(i-1); }
+  let i = 0, timer;
+  const total = IMAGES.length;
 
-    slider.querySelector('.next').addEventListener('click', ()=>{ next(); restart(); });
-    slider.querySelector('.prev').addEventListener('click', ()=>{ prev(); restart(); });
+  function go(idx, userTriggered){
+    i = (idx + total) % total;
+    slides.style.transform = `translateX(-${i*100}%)`;
+    [...dots.children].forEach((d, j)=> d.classList.toggle('active', j===i));
+    if(userTriggered) restart();
+  }
+  function next(){ go(i+1); }
+  function prev(){ go(i-1); }
 
-    function start(){
-      if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      timer = setInterval(next, 4000);
-    }
-    function stop(){ clearInterval(timer); }
-    function restart(){ stop(); start(); }
+  slider.querySelector('.next').addEventListener('click', ()=>{ next(); restart(); });
+  slider.querySelector('.prev').addEventListener('click', ()=>{ prev(); restart(); });
 
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', start);
-    document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+  function start(){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    timer = setInterval(next, 4000);
+  }
+  function stop(){ clearInterval(timer); }
+  function restart(){ stop(); start(); }
 
-    window.addEventListener('keydown', (e)=>{
-      if(e.key==='ArrowRight') { next(); restart(); }
-      if(e.key==='ArrowLeft')  { prev(); restart(); }
-    });
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
 
-    go(0);
-    start();
-  })();
-  </script>
+  window.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowRight') { next(); restart(); }
+    if(e.key==='ArrowLeft')  { prev(); restart(); }
+  });
+
+  go(0);
+  start();
+})();
+</script>
+
 
   <!-- Reusable Promo Slider -->
   <script defer src="promo.js?v=8"></script>
